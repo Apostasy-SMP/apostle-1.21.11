@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "apostle",
+	"version": "${version}",
+	"name": "Apostle",
+	"description": "",
+	"authors": [
+		"Chemthunder",
+		"PhantomPickle_"
+	],
+	"license": "ARR",
+	"icon": "assets/apostle/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.apostasy.apostle.core.Apostle"
+		],
+		"fabric-datagen": [
+			"org.apostasy.apostle.datagen.ApostleDataGenerator"
+		]
+	},
+	"mixins": [
+		"apostle.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
