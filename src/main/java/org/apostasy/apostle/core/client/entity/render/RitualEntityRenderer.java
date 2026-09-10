@@ -40,7 +40,8 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
     public void render(RitualEntityRenderState renderState, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
         super.render(renderState, matrices, queue, cameraState);
 
-        float delta = MinecraftClient.getInstance().getRenderTickCounter().getDynamicDeltaTicks();
+        MinecraftClient client = MinecraftClient.getInstance();
+        float delta = client.getRenderTickCounter().getDynamicDeltaTicks();
 
         matrices.push();
 
@@ -64,30 +65,34 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
 
         matrices.pop();
 
-        MinecraftClient client = MinecraftClient.getInstance();
 
-        matrices.push();
 
-        matrices.translate(0, 3, 0);
+        for (ItemStack stack : renderState.stacksToRender) {
+            int index = renderState.stacksToRender.indexOf(stack);
 
-        ItemRenderState itemState = new ItemRenderState();
-        client.getItemModelManager().clearAndUpdate(
-                itemState,
-                new ItemStack(Items.TOTEM_OF_UNDYING),
-                ItemDisplayContext.GUI,
-                client.world,
-                null,
-                -1
-        );
+            matrices.push();
 
-        itemState.render(
-                matrices,
-                queue,
-                LightmapTextureManager.MAX_LIGHT_COORDINATE,
-                OverlayTexture.DEFAULT_UV,
-                0
-        );
-        matrices.pop();
+            matrices.translate(0, 3, 0);
+
+            ItemRenderState itemState = new ItemRenderState();
+            client.getItemModelManager().clearAndUpdate(
+                    itemState,
+                    stack,
+                    ItemDisplayContext.GUI,
+                    client.world,
+                    null,
+                    -1
+            );
+
+            itemState.render(
+                    matrices,
+                    queue,
+                    LightmapTextureManager.MAX_LIGHT_COORDINATE,
+                    OverlayTexture.DEFAULT_UV,
+                    0
+            );
+            matrices.pop();
+        }
     }
 
     public boolean shouldRender(RitualEntity entity, Frustum frustum, double x, double y, double z) {

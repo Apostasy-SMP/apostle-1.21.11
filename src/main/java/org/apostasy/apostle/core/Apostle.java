@@ -1,7 +1,9 @@
 package org.apostasy.apostle.core;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.minecraft.util.Identifier;
+import org.apostasy.apostle.core.event.RitualPushItemEvent;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.slf4j.Logger;
@@ -17,6 +19,8 @@ public class Apostle implements ModInitializer {
 	public void onInitialize() {
 		ApostleItems.init();
 		ApostleEntityTypes.init();
+
+		UseEntityCallback.EVENT.register(new RitualPushItemEvent());
 
 		LOGGER.info("Hello Fabric world!");
 	}
