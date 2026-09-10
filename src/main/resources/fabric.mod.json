@@ -15,6 +15,9 @@
 		"main": [
 			"org.apostasy.apostle.core.Apostle"
 		],
+		"client": [
+			"org.apostasy.apostle.core.ApostleClient"
+		],
 		"fabric-datagen": [
 			"org.apostasy.apostle.datagen.ApostleDataGenerator"
 		]
