@@ -1,0 +1,108 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_abyssal"
+        },
+        "when": {
+          "color": -8731750,
+          "name": "Abyssal"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_caller"
+        },
+        "when": {
+          "color": -4757869,
+          "name": "Caller"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_gore"
+        },
+        "when": {
+          "color": -2208937,
+          "name": "Gore"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_vex"
+        },
+        "when": {
+          "color": -3303360,
+          "name": "Vex"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_waste"
+        },
+        "when": {
+          "color": -7640731,
+          "name": "Waste"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_wave"
+        },
+        "when": {
+          "color": -10234657,
+          "name": "Wave"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_wick"
+        },
+        "when": {
+          "color": -1145294,
+          "name": "Wick"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_wild"
+        },
+        "when": {
+          "color": -5713573,
+          "name": "Wild"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_wind"
+        },
+        "when": {
+          "color": -4339201,
+          "name": "Wind"
+        }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_worship"
+        },
+        "when": {
+          "color": -132959,
+          "name": "Worship"
+        }
+      }
+    ],
+    "property": "apostle:spell_scroll"
+  }
+}

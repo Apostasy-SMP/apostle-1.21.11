@@ -1,7 +1,9 @@
 package org.apostasy.apostle.core;
 
 import net.fabricmc.api.ClientModInitializer;
-import org.apostasy.apostle.core.index.ApostleEntityModelLayers;
+import net.minecraft.client.render.item.property.select.SelectProperties;
+import org.apostasy.apostle.core.client.item.SpellScrollProperty;
+import org.apostasy.apostle.core.index.client.ApostleEntityModelLayers;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 
 /**
@@ -11,5 +13,7 @@ public class ApostleClient implements ClientModInitializer {
     public void onInitializeClient() {
         ApostleEntityTypes.clinit();
         ApostleEntityModelLayers.clinit();
+
+        SelectProperties.ID_MAPPER.put(SpellScrollProperty.ID, SpellScrollProperty.TYPE);
     }
 }

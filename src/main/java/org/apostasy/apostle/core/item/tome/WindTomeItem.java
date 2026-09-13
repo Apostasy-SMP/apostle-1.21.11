@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core.item.tome;
 
 import net.minecraft.item.ItemConvertible;
+import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.item.TomeItem;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  * @author Chemthunder
  */
 public class WindTomeItem extends TomeItem {
-    public WindTomeItem(String id, List<ItemConvertible> ritualIngredients) {
-        super(id, ritualIngredients);
+    public WindTomeItem(String id, List<ItemConvertible> ritualIngredients, MagicSchool school) {
+        super(id, ritualIngredients, school);
     }
 }

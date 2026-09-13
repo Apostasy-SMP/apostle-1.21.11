@@ -2,6 +2,7 @@ package org.apostasy.apostle.core.client.entity.state;
 
 import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.item.ItemStack;
+import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.item.TomeItem;
 import org.apostasy.apostle.core.entity.RitualEntity;
 
@@ -15,4 +16,5 @@ public class RitualEntityRenderState extends EntityRenderState {
 
     public List<ItemStack> stacksToRender;
     public TomeItem heldTome;
+    public MagicSchool school;
 }

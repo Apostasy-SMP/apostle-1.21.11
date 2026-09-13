@@ -1,7 +1,6 @@
 package org.apostasy.apostle.core.client.entity.render;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
@@ -10,21 +9,18 @@ import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderState;
-import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.HeldItemContext;
 import net.minecraft.util.math.RotationAxis;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.client.entity.model.RitualEntityModel;
 import org.apostasy.apostle.core.client.entity.state.RitualEntityRenderState;
 import org.apostasy.apostle.core.entity.RitualEntity;
-import org.apostasy.apostle.core.index.ApostleEntityModelLayers;
+import org.apostasy.apostle.core.index.client.ApostleEntityModelLayers;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Chemthunder
@@ -58,6 +54,8 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
                     RenderLayers.entityCutout(Apostle.id("textures/entity/ritual_" + renderState.heldTome.getId() + ".png")),
                     LightmapTextureManager.MAX_LIGHT_COORDINATE,
                     OverlayTexture.DEFAULT_UV,
+                    renderState.heldTome.getSchool().color(),
+                    null,
                     0x00,
                     null
             );
@@ -65,14 +63,33 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
 
         matrices.pop();
 
-
-
         for (ItemStack stack : renderState.stacksToRender) {
             int index = renderState.stacksToRender.indexOf(stack);
+            int distance = 1;
 
             matrices.push();
 
-            matrices.translate(0, 3, 0);
+            if (index == 0) {
+                matrices.translate(0, 2, 0);
+
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((delta + renderState.age)));
+            }
+            if (index > 0) {
+                matrices.translate(0, 2, 0);
+
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((delta + renderState.age) * (2 + ((index - 1) * 2))),
+                        0,
+                        0,
+                        0
+                );
+
+                matrices.translate(distance, 0, distance);
+
+                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees((delta + renderState.age)));
+                matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((delta + renderState.age)));
+
+                matrices.translate(0, 2, 0);
+            }
 
             ItemRenderState itemState = new ItemRenderState();
             client.getItemModelManager().clearAndUpdate(
@@ -118,5 +135,9 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
 
         state.heldTome = entity.getHeldTome();
         state.stacksToRender = entity.getHeldStacks();
+
+        if (entity.getHeldTome() != null) {
+            state.school = entity.getHeldTome().getSchool();
+        }
     }
 }
