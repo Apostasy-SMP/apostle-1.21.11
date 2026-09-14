@@ -49,7 +49,7 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
                     this.ritualPlane,
                     renderState,
                     matrices,
-                    RenderLayers.entityCutout(Apostle.id("textures/entity/ritual_" + renderState.heldTome.getId() + ".png")),
+                    RenderLayers.entityCutout(Apostle.id("textures/entity/ritual_" + renderState.school.name().getString().toLowerCase() + ".png")),
                     LightmapTextureManager.MAX_LIGHT_COORDINATE,
                     OverlayTexture.DEFAULT_UV,
                     renderState.heldTome.getSchool().color(),

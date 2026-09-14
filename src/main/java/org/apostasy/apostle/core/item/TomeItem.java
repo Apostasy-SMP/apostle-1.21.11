@@ -3,7 +3,6 @@ package org.apostasy.apostle.core.item;
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.tooltip.TooltipType;
@@ -18,25 +17,20 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.entity.RitualEntity;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 /**
  * @author Chemthunder
  */
 public class TomeItem extends Item {
-    private final String id;
-    private final List<ItemConvertible> ritualIngredients;
     private final MagicSchool school;
 
-    public TomeItem(String id, List<ItemConvertible> ritualIngredients, MagicSchool school) {
+    public TomeItem(MagicSchool school) {
         super(new Settings()
                 .maxCount(1)
-                .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id(id + "_tome")))
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id(school.name().getString().toLowerCase() + "_tome")))
         );
 
-        this.id = id;
-        this.ritualIngredients = ritualIngredients;
         this.school = school;
     }
 
@@ -72,16 +66,6 @@ public class TomeItem extends Item {
                 lines.accept(Text.literal("- ").formatted(Formatting.DARK_GRAY).append(tome.school.name().copy().withColor(tome.school.color())));
             }
         }
-    }
-
-    public void tickRitual(World world, RitualEntity ritual) {}
-
-    public String getId() {
-        return id;
-    }
-
-    public List<ItemConvertible> getRitualIngredients() {
-        return ritualIngredients;
     }
 
     public MagicSchool getSchool() {

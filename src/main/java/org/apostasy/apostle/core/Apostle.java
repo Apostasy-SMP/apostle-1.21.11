@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.apostasy.apostle.core.index.*;
+import org.apostasy.apostle.core.index.core.ItemCrafts;
+import org.apostasy.apostle.core.index.core.Rituals;
 import org.apostasy.apostle.core.index.core.Schools;
 import org.apostasy.apostle.core.index.core.Spells;
 import org.apostasy.apostle.core.item.SpellScrollItem;
@@ -35,9 +37,12 @@ public class Apostle implements ModInitializer {
 		ApostleItemGroups.init();
 		ApostleComponentTypes.init();
 		ApostleCriteria.init();
+		ApostleAttachmentTypes.init();
 
 		Schools.init();
 		Spells.init();
+		Rituals.init();
+		ItemCrafts.init();
 
 		BetterItemTooltipEvent.EVENT.register(new TomeItem.Tooltip());
 		BetterItemTooltipEvent.EVENT.register(new SpellScrollItem.Tooltip());

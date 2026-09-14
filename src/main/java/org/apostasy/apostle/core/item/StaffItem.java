@@ -17,11 +17,13 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
+import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
+import org.apostasy.apostle.core.index.ApostleCriteria;
 import org.apostasy.apostle.core.index.ApostleItems;
+import org.jspecify.annotations.Nullable;
 
-import java.util.Random;
 import java.util.function.Consumer;
 
 /**
@@ -52,6 +54,16 @@ public class StaffItem extends Item {
                         if (!cooldown.isCoolingDown(offStack)) {
                             if (spell.getCastTime() <= 0) {
                                 spell.cast(world, user);
+
+                                if (!user.isCreative()) {
+                                    ItemCooldownManager manager = user.getItemCooldownManager();
+
+                                    manager.set(stack, (8 * 20));
+                                    manager.set(offStack, spell.getCooldown());
+                                }
+
+                                Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
+
                                 user.swingHand(hand);
                             } else {
                                 user.setCurrentHand(hand);
@@ -70,43 +82,73 @@ public class StaffItem extends Item {
         return UseAction.SPEAR;
     }
 
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+        Spell spell = getOffhandSpell(user);
+        if (spell != null) {
+            return spell.getCastTime();
+        }
+        return 720000;
+    }
+
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+        ItemStack offStack = user.getOffHandStack();
+
+        if (offStack.isOf(ApostleItems.SPELL_SCROLL)) {
+            Spell spell = getOffhandSpell(user);
+
+            if (spell != null) {
+                spell.createChargeParticles(world, user);
+                spell.tickCharge(world, user);
+            }
+        } else {
+            Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
+
+            world.addParticleClient(
+                    ParticleTypes.END_ROD,
+                    particlePos.x,
+                    particlePos.y,
+                    particlePos.z,
+                    0,
+                    0,
+                    0
+            );
+        }
+    }
+
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        Spell spell = getOffhandSpell(user);
+
+        if (spell != null) {
+            if (user instanceof PlayerEntity player) {
+                ItemCooldownManager manager = player.getItemCooldownManager();
+
+                spell.cast(world, player);
+
+                Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
+
+                if (!player.isCreative()) {
+                    manager.set(user.getOffHandStack(), spell.getCooldown());
+                    manager.set(stack, (8 * 20));
+                }
+            }
+        }
+        return super.finishUsing(stack, world, user);
+    }
+
+    @Nullable
+    public Spell getOffhandSpell(LivingEntity user) {
         ItemStack off = user.getOffHandStack();
 
         if (off.isOf(ApostleItems.SPELL_SCROLL)) {
             if (off.contains(ApostleComponentTypes.STORED_SPELL)) {
-                StoredSpellComponent component = off.get(ApostleComponentTypes.STORED_SPELL);
+                StoredSpellComponent spellComponent = off.get(ApostleComponentTypes.STORED_SPELL);
 
-                if (component != null) {
-                    Spell spell = component.spell();
-
-                    Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
-
-                    world.addParticleClient(
-                            spell.getChargeParticleEffects().get(new Random().nextInt(spell.getChargeParticleEffects().size())),
-                            particlePos.x,
-                            particlePos.y,
-                            particlePos.z,
-                            0,
-                            0,
-                            0
-                    );
-                    return;
+                if (spellComponent != null) {
+                    return spellComponent.spell();
                 }
             }
         }
-
-        Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
-
-        world.addParticleClient(
-                ParticleTypes.END_ROD,
-                particlePos.x,
-                particlePos.y,
-                particlePos.z,
-                0,
-                0,
-                0
-        );
+        return null;
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {

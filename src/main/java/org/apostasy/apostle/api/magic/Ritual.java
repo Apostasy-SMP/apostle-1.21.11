@@ -13,4 +13,6 @@ public interface Ritual {
     void cast(World world, RitualEntity ritual);
 
     List<Item> getIngredients();
+
+    MagicSchool getMagicSchool();
 }

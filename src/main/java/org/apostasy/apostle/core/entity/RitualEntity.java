@@ -8,6 +8,7 @@ import net.minecraft.entity.data.DataTracked;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
@@ -16,9 +17,13 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
-import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import org.apostasy.apostle.api.magic.MagicSchool;
+import org.apostasy.apostle.api.magic.Ritual;
+import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
@@ -42,6 +47,7 @@ public class RitualEntity extends Entity implements DataTracked {
     public static final TrackedData<List<ItemStack>> HELD_STACKS = DataTracker.registerData(RitualEntity.class, Apostle.ITEM_STACK_LIST);
 
     private int ticksTillCast = 0;
+    private boolean casting = false;
 
     public RitualEntity(World world) {
         super(ApostleEntityTypes.RITUAL, world);
@@ -58,6 +64,22 @@ public class RitualEntity extends Entity implements DataTracked {
     protected void initDataTracker(DataTracker.Builder builder) {
         builder.add(HELD_TOME, ItemStack.EMPTY);
         builder.add(HELD_STACKS, new ArrayList<>());
+    }
+
+    public ActionResult interact(PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+
+        if (!casting) {
+            if (stack.isEmpty()) {
+                casting = true;
+                return ActionResult.PASS;
+            }
+        }
+        return super.interact(player, hand);
+    }
+
+    public boolean isInteractable() {
+        return true;
     }
 
     public void tick() {
@@ -77,6 +99,10 @@ public class RitualEntity extends Entity implements DataTracked {
             }
 
             if (this.getHeldStacks().size() >= 9) {
+                casting = true;
+            }
+
+            if (casting) {
                 if (ticksTillCast < (3 * 20)) {
                     ticksTillCast++;
                     if (ticksTillCast >= (3 * 20)) {
@@ -99,19 +125,20 @@ public class RitualEntity extends Entity implements DataTracked {
         List<ItemStack> stacks = new ArrayList<>(this.getHeldStacks());
         ItemStack first = stacks.getFirst();
 
+        List<Item> items = new ArrayList<>();
+
+        for (ItemStack stack : stacks) {
+            items.add(stack.getItem());
+        }
+
         if (!first.isEmpty() && first.getItem() instanceof TomeItem tome) {
             stacks.removeFirst();
 
             for (Spell spell : ApostleRegistries.SPELL) {
                 if (!spell.isUnobtainable()) {
                     List<Item> spellIngredients = new ArrayList<>(spell.getIngredients());
-                    List<Item> possibleIngredients = new ArrayList<>();
 
-                    for (ItemStack stack : stacks) {
-                        possibleIngredients.add(stack.getItem());
-                    }
-
-                    if (new HashSet<>(possibleIngredients).containsAll(spellIngredients)) {
+                    if (new HashSet<>(items).containsAll(spellIngredients)) {
                         ItemStack spellScroll = new ItemStack(ApostleItems.SPELL_SCROLL);
                         spellScroll.set(ApostleComponentTypes.STORED_SPELL, new StoredSpellComponent(spell));
 
@@ -119,25 +146,33 @@ public class RitualEntity extends Entity implements DataTracked {
                         spawnedScroll.setStack(spellScroll);
                         spawnedScroll.setPos(this.getX(), this.getY() + 6, this.getZ());
                         world.spawnEntity(spawnedScroll);
+                        break;
                     }
                 }
+            }
+        }
+
+        for (Ritual ritual : ApostleRegistries.RITUAL) {
+            if (ritual.getMagicSchool() == this.getSchool()) {
+                if (new HashSet<>(items).containsAll(ritual.getIngredients())) {
+                    ritual.cast(world, this);
+                    break;
+                }
+            }
+        }
+
+        for (RitualRecipe craft : ApostleRegistries.RITUAL_RECIPE) {
+            if (new HashSet<>(items).containsAll(craft.getIngredients())) {
+                ItemEntity spawnedItem = new ItemEntity(EntityType.ITEM, world);
+                spawnedItem.setStack(craft.getOutput());
+                spawnedItem.setPos(this.getX(), this.getY() + 3, this.getZ());
+                world.spawnEntity(spawnedItem);
+                break;
             }
         }
     }
 
     public boolean canUsePortals(boolean allowVehicles) {
-        return false;
-    }
-
-    public Text getDisplayName() {
-        return Text.of(this.getHeldTome() != null ? this.getHeldTome().getId() : "NULL" + " - ");
-    }
-
-    public Text getName() {
-        return this.getDisplayName();
-    }
-
-    public boolean shouldRenderName() {
         return false;
     }
 
@@ -147,10 +182,12 @@ public class RitualEntity extends Entity implements DataTracked {
 
     protected void readCustomData(ReadView view) {
         ticksTillCast = view.getInt("TicksTillCast", 0);
+        casting = view.getBoolean("Casting", false);
     }
 
     protected void writeCustomData(WriteView view) {
         view.putInt("TicksTillCast", ticksTillCast);
+        view.putBoolean("Casting", casting);
     }
 
     @Nullable
@@ -188,5 +225,13 @@ public class RitualEntity extends Entity implements DataTracked {
 
     public ItemStack getPrimaryStack() {
         return this.getHeldStacks().getFirst();
+    }
+
+    @Nullable
+    public MagicSchool getSchool() {
+        if (this.getHeldTome() != null) {
+            return this.getHeldTome().getSchool();
+        }
+        return null;
     }
 }

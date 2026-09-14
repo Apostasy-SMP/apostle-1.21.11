@@ -64,6 +64,12 @@ public class ApostleModelProvider extends FabricModelProvider {
         Item item = ApostleItems.MAGIC_STAFF;
         Identifier id = ModelIds.getItemModelId(item);
 
+        Identifier gui = Models.GENERATED.upload(
+                item,
+                TextureMap.layer0(item),
+                generator.modelCollector
+        );
+
         generator.output.accept(item,
                 ItemModels.condition(
                         new UsingItemProperty(),
@@ -72,7 +78,7 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 ItemModels.basic(id.withSuffixedPath("_in_hand_using")),
                                 ItemModels.switchCase(
                                         Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED, ItemDisplayContext.ON_SHELF),
-                                        ItemModels.basic(id)
+                                        ItemModels.basic(gui)
                                 )
                         ),
                         ItemModels.select(
@@ -80,7 +86,7 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 ItemModels.basic(id.withSuffixedPath("_in_hand")),
                                 ItemModels.switchCase(
                                         Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED, ItemDisplayContext.ON_SHELF),
-                                        ItemModels.basic(id)
+                                        ItemModels.basic(gui)
                                 )
                         )
                 ));

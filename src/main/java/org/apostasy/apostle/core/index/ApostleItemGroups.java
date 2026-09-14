@@ -33,6 +33,8 @@ public interface ApostleItemGroups {
     }
 
     private static void addEntries(FabricItemGroupEntries entries) {
+        entries.add(ApostleItems.MAGIC_STAFF);
+
         for (Item item : ApostleItems.plugin.toRegister) {
             if (item instanceof TomeItem) {
                 entries.add(item);

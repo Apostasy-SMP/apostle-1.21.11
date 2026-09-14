@@ -2,67 +2,43 @@ package org.apostasy.apostle.core.index;
 
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.core.Schools;
 import org.apostasy.apostle.core.item.SpellScrollItem;
 import org.apostasy.apostle.core.item.StaffItem;
 import org.apostasy.apostle.core.item.TomeItem;
-import org.apostasy.apostle.core.item.tome.*;
-
-import java.util.List;
 
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public interface ApostleItems {
     ItemRegistrant plugin = new ItemRegistrant(Apostle.MOD_ID);
 
-    /// ELDRITCH
-    Item ABYSSAL_TOME = createTome("abyssal", new AbyssalTomeItem("abyssal", List.of(
-            Items.STICK
-    ), Schools.ABYSSAL));
-
-    Item CALLER_TOME = createTome("caller", new CallerTomeItem("caller", List.of(
-            Items.STICK
-    ), Schools.CALLER));
-
-    Item GORE_TOME = createTome("gore", new GoreTomeItem("gore", List.of(
-            Items.STICK
-    ), Schools.GORE));
-
-    Item VEX_TOME = createTome("vex", new VexTomeItem("vex", List.of(
-            Items.STICK
-    ), Schools.VEX));
-
-
     /// WEAVE
-    Item WASTE_TOME = createTome("waste", new WasteTomeItem("waste", List.of(
-            Items.STICK
-    ), Schools.WASTE));
+    Item WASTE_TOME = createTome("waste", Schools.WASTE);
 
-    Item WAVE_TOME = createTome("wave", new WaveTomeItem("wave", List.of(
-            Items.STICK
-    ), Schools.WAVE));
+    Item WAVE_TOME = createTome("wave", Schools.WAVE);
 
-    Item WICK_TOME = createTome("wick", new WickTomeItem("wick", List.of(
-            Items.STICK
-    ), Schools.WICK));
+    Item WICK_TOME = createTome("wick", Schools.WICK);
 
-    Item WILD_TOME = createTome("wild", new WildTomeItem("wild", List.of(
-            Items.STICK
-    ), Schools.WILD));
+    Item WILD_TOME = createTome("wild", Schools.WILD);
 
-    Item WIND_TOME = createTome("wind", new WindTomeItem("wind", List.of(
-            Items.STICK
-    ), Schools.WIND));
+    Item WIND_TOME = createTome("wind", Schools.WIND);
 
-    Item WORSHIP_TOME = createTome("worship", new WorshipTomeItem("worship", List.of(
-            Items.STICK
-    ), Schools.WORSHIP));
+    Item WORSHIP_TOME = createTome("worship", Schools.WORSHIP);
 
+    /// ELDRITCH
+    Item ABYSSAL_TOME = createTome("abyssal", Schools.ABYSSAL);
+
+    Item CALLER_TOME = createTome("caller", Schools.CALLER);
+
+    Item GORE_TOME = createTome("gore", Schools.GORE);
+
+    Item VEX_TOME = createTome("vex", Schools.VEX);
 
     /// SPELLS
     Item SPELL_SCROLL = plugin.register("spell_scroll", SpellScrollItem::new, new Item.Settings()
@@ -80,9 +56,8 @@ public interface ApostleItems {
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id("arcane_staff")))
     );
 
-    private static Item createTome(String name, TomeItem tome) {
-        return plugin.register(name + "_tome", settings -> tome, new Item.Settings()
-        );
+    private static Item createTome(String name, MagicSchool school) {
+        return plugin.register(name + "_tome", settings -> new TomeItem(school), new Item.Settings());
     }
 
     static void init() {}
