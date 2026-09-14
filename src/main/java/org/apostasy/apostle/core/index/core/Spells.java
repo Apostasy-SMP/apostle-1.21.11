@@ -5,7 +5,7 @@ import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
 import org.apostasy.apostle.core.spell.wind.DashSpell;
-import org.apostasy.apostle.core.spell.wick.FireballSpell;
+import org.apostasy.apostle.core.spell.wick.CataclysmSpell;
 
 /**
  * @author Chemthunder
@@ -15,7 +15,7 @@ public interface Spells {
     Spell DASH = register("dash", new DashSpell());
 
     /// WICK
-    Spell FIREBALL = register("fireball", new FireballSpell());
+    Spell FIREBALL = register("fireball", new CataclysmSpell());
 
     private static Spell register(String name, Spell spell) {
         return Registry.register(ApostleRegistries.SPELL, Apostle.id(name), spell);

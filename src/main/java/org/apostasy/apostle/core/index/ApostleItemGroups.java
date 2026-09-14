@@ -10,8 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
+import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.api.item.TomeItem;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 
@@ -43,6 +44,13 @@ public interface ApostleItemGroups {
             scrollStack.set(ApostleComponentTypes.STORED_SPELL, new StoredSpellComponent(spell));
 
             entries.add(scrollStack);
+        }
+
+        for (MagicSchool school : ApostleRegistries.MAGIC_SCHOOL) {
+            ItemStack staffStack = new ItemStack(ApostleItems.ARCANE_STAFF);
+            staffStack.set(ApostleComponentTypes.SCHOOL, school);
+
+            entries.add(staffStack);
         }
     }
 }

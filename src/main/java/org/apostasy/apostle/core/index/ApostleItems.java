@@ -5,10 +5,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import org.apostasy.apostle.api.item.SpellScrollItem;
-import org.apostasy.apostle.api.item.TomeItem;
+import org.apostasy.apostle.core.item.SpellScrollItem;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.item.StaffItem;
 import org.apostasy.apostle.core.item.tome.*;
 
 import java.util.List;
@@ -67,6 +68,16 @@ public interface ApostleItems {
     Item SPELL_SCROLL = plugin.register("spell_scroll", SpellScrollItem::new, new Item.Settings()
             .maxCount(1)
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id("spell_scroll")))
+    );
+
+    Item MAGIC_STAFF = plugin.register("magic_staff", StaffItem::new, new Item.Settings()
+            .maxCount(1)
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id("magic_staff")))
+    );
+
+    Item ARCANE_STAFF = plugin.register("arcane_staff", StaffItem::new, new Item.Settings()
+            .maxCount(1)
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id("arcane_staff")))
     );
 
     private static Item createTome(String name, TomeItem tome) {

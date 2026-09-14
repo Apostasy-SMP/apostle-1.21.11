@@ -1,0 +1,578 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:select",
+      "cases": [
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_abyssal"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_abyssal_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -8731750,
+            "name": "Abyssal"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_caller"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_caller_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -4757869,
+            "name": "Caller"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_gore"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_gore_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -2208937,
+            "name": "Gore"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_vex"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_vex_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -3303360,
+            "name": "Vex"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_waste"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_waste_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -7640731,
+            "name": "Waste"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wave"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wave_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -10234657,
+            "name": "Wave"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wick"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wick_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -1145294,
+            "name": "Wick"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wild"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wild_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -5713573,
+            "name": "Wild"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wind"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wind_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -4339201,
+            "name": "Wind"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_worship"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_worship_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -132959,
+            "name": "Worship"
+          }
+        }
+      ],
+      "property": "apostle:magic_school"
+    },
+    "on_true": {
+      "type": "minecraft:select",
+      "cases": [
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_abyssal_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_abyssal_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -8731750,
+            "name": "Abyssal"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_caller_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_caller_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -4757869,
+            "name": "Caller"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_gore_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_gore_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -2208937,
+            "name": "Gore"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_vex_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_vex_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -3303360,
+            "name": "Vex"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_waste_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_waste_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -7640731,
+            "name": "Waste"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wave_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wave_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -10234657,
+            "name": "Wave"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wick_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wick_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -1145294,
+            "name": "Wick"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wild_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wild_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -5713573,
+            "name": "Wild"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_wind_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_wind_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -4339201,
+            "name": "Wind"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_worship_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_worship_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -132959,
+            "name": "Worship"
+          }
+        }
+      ],
+      "property": "apostle:magic_school"
+    },
+    "property": "minecraft:using_item"
+  }
+}

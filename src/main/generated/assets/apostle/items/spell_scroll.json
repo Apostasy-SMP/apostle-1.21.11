@@ -5,7 +5,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_abyssal"
+          "model": "apostle:item/spell_scroll_abyssal_scroll"
         },
         "when": {
           "color": -8731750,
@@ -15,7 +15,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_caller"
+          "model": "apostle:item/spell_scroll_caller_scroll"
         },
         "when": {
           "color": -4757869,
@@ -25,7 +25,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_gore"
+          "model": "apostle:item/spell_scroll_gore_scroll"
         },
         "when": {
           "color": -2208937,
@@ -35,7 +35,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_vex"
+          "model": "apostle:item/spell_scroll_vex_scroll"
         },
         "when": {
           "color": -3303360,
@@ -45,7 +45,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_waste"
+          "model": "apostle:item/spell_scroll_waste_scroll"
         },
         "when": {
           "color": -7640731,
@@ -55,7 +55,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_wave"
+          "model": "apostle:item/spell_scroll_wave_scroll"
         },
         "when": {
           "color": -10234657,
@@ -65,7 +65,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_wick"
+          "model": "apostle:item/spell_scroll_wick_scroll"
         },
         "when": {
           "color": -1145294,
@@ -75,7 +75,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_wild"
+          "model": "apostle:item/spell_scroll_wild_scroll"
         },
         "when": {
           "color": -5713573,
@@ -85,7 +85,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_wind"
+          "model": "apostle:item/spell_scroll_wind_scroll"
         },
         "when": {
           "color": -4339201,
@@ -95,7 +95,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostle:item/spell_scroll_worship"
+          "model": "apostle:item/spell_scroll_worship_scroll"
         },
         "when": {
           "color": -132959,

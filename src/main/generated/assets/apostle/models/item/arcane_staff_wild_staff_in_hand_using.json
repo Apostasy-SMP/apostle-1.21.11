@@ -1,0 +1,6 @@
+{
+  "parent": "apostle:item/staff_in_hand_using_template",
+  "textures": {
+    "layer0": "apostle:item/wild_staff_in_hand"
+  }
+}

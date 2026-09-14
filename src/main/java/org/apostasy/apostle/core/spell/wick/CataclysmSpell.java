@@ -1,8 +1,10 @@
 package org.apostasy.apostle.core.spell.wick;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
@@ -13,17 +15,15 @@ import java.util.List;
 /**
  * @author Chemthunder
  */
-public class FireballSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {}
+public class CataclysmSpell implements Spell {
+    public void cast(World world, PlayerEntity caster) {
+        FireballEntity entity = new FireballEntity(world, caster, caster.getRotationVec(0).multiply(1), 200);
+        entity.setPosition(new Vec3d(caster.getEntityPos().x, caster.getEntityPos().y + 1, caster.getEntityPos().z));
+        world.spawnEntity(entity);
+    }
 
     public List<Item> getIngredients() {
-        return List.of(
-                Items.FIRE_CHARGE,
-                Items.BLAZE_POWDER,
-                Items.BLAZE_ROD,
-                Items.BLACKSTONE,
-                Items.PAPER
-        );
+        return List.of();
     }
 
     public MagicSchool getMagicSchool() {
@@ -31,7 +31,7 @@ public class FireballSpell implements Spell {
     }
 
     public String getName() {
-        return "Fireball";
+        return "Cataclysm";
     }
 
     public int getCastTime() {
@@ -40,5 +40,9 @@ public class FireballSpell implements Spell {
 
     public int getCooldown() {
         return (15 * 20);
+    }
+
+    public boolean isUnobtainable() {
+        return true;
     }
 }

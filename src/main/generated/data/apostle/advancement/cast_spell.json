@@ -1,0 +1,30 @@
+{
+  "parent": "apostle:cast_ritual",
+  "criteria": {
+    "e": {
+      "trigger": "apostle:cast_spell"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostle.cast_spell.desc"
+    },
+    "icon": {
+      "components": {
+        "apostle:stored_spell": {
+          "spell": "apostle:dash"
+        }
+      },
+      "count": 1,
+      "id": "apostle:spell_scroll"
+    },
+    "title": {
+      "translate": "advancements.apostle.cast_spell.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

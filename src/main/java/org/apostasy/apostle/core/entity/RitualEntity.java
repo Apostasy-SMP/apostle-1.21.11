@@ -20,7 +20,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.api.item.TomeItem;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
@@ -102,26 +102,24 @@ public class RitualEntity extends Entity implements DataTracked {
         if (!first.isEmpty() && first.getItem() instanceof TomeItem tome) {
             stacks.removeFirst();
 
-            Apostle.LOGGER.info("Spell");
-
             for (Spell spell : ApostleRegistries.SPELL) {
-                List<Item> spellIngredients = new ArrayList<>(spell.getIngredients());
-                List<Item> possibleIngredients = new ArrayList<>();
+                if (!spell.isUnobtainable()) {
+                    List<Item> spellIngredients = new ArrayList<>(spell.getIngredients());
+                    List<Item> possibleIngredients = new ArrayList<>();
 
-                for (ItemStack stack : stacks) {
-                    possibleIngredients.add(stack.getItem());
-                }
+                    for (ItemStack stack : stacks) {
+                        possibleIngredients.add(stack.getItem());
+                    }
 
-                if (new HashSet<>(possibleIngredients).containsAll(spellIngredients)) {
-                    Apostle.LOGGER.info("SpellScroll");
+                    if (new HashSet<>(possibleIngredients).containsAll(spellIngredients)) {
+                        ItemStack spellScroll = new ItemStack(ApostleItems.SPELL_SCROLL);
+                        spellScroll.set(ApostleComponentTypes.STORED_SPELL, new StoredSpellComponent(spell));
 
-                    ItemStack spellScroll = new ItemStack(ApostleItems.SPELL_SCROLL);
-                    spellScroll.set(ApostleComponentTypes.STORED_SPELL, new StoredSpellComponent(spell));
-
-                    ItemEntity spawnedScroll = new ItemEntity(EntityType.ITEM, world);
-                    spawnedScroll.setStack(spellScroll);
-                    spawnedScroll.setPos(this.getX(), this.getY() + 6, this.getZ());
-                    world.spawnEntity(spawnedScroll);
+                        ItemEntity spawnedScroll = new ItemEntity(EntityType.ITEM, world);
+                        spawnedScroll.setStack(spellScroll);
+                        spawnedScroll.setPos(this.getX(), this.getY() + 6, this.getZ());
+                        world.spawnEntity(spawnedScroll);
+                    }
                 }
             }
         }

@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "apostle:gui/advancements/backgrounds/apostle",
+    "description": "Magic shit",
+    "icon": {
+      "count": 1,
+      "id": "apostle:wild_tome"
+    },
+    "show_toast": false,
+    "title": "Apostle"
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ]
+}

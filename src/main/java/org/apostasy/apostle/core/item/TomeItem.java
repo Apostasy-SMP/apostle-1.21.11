@@ -1,4 +1,4 @@
-package org.apostasy.apostle.api.item;
+package org.apostasy.apostle.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.minecraft.entity.player.PlayerEntity;

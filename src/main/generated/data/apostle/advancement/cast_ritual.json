@@ -1,0 +1,25 @@
+{
+  "parent": "apostle:root",
+  "criteria": {
+    "e": {
+      "trigger": "apostle:cast_ritual"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostle.cast_ritual.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostle:wind_tome"
+    },
+    "title": {
+      "translate": "advancements.apostle.cast_ritual.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

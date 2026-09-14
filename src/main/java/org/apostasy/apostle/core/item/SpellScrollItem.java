@@ -1,4 +1,4 @@
-package org.apostasy.apostle.api.item;
+package org.apostasy.apostle.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,24 +27,6 @@ public class SpellScrollItem extends Item {
 
     public Text getName(ItemStack stack) {
         return Text.literal("Scroll");
-    }
-
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
-        if (stack.contains(ApostleComponentTypes.STORED_SPELL)) {
-            StoredSpellComponent component = stack.get(ApostleComponentTypes.STORED_SPELL);
-
-            if (component != null) {
-                Spell spell = component.spell();
-
-                spell.cast(world, user);
-
-                if (!user.isCreative()) {
-                    user.getItemCooldownManager().set(stack, spell.getCooldown());
-                }
-            }
-        }
-        return super.use(world, user, hand);
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {

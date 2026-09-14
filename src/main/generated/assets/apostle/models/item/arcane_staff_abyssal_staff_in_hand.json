@@ -1,0 +1,6 @@
+{
+  "parent": "apostle:item/staff_in_hand_template",
+  "textures": {
+    "layer0": "apostle:item/abyssal_staff_in_hand"
+  }
+}

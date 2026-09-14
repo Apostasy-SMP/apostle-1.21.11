@@ -2,11 +2,15 @@ package org.apostasy.apostle.core;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.advancement.criterion.TickCriterion;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.data.TrackedDataHandler;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import org.apostasy.apostle.api.item.SpellScrollItem;
-import org.apostasy.apostle.api.item.TomeItem;
+import org.apostasy.apostle.core.item.SpellScrollItem;
+import org.apostasy.apostle.core.item.StaffItem;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.index.*;
 import org.apostasy.apostle.core.index.core.Schools;
 import org.apostasy.apostle.core.index.core.Spells;
@@ -30,14 +34,22 @@ public class Apostle implements ModInitializer {
 		ApostleRegistries.init();
 		ApostleItemGroups.init();
 		ApostleComponentTypes.init();
+		ApostleCriteria.init();
 
 		Schools.init();
 		Spells.init();
 
 		BetterItemTooltipEvent.EVENT.register(new TomeItem.Tooltip());
 		BetterItemTooltipEvent.EVENT.register(new SpellScrollItem.Tooltip());
+		BetterItemTooltipEvent.EVENT.register(new StaffItem.Tooltip());
 
 		LOGGER.info("Hello Fabric world!");
+	}
+
+	public static void grantAchievement(TickCriterion criterion, Entity entity) {
+		if (entity instanceof ServerPlayerEntity serverPlayer) {
+			criterion.trigger(serverPlayer);
+		}
 	}
 
 	public static Identifier id(String path) {
