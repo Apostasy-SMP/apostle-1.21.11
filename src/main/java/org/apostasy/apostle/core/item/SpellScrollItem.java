@@ -1,17 +1,12 @@
 package org.apostasy.apostle.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 

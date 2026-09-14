@@ -8,12 +8,12 @@ import net.minecraft.entity.data.TrackedDataHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import org.apostasy.apostle.core.item.SpellScrollItem;
-import org.apostasy.apostle.core.item.StaffItem;
-import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.index.*;
 import org.apostasy.apostle.core.index.core.Schools;
 import org.apostasy.apostle.core.index.core.Spells;
+import org.apostasy.apostle.core.item.SpellScrollItem;
+import org.apostasy.apostle.core.item.StaffItem;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

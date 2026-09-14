@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricTrackedDataRegistr
 import net.minecraft.client.render.entity.EntityRendererFactories;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.client.entity.render.RitualEntityRenderer;
 import org.apostasy.apostle.core.entity.RitualEntity;

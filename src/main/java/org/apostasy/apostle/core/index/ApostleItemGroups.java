@@ -12,9 +12,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.item.TomeItem;
 
 /**
  * @author Chemthunder

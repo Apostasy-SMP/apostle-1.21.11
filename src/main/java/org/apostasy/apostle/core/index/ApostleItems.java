@@ -5,11 +5,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import org.apostasy.apostle.core.item.SpellScrollItem;
-import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.item.SpellScrollItem;
 import org.apostasy.apostle.core.item.StaffItem;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.item.tome.*;
 
 import java.util.List;

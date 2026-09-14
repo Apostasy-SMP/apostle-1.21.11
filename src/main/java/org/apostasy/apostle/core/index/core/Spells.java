@@ -4,8 +4,8 @@ import net.minecraft.registry.Registry;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
-import org.apostasy.apostle.core.spell.wind.DashSpell;
 import org.apostasy.apostle.core.spell.wick.CataclysmSpell;
+import org.apostasy.apostle.core.spell.wind.DashSpell;
 
 /**
  * @author Chemthunder

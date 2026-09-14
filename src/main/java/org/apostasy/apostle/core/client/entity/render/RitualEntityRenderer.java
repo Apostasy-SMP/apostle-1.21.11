@@ -20,8 +20,6 @@ import org.apostasy.apostle.core.client.entity.state.RitualEntityRenderState;
 import org.apostasy.apostle.core.entity.RitualEntity;
 import org.apostasy.apostle.core.index.client.ApostleEntityModelLayers;
 
-import java.util.Random;
-
 /**
  * @author Chemthunder
  */

@@ -20,13 +20,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.ApostleRegistries;
+import org.apostasy.apostle.core.item.TomeItem;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;

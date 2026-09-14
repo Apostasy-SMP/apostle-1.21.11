@@ -3,8 +3,8 @@ package org.apostasy.apostle.core.item.tome;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
-import org.apostasy.apostle.core.item.TomeItem;
 import org.apostasy.apostle.core.entity.RitualEntity;
+import org.apostasy.apostle.core.item.TomeItem;
 
 import java.util.List;
 
