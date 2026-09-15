@@ -15,7 +15,7 @@ import org.apostasy.apostle.core.client.item.MagicSchoolProperty;
 import org.apostasy.apostle.core.client.item.SpellScrollProperty;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.client.ApostleModels;
-import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.item.TomeItem;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.index.core;
+package org.apostasy.apostle.core.index.magic;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Chemthunder
  */
-public interface ItemCrafts {
+public interface RitualRecipes {
     RitualRecipe TEST = register("test", new RitualRecipe() {
         public List<Item> getIngredients() {
             return List.of(

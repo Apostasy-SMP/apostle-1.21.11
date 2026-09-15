@@ -3,16 +3,18 @@ package org.apostasy.apostle.core;
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.advancement.criterion.TickCriterion;
+import net.minecraft.component.ComponentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.data.TrackedDataHandler;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.apostasy.apostle.core.index.*;
-import org.apostasy.apostle.core.index.core.ItemCrafts;
-import org.apostasy.apostle.core.index.core.Rituals;
-import org.apostasy.apostle.core.index.core.Schools;
-import org.apostasy.apostle.core.index.core.Spells;
+import org.apostasy.apostle.core.index.magic.RitualRecipes;
+import org.apostasy.apostle.core.index.magic.Rituals;
+import org.apostasy.apostle.core.index.magic.Schools;
+import org.apostasy.apostle.core.index.magic.Spells;
 import org.apostasy.apostle.core.item.SpellScrollItem;
 import org.apostasy.apostle.core.item.StaffItem;
 import org.apostasy.apostle.core.item.TomeItem;
@@ -42,7 +44,7 @@ public class Apostle implements ModInitializer {
 		Schools.init();
 		Spells.init();
 		Rituals.init();
-		ItemCrafts.init();
+		RitualRecipes.init();
 
 		BetterItemTooltipEvent.EVENT.register(new TomeItem.Tooltip());
 		BetterItemTooltipEvent.EVENT.register(new SpellScrollItem.Tooltip());
@@ -55,6 +57,12 @@ public class Apostle implements ModInitializer {
 		if (entity instanceof ServerPlayerEntity serverPlayer) {
 			criterion.trigger(serverPlayer);
 		}
+	}
+
+	public static  <T> ItemStack createStackWithComponent(ItemConvertible item, ComponentType<T> component, T value) {
+		ItemStack stack = new ItemStack(item);
+		stack.set(component, value);
+		return stack;
 	}
 
 	public static Identifier id(String path) {

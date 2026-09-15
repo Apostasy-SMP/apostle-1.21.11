@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Ritual;
 import org.apostasy.apostle.core.entity.RitualEntity;
-import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
 
@@ -22,11 +22,11 @@ import java.util.List;
 public class CreateOminousBottleRitual implements Ritual {
     public void cast(World world, RitualEntity ritual) {
         ItemStack bottleStack = new ItemStack(Items.OMINOUS_BOTTLE);
-        bottleStack.set(DataComponentTypes.OMINOUS_BOTTLE_AMPLIFIER, new OminousBottleAmplifierComponent(world.random.nextBetween(1, 3)));
+        bottleStack.set(DataComponentTypes.OMINOUS_BOTTLE_AMPLIFIER, new OminousBottleAmplifierComponent(world.random.nextBetween(1, 4)));
 
         ItemEntity itemEntity = new ItemEntity(EntityType.ITEM, world);
 
-        itemEntity.setPosition(new Vec3d(ritual.getX(), ritual.getY() + 2, ritual.getZ()));
+        itemEntity.setPosition(new Vec3d(ritual.getX(), ritual.getY() + 3, ritual.getZ()));
         itemEntity.setStack(bottleStack);
 
         world.spawnEntity(itemEntity);

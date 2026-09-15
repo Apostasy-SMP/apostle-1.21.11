@@ -43,7 +43,7 @@ public class StaffItem extends Item {
         ItemStack offStack = user.getOffHandStack();
         ItemCooldownManager cooldown = user.getItemCooldownManager();
 
-        if (!cooldown.isCoolingDown(stack)) {
+        if (!cooldown.isCoolingDown(stack) && offStack.getOrDefault(ApostleComponentTypes.SCROLL_COOLDOWN, 0) <= 0) {
             if (offStack.isOf(ApostleItems.SPELL_SCROLL)) {
                 if (offStack.contains(ApostleComponentTypes.STORED_SPELL)) {
                     StoredSpellComponent component = offStack.get(ApostleComponentTypes.STORED_SPELL);
@@ -58,8 +58,8 @@ public class StaffItem extends Item {
                                 if (!user.isCreative()) {
                                     ItemCooldownManager manager = user.getItemCooldownManager();
 
+                                    offStack.set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
                                     manager.set(stack, (8 * 20));
-                                    manager.set(offStack, spell.getCooldown());
                                 }
 
                                 Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
@@ -122,14 +122,14 @@ public class StaffItem extends Item {
             if (user instanceof PlayerEntity player) {
                 ItemCooldownManager manager = player.getItemCooldownManager();
 
-                spell.cast(world, player);
-
                 Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
 
                 if (!player.isCreative()) {
-                    manager.set(user.getOffHandStack(), spell.getCooldown());
+                    user.getOffHandStack().set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
                     manager.set(stack, (8 * 20));
                 }
+
+                spell.cast(world, player);
             }
         }
         return super.finishUsing(stack, world, user);
@@ -149,6 +149,12 @@ public class StaffItem extends Item {
             }
         }
         return null;
+    }
+
+    public static boolean isActive(LivingEntity user) {
+        return (user.getMainHandStack().isOf(ApostleItems.MAGIC_STAFF)
+                || user.getMainHandStack().isOf(ApostleItems.ARCANE_STAFF)
+        && user.getOffHandStack().isOf(ApostleItems.SPELL_SCROLL) && user.isUsingItem());
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {

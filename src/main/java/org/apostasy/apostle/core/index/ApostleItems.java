@@ -6,7 +6,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
-import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.item.SpellScrollItem;
 import org.apostasy.apostle.core.item.StaffItem;
 import org.apostasy.apostle.core.item.TomeItem;
@@ -43,6 +43,7 @@ public interface ApostleItems {
     /// SPELLS
     Item SPELL_SCROLL = plugin.register("spell_scroll", SpellScrollItem::new, new Item.Settings()
             .maxCount(1)
+            .component(ApostleComponentTypes.SCROLL_COOLDOWN, 0)
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Apostle.id("spell_scroll")))
     );
 

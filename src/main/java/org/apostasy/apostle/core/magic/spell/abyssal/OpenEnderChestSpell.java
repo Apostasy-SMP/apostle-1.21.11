@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
 

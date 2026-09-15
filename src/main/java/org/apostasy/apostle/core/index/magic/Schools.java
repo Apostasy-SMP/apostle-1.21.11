@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.index.core;
+package org.apostasy.apostle.core.index.magic;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.registry.Registry;

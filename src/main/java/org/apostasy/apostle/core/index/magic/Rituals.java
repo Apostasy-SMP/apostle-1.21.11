@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.index.core;
+package org.apostasy.apostle.core.index.magic;
 
 import net.minecraft.registry.Registry;
 import org.apostasy.apostle.api.magic.Ritual;

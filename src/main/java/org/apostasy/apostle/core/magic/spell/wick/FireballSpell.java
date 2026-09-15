@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
 import java.util.Random;

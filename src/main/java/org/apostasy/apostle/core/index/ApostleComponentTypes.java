@@ -1,7 +1,9 @@
 package org.apostasy.apostle.core.index;
 
+import com.mojang.serialization.Codec;
 import net.acoyt.acornlib.api.registrants.DataComponentTypeRegistrant;
 import net.minecraft.component.ComponentType;
+import net.minecraft.network.codec.PacketCodecs;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
@@ -20,6 +22,11 @@ public interface ApostleComponentTypes {
     ComponentType<MagicSchool> SCHOOL = plugin.register("magic_school",
             MagicSchool.CODEC,
             MagicSchool.PACKET_CODEC
+    );
+
+    ComponentType<Integer> SCROLL_COOLDOWN = plugin.register("spell_cooldown",
+            Codec.INT,
+            PacketCodecs.INTEGER
     );
 
     static void init() {}

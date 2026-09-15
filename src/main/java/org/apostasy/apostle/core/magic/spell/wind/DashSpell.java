@@ -10,7 +10,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.index.core.Schools;
+import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
 
@@ -69,6 +69,6 @@ public class DashSpell implements Spell {
     }
 
     public int getCooldown() {
-        return 15;
+        return (4 * 20);
     }
 }

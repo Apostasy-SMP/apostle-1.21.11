@@ -4,8 +4,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.TickCriterion;
-import net.minecraft.component.ComponentType;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
@@ -14,12 +12,14 @@ import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleCriteria;
 import org.apostasy.apostle.core.index.ApostleItems;
-import org.apostasy.apostle.core.index.core.Spells;
+import org.apostasy.apostle.core.index.magic.Spells;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
+
+import static org.apostasy.apostle.core.Apostle.createStackWithComponent;
 
 /**
  * @author Chemthunder
@@ -70,12 +70,6 @@ public class ApostleAdvancementProvider extends FabricAdvancementProvider {
                         ApostleCriteria.CAST_SPELL.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
-    }
-
-    private <T> ItemStack createStackWithComponent(ItemConvertible item, ComponentType<T> component, T value) {
-        ItemStack stack = new ItemStack(item);
-        stack.set(component, value);
-        return stack;
     }
 
     private AdvancementEntry generateBasicAdvancement(Consumer<AdvancementEntry> consumer, AdvancementEntry root, AdvancementContext context) {

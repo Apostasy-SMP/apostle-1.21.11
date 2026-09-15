@@ -18,11 +18,11 @@
 		},
 		"firstperson_righthand": {
 			"rotation": [-96.25, -90, 0],
-			"translation": [1.13, 5.95, 1.63]
+			"translation": [1.13, 4.95, 0.13]
 		},
 		"firstperson_lefthand": {
 			"rotation": [-96.25, 90, 0],
-			"translation": [1.13, 5.95, 1.63]
+			"translation": [1.13, 4.95, 0.13]
 		}
 	}
 }

@@ -11,6 +11,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -144,7 +145,7 @@ public class RitualEntity extends Entity implements DataTracked {
 
                         ItemEntity spawnedScroll = new ItemEntity(EntityType.ITEM, world);
                         spawnedScroll.setStack(spellScroll);
-                        spawnedScroll.setPos(this.getX(), this.getY() + 6, this.getZ());
+                        spawnedScroll.setPos(this.getX(), this.getY() + 3, this.getZ());
                         world.spawnEntity(spawnedScroll);
                         break;
                     }
@@ -169,6 +170,31 @@ public class RitualEntity extends Entity implements DataTracked {
                 world.spawnEntity(spawnedItem);
                 break;
             }
+        }
+
+        world.playSound(
+                this,
+                this.getX(),
+                this.getY() + 3,
+                this.getZ(),
+                SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,
+                SoundCategory.PLAYERS,
+                1,
+                0.3F
+        );
+
+        if (world instanceof ServerWorld serverWorld) {
+            serverWorld.spawnParticles(
+                    ParticleTypes.TOTEM_OF_UNDYING,
+                    this.getX(),
+                    this.getY() + 3,
+                    this.getZ(),
+                    40,
+                    0,
+                    0,
+                    0,
+                    0.6F
+            );
         }
     }
 
