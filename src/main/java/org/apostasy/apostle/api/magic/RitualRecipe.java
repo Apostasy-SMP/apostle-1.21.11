@@ -12,4 +12,6 @@ public interface RitualRecipe {
     List<Item> getIngredients();
 
     ItemStack getOutput();
+
+    MagicSchool getSchool();
 }

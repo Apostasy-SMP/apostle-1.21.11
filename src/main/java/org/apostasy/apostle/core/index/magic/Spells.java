@@ -9,6 +9,7 @@ import org.apostasy.apostle.core.magic.spell.abyssal.WaypointSpell;
 import org.apostasy.apostle.core.magic.spell.wick.CataclysmSpell;
 import org.apostasy.apostle.core.magic.spell.wick.FireballSpell;
 import org.apostasy.apostle.core.magic.spell.wick.RocketSpell;
+import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wind.DashSpell;
 
 /**
@@ -25,6 +26,7 @@ public interface Spells {
     Spell ROCKET = register("rocket", new RocketSpell());
 
     /// WILD
+    Spell NURTURE = register("nuture", new NurtureSpell());
 
     /// WIND
     Spell DASH = register("dash", new DashSpell());

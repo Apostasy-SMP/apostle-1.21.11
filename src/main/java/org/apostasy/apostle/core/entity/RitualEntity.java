@@ -163,12 +163,14 @@ public class RitualEntity extends Entity implements DataTracked {
         }
 
         for (RitualRecipe craft : ApostleRegistries.RITUAL_RECIPE) {
-            if (new HashSet<>(items).containsAll(craft.getIngredients())) {
-                ItemEntity spawnedItem = new ItemEntity(EntityType.ITEM, world);
-                spawnedItem.setStack(craft.getOutput());
-                spawnedItem.setPos(this.getX(), this.getY() + 3, this.getZ());
-                world.spawnEntity(spawnedItem);
-                break;
+            if (craft.getSchool() == this.getSchool()) {
+                if (new HashSet<>(items).containsAll(craft.getIngredients())) {
+                    ItemEntity spawnedItem = new ItemEntity(EntityType.ITEM, world);
+                    spawnedItem.setStack(craft.getOutput());
+                    spawnedItem.setPos(this.getX(), this.getY() + 3, this.getZ());
+                    world.spawnEntity(spawnedItem);
+                    break;
+                }
             }
         }
 
