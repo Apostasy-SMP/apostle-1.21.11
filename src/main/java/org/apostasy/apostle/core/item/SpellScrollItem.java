@@ -77,7 +77,7 @@ public class SpellScrollItem extends Item {
     }
 
     @Nullable
-    public Spell getSpellStack(ItemStack off) {
+    public static Spell getSpellStack(ItemStack off) {
         if (off.isOf(ApostleItems.SPELL_SCROLL)) {
             if (off.contains(ApostleComponentTypes.STORED_SPELL)) {
                 StoredSpellComponent spellComponent = off.get(ApostleComponentTypes.STORED_SPELL);
