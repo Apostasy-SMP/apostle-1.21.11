@@ -51,24 +51,27 @@ public class StaffItem extends Item {
                     if (component != null) {
                         Spell spell = component.spell();
 
-                        if (!cooldown.isCoolingDown(offStack)) {
-                            if (spell.getCastTime() <= 0) {
-                                spell.cast(world, user);
+                        if (spell.canCast(world, user, user.getMainHandStack())) {
+                            if (!cooldown.isCoolingDown(offStack)) {
+                                if (spell.getCastTime() <= 0) {
+                                    spell.cast(world, user);
 
-                                if (!user.isCreative()) {
-                                    ItemCooldownManager manager = user.getItemCooldownManager();
+                                    if (!user.isCreative()) {
+                                        ItemCooldownManager manager = user.getItemCooldownManager();
 
-                                    offStack.set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
-                                    manager.set(stack, (8 * 20));
+                                        offStack.set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
+                                        manager.set(new ItemStack(ApostleItems.MAGIC_STAFF), (8 * 20));
+                                        manager.set(new ItemStack(ApostleItems.ARCANE_STAFF), (8 * 20));
+                                    }
+
+                                    Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
+
+                                    user.swingHand(hand);
+                                } else {
+                                    user.setCurrentHand(hand);
                                 }
-
-                                Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
-
-                                user.swingHand(hand);
-                            } else {
-                                user.setCurrentHand(hand);
+                                return ActionResult.CONSUME;
                             }
-                            return ActionResult.CONSUME;
                         }
                     }
                 }

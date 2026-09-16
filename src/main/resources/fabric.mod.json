@@ -20,6 +20,9 @@
 		],
 		"fabric-datagen": [
 			"org.apostasy.apostle.datagen.ApostleDataGenerator"
+		],
+		"cardinal-components": [
+			"org.apostasy.apostle.core.cca.ApostleCCA"
 		]
 	},
 	"mixins": [
@@ -30,5 +33,13 @@
 		"minecraft": "~1.21.11",
 		"java": ">=21",
 		"fabric-api": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"apostle:bloodlust",
+
+			"apostle:waypoint",
+			"apostle:thunderbolt"
+		]
 	}
 }

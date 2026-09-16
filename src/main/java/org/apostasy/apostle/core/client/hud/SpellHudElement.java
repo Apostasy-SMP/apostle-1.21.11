@@ -7,12 +7,9 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.RotationAxis;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.item.SpellScrollItem;
-import org.joml.Matrix3fStack;
-import org.joml.Matrix3x2f;
 import org.joml.Matrix3x2fStack;
 
 /**
@@ -37,10 +34,12 @@ public class SpellHudElement implements HudElement {
                 matrices.pushMatrix();
 
                 matrices.rotateAbout(
-                        (tickCounter.getDynamicDeltaTicks() + player.age),
+                        (tickCounter.getDynamicDeltaTicks() + player.age) / 2,
                         context.getScaledWindowWidth() / 2F,
                         context.getScaledWindowHeight() / 2F
                 );
+
+                matrices.rotation(0);
 
                 context.drawCenteredTextWithShadow(
                         client.textRenderer,

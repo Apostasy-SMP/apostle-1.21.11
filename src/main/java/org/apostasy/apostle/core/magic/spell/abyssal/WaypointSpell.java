@@ -7,17 +7,16 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.index.ApostleAttachmentTypes;
+import org.apostasy.apostle.api.magic.data.Waypoint;
+import org.apostasy.apostle.core.cca.entity.data.WaypointComponent;
 import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -25,31 +24,28 @@ import java.util.Random;
  */
 public class WaypointSpell implements Spell {
     public void cast(World world, PlayerEntity caster) {
-        BlockPos pos = caster.getAttached(ApostleAttachmentTypes.WAYPOINT);
+        WaypointComponent waypoint = WaypointComponent.KEY.get(caster);
+        Waypoint point = waypoint.getValue();
 
-        if (pos != null) {
-            if (!isSet(pos)) {
-                caster.setAttached(ApostleAttachmentTypes.WAYPOINT, caster.getBlockPos());
-            } else {
-                caster.setAttached(ApostleAttachmentTypes.WAYPOINT, new BlockPos(0, 0, 0));
-                if (world instanceof ServerWorld serverWorld) {
+        if (world instanceof ServerWorld serverWorld) {
+            if (point != null) {
+                if (serverWorld.getRegistryKey() == point.dimension()) {
                     caster.teleportTo(
                             new TeleportTarget(
                                     serverWorld,
-                                    pos.toCenterPos(),
+                                    point.position().toCenterPos(),
                                     caster.getVelocity(),
                                     caster.getYaw(),
                                     caster.getPitch(),
                                     TeleportTarget.NO_OP
                             )
                     );
+                    waypoint.setValue(null);
                 }
+            } else {
+                waypoint.setValue(new Waypoint(serverWorld.getRegistryKey(), caster.getBlockPos()));
             }
         }
-    }
-
-    private boolean isSet(BlockPos pos) {
-        return !Objects.equals(pos, new BlockPos(0, 0, 0));
     }
 
     public void tickCharge(World world, LivingEntity user) {

@@ -1,0 +1,37 @@
+package org.apostasy.apostle.mixin;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.server.world.ServerWorld;
+import org.apostasy.apostle.core.cca.entity.data.ThunderBoltComponent;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+/**
+ * @author Chemthunder
+ */
+@Mixin(value = Entity.class)
+public abstract class EntityMixin {
+    @WrapOperation(
+            method = "onStruckByLightning",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z"
+            )
+    )
+    private boolean apostle$tripleThunderboltDamage(Entity instance, ServerWorld serverWorld, DamageSource damageSource, float v, Operation<Boolean> original) {
+        Entity entity = damageSource.getAttacker();
+
+        if (entity instanceof LightningEntity lightning) {
+            ThunderBoltComponent bolt = ThunderBoltComponent.KEY.get(lightning);
+
+            if (Boolean.TRUE.equals(bolt.getValue())) {
+                return original.call(instance, serverWorld, damageSource, v * 2);
+            }
+        }
+        return original.call(instance, serverWorld, damageSource, v);
+    }
+}

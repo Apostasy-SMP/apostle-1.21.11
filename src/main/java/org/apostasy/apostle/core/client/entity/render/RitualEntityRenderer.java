@@ -43,7 +43,7 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
             matrices.translate(0, 0.75F, 0);
             matrices.scale(4, 4, 4);
 
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotation((delta + renderState.age) / 32));
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotation((delta + renderState.age) / 38));
 
             queue.submitModel(
                     this.ritualPlane,

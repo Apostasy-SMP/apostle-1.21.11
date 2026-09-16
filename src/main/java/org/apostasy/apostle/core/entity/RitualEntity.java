@@ -90,7 +90,7 @@ public class RitualEntity extends Entity implements DataTracked {
 
         if (this.getHeldTome() != null) {
             if (this.getHeldStacks().size() < 9) {
-                Box detect = new Box(this.getBlockPos()).expand(4, 1, 4);
+                Box detect = new Box(this.getBlockPos()).expand(2.6F, 1, 2.6F);
 
                 for (ItemEntity itemEntity : world.getEntitiesByClass(ItemEntity.class, detect, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)) {
                     this.pushStack(itemEntity.getStack().split(1));

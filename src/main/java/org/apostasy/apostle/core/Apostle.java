@@ -59,7 +59,7 @@ public class Apostle implements ModInitializer {
 		}
 	}
 
-	public static  <T> ItemStack createStackWithComponent(ItemConvertible item, ComponentType<T> component, T value) {
+	public static <T> ItemStack createStackWithComponent(ItemConvertible item, ComponentType<T> component, T value) {
 		ItemStack stack = new ItemStack(item);
 		stack.set(component, value);
 		return stack;

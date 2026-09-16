@@ -3,6 +3,7 @@ package org.apostasy.apostle.api.magic;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
@@ -16,6 +17,10 @@ import java.util.Random;
  */
 public interface Spell {
     void cast(World world, PlayerEntity caster);
+
+    default boolean canCast(World world, PlayerEntity caster, ItemStack staffStack) {
+        return true;
+    }
 
     List<Item> getIngredients();
 

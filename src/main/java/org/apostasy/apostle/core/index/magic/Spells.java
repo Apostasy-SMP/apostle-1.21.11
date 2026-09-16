@@ -6,11 +6,14 @@ import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
 import org.apostasy.apostle.core.magic.spell.abyssal.OpenEnderChestSpell;
 import org.apostasy.apostle.core.magic.spell.abyssal.WaypointSpell;
+import org.apostasy.apostle.core.magic.spell.caller.VexxedSpell;
+import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
 import org.apostasy.apostle.core.magic.spell.wick.CataclysmSpell;
 import org.apostasy.apostle.core.magic.spell.wick.FireballSpell;
 import org.apostasy.apostle.core.magic.spell.wick.RocketSpell;
 import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wind.DashSpell;
+import org.apostasy.apostle.core.magic.spell.wind.ThunderstrikeSpell;
 
 /**
  * @author Chemthunder
@@ -30,6 +33,7 @@ public interface Spells {
 
     /// WIND
     Spell DASH = register("dash", new DashSpell());
+    Spell THUNDERSTRIKE = register("thunderstrike", new ThunderstrikeSpell());
 
     /// WORSHIP
 
@@ -38,8 +42,10 @@ public interface Spells {
     Spell WAYPOINT = register("waypoint", new WaypointSpell());
 
     /// CALLER
+    Spell VEXXED = register("vexxed", new VexxedSpell());
 
     /// GORE
+    Spell BLOODLUST = register("bloodlust", new BloodlustSpell());
 
     /// VEX
 

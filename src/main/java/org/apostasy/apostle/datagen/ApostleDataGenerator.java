@@ -3,6 +3,7 @@ package org.apostasy.apostle.datagen;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.apostasy.apostle.datagen.providers.ApostleAdvancementProvider;
+import org.apostasy.apostle.datagen.providers.ApostleItemTagProvider;
 import org.apostasy.apostle.datagen.providers.ApostleLanguageProvider;
 import org.apostasy.apostle.datagen.providers.ApostleModelProvider;
 
@@ -17,5 +18,7 @@ public class ApostleDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ApostleLanguageProvider::new);
 
 		pack.addProvider(ApostleAdvancementProvider::new);
+
+		pack.addProvider(ApostleItemTagProvider::new);
 	}
 }
