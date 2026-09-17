@@ -3,6 +3,7 @@ package org.apostasy.apostle.datagen.providers;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import org.apostasy.apostle.core.index.ApostleEntityTypes;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -20,5 +21,7 @@ public class ApostleLanguageProvider extends FabricLanguageProvider {
 
         translationBuilder.add("advancements.apostle.cast_spell.title", "You're a Wizard Harry!");
         translationBuilder.add("advancements.apostle.cast_spell.desc", "Cast a Spell!");
+
+        translationBuilder.add(ApostleEntityTypes.CROW, "Crow");
     }
 }

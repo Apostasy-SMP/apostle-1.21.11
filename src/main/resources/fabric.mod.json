@@ -11,6 +11,7 @@
 	"license": "ARR",
 	"icon": "assets/apostle/icon.png",
 	"environment": "*",
+	"accessWidener": "apostle.accesswidener",
 	"entrypoints": {
 		"main": [
 			"org.apostasy.apostle.core.Apostle"

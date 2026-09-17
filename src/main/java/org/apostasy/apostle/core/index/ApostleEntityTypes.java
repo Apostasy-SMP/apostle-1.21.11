@@ -9,10 +9,12 @@ import net.minecraft.entity.SpawnGroup;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.client.entity.render.CallerVexEntityRenderer;
 import org.apostasy.apostle.core.client.entity.render.HolyNetEntityRenderer;
+import org.apostasy.apostle.core.client.entity.render.CrowEntityRenderer;
 import org.apostasy.apostle.core.client.entity.render.RitualEntityRenderer;
 import org.apostasy.apostle.core.entity.CallerVexEntity;
 import org.apostasy.apostle.core.entity.HolyNetEntity;
 import org.apostasy.apostle.core.entity.ParticleDamageEntity;
+import org.apostasy.apostle.core.entity.CrowEntity;
 import org.apostasy.apostle.core.entity.RitualEntity;
 
 /**
@@ -25,12 +27,17 @@ public interface ApostleEntityTypes {
     EntityType<RitualEntity> RITUAL = plugin.register("ritual", EntityType.Builder.<RitualEntity>create(
             RitualEntity::new,
             SpawnGroup.MISC
-    ).dimensions(3.0F, 1.2F).disableSummon().makeFireImmune());
+    ).dimensions(3.0F, 1.2F));
 
     EntityType<CallerVexEntity> CALLER_VEX = plugin.register("caller_vex", EntityType.Builder.create(
             CallerVexEntity::new,
             SpawnGroup.MISC
     ).dimensions(0.4F, 0.8F).disableSummon());
+
+    EntityType<CrowEntity> CROW = plugin.register("crow", EntityType.Builder.create(
+            CrowEntity::new,
+            SpawnGroup.CREATURE
+    ).dimensions(0.6F, 0.6F).eyeHeight(0.37F));
 
     EntityType<ParticleDamageEntity> PARTICLE_DAMAGE = plugin.register("particle_damage", EntityType.Builder.create(
             ParticleDamageEntity::new,
@@ -44,6 +51,7 @@ public interface ApostleEntityTypes {
 
     static void init() {
         FabricDefaultAttributeRegistry.register(CALLER_VEX, CallerVexEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(CROW, CrowEntity.createAttributes());
     }
 
     static void clinit() {
@@ -51,5 +59,7 @@ public interface ApostleEntityTypes {
         EntityRendererFactories.register(CALLER_VEX, CallerVexEntityRenderer::new);
         EntityRendererFactories.register(PARTICLE_DAMAGE, EmptyEntityRenderer::new);
         EntityRendererFactories.register(HOLY_NET, HolyNetEntityRenderer::new);
+
+        EntityRendererFactories.register(CROW, CrowEntityRenderer::new);
     }
 }
