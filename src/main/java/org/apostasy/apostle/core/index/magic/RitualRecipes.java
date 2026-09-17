@@ -74,7 +74,7 @@ public interface RitualRecipes {
         }
 
         public ItemStack getOutput() {
-            return new ItemStack(Items.SKELETON_SKULL);
+            return new ItemStack(Items.ZOMBIE_HEAD);
         }
 
         public MagicSchool getSchool() {

@@ -95,12 +95,13 @@ public class StaffItem extends Item {
 
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         ItemStack offStack = user.getOffHandStack();
+        int time = this.getMaxUseTime(stack, user) - remainingUseTicks;
 
         if (offStack.isOf(ApostleItems.SPELL_SCROLL)) {
             Spell spell = getOffhandSpell(user);
 
             if (spell != null) {
-                spell.createChargeParticles(world, user);
+                spell.createChargeParticles(world, user, time);
                 spell.tickCharge(world, user);
             }
         } else {

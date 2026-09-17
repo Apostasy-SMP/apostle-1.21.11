@@ -44,7 +44,7 @@ public interface Spell {
         );
     }
 
-    default void createChargeParticles(World world, LivingEntity user) {
+    default void createChargeParticles(World world, LivingEntity user, int progress) {
         Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
 
         world.addParticleClient(

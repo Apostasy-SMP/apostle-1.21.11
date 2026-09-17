@@ -6,11 +6,14 @@ import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
 import org.apostasy.apostle.core.magic.spell.abyssal.OpenEnderChestSpell;
 import org.apostasy.apostle.core.magic.spell.abyssal.WaypointSpell;
+import org.apostasy.apostle.core.magic.spell.caller.ConjureAquaticVehicleSpell;
 import org.apostasy.apostle.core.magic.spell.caller.VexxedSpell;
 import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
-import org.apostasy.apostle.core.magic.spell.wick.CataclysmSpell;
+import org.apostasy.apostle.core.magic.spell.wave.SurgeSpell;
+import org.apostasy.apostle.core.magic.spell.wick.DinoDestroyerSpell;
 import org.apostasy.apostle.core.magic.spell.wick.FireballSpell;
 import org.apostasy.apostle.core.magic.spell.wick.RocketSpell;
+import org.apostasy.apostle.core.magic.spell.wick.SoulStealerSpell;
 import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wind.DashSpell;
 import org.apostasy.apostle.core.magic.spell.wind.ThunderstrikeSpell;
@@ -22,11 +25,13 @@ public interface Spells {
     /// WASTE
 
     /// WAVE
+    Spell SURGE = register("surge", new SurgeSpell());
 
     /// WICK
-    Spell CATACLYSM = register("cataclysm", new CataclysmSpell());
+    Spell DINO_DESTROYER = register("dino_destroyer", new DinoDestroyerSpell());
     Spell FIREBALL = register("fireball", new FireballSpell());
     Spell ROCKET = register("rocket", new RocketSpell());
+    Spell SOUL_STEALER = register("soul_stealer", new SoulStealerSpell());
 
     /// WILD
     Spell NURTURE = register("nuture", new NurtureSpell());
@@ -43,6 +48,7 @@ public interface Spells {
 
     /// CALLER
     Spell VEXXED = register("vexxed", new VexxedSpell());
+    Spell CONJURE_AQUATIC_VEHICLE = register("conjure_aquatic_vehicle", new ConjureAquaticVehicleSpell());
 
     /// GORE
     Spell BLOODLUST = register("bloodlust", new BloodlustSpell());

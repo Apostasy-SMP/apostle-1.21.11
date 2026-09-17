@@ -18,7 +18,7 @@ import java.util.Random;
 /**
  * @author Chemthunder
  */
-public class CataclysmSpell implements Spell {
+public class DinoDestroyerSpell implements Spell {
     public void cast(World world, PlayerEntity caster) {
         Vec3d particlePos = caster.raycast(1.3, 0, false).getPos();
 
@@ -36,7 +36,7 @@ public class CataclysmSpell implements Spell {
     }
 
     public String getName() {
-        return "Cataclysm";
+        return "op dino destroyer";
     }
 
     public int getCastTime() {

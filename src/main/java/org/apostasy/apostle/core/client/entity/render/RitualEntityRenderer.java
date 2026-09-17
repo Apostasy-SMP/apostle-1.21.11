@@ -93,7 +93,7 @@ public class RitualEntityRenderer extends EntityRenderer<RitualEntity, RitualEnt
             client.getItemModelManager().clearAndUpdate(
                     itemState,
                     stack,
-                    ItemDisplayContext.GUI,
+                    ItemDisplayContext.THIRD_PERSON_RIGHT_HAND,
                     client.world,
                     null,
                     -1

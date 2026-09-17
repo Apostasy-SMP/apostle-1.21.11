@@ -26,13 +26,13 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Ritual;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.ApostleRegistries;
 import org.apostasy.apostle.core.item.TomeItem;
+import org.apostasy.apostle.core.index.ApostleTrackedData;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class RitualEntity extends Entity implements DataTracked {
     public static final TrackedData<ItemStack> HELD_TOME = DataTracker.registerData(RitualEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
-    public static final TrackedData<List<ItemStack>> HELD_STACKS = DataTracker.registerData(RitualEntity.class, Apostle.ITEM_STACK_LIST);
+    public static final TrackedData<List<ItemStack>> HELD_STACKS = DataTracker.registerData(RitualEntity.class, ApostleTrackedData.ITEM_STACK_LIST);
 
     private int ticksTillCast = 0;
     private boolean casting = false;

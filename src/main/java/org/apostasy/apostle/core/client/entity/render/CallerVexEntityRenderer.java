@@ -8,7 +8,7 @@ import net.minecraft.client.render.entity.model.VexEntityModel;
 import net.minecraft.client.render.entity.state.ArmedEntityRenderState;
 import net.minecraft.client.render.entity.state.VexEntityRenderState;
 import net.minecraft.util.Identifier;
-import org.apostasy.apostle.core.entity.spell.CallerVexEntity;
+import org.apostasy.apostle.core.entity.CallerVexEntity;
 
 /**
  * @author Chemthunder

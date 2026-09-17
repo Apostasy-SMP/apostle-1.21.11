@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.entity.spell;
+package org.apostasy.apostle.core.entity;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -305,7 +305,6 @@ public class CallerVexEntity extends HostileEntity implements Ownable {
                     break;
                 }
             }
-
         }
     }
 }

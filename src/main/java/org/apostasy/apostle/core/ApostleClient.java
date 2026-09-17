@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.render.item.property.select.SelectProperties;
 import org.apostasy.apostle.core.client.hud.SpellHudElement;
@@ -13,6 +14,8 @@ import org.apostasy.apostle.core.index.client.ApostleEntityModelLayers;
  * @author Chemthunder
  */
 public class ApostleClient implements ClientModInitializer {
+    public static final RenderStateDataKey<Boolean> IS_ARCHMAGE = RenderStateDataKey.create();
+
     public void onInitializeClient() {
         ApostleEntityTypes.clinit();
         ApostleEntityModelLayers.clinit();

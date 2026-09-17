@@ -3,6 +3,7 @@ package org.apostasy.apostle.core.client.hud;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -30,13 +31,14 @@ public class SpellHudElement implements HudElement {
 
             if (spell != null) {
                 Matrix3x2fStack matrices = context.getMatrices();
+                float del = client.getRenderTickCounter().getDynamicDeltaTicks();
 
                 matrices.pushMatrix();
 
                 matrices.rotateAbout(
-                        (tickCounter.getDynamicDeltaTicks() + player.age) / 2,
-                        context.getScaledWindowWidth() / 2F,
-                        context.getScaledWindowHeight() / 2F
+                        (del + player.age) / 4,
+                        context.getScaledWindowWidth() / 2F + 50F,
+                        context.getScaledWindowHeight() - 60F
                 );
 
                 matrices.rotation(0);
@@ -44,8 +46,8 @@ public class SpellHudElement implements HudElement {
                 context.drawCenteredTextWithShadow(
                         client.textRenderer,
                         Text.literal(spell.getName()).withColor(spell.getMagicSchool().color()),
-                        context.getScaledWindowWidth() / 2,
-                        context.getScaledWindowHeight() / 2 - 40,
+                        context.getScaledWindowWidth() / 2 + 30,
+                        context.getScaledWindowHeight() - 40,
                         spell.getMagicSchool().color()
                 );
 
