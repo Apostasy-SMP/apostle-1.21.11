@@ -18,10 +18,12 @@ import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wild.RootsSpell;
 import org.apostasy.apostle.core.magic.spell.wind.DashSpell;
 import org.apostasy.apostle.core.magic.spell.wind.ThunderstrikeSpell;
+import org.apostasy.apostle.core.magic.spell.worship.HolyNetSpell;
 
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public interface Spells {
     /// WASTE
 
@@ -43,6 +45,7 @@ public interface Spells {
     Spell THUNDERSTRIKE = register("thunderstrike", new ThunderstrikeSpell());
 
     /// WORSHIP
+    Spell HOLY_NET = register("holy_net", new HolyNetSpell());
 
     /// ABYSSAL
     Spell OPEN_ENDER_CHEST = register("open_ender_chest", new OpenEnderChestSpell());

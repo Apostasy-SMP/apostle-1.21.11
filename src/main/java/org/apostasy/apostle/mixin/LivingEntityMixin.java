@@ -1,5 +1,7 @@
 package org.apostasy.apostle.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -7,13 +9,17 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.waypoint.ServerWaypoint;
 import org.apostasy.apostle.core.cca.entity.BloodlustComponent;
+import org.apostasy.apostle.core.client.particle.MagicParticleEffect;
+import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.ApostleStatusEffects;
 import org.apostasy.apostle.core.item.StaffItem;
+import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -67,5 +73,22 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Se
         if (this.hasStatusEffect(ApostleStatusEffects.ROOTED)) {
             this.setVelocity(0, this.getVelocity().y, 0);
         }
+    }
+
+    @WrapOperation(
+            method = "spawnItemParticles",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;addParticleClient(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"
+            )
+    )
+    private void accursed$customEatParticles(World instance, ParticleEffect parameters, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Operation<Void> original) {
+        LivingEntity living = (LivingEntity) (Object)this;
+
+        if (living.getStackInHand(living.getActiveHand()).isOf(ApostleItems.MAGIC_DUST)) {
+            original.call(instance, new MagicParticleEffect(0xFFe486bb, new Quaternionf(0, 0, 0, 0)), x, y, z, velocityX, velocityY, velocityZ);
+            return;
+        }
+        original.call(instance, parameters, x, y, z, velocityX, velocityY, velocityZ);
     }
 }

@@ -1,5 +1,6 @@
 package org.apostasy.apostle.core.entity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -12,6 +13,7 @@ import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
@@ -31,6 +33,8 @@ public class ParticleEntity extends ThrownEntity {
     public static final TrackedData<List<String>> FLAGS = DataTracker.registerData(ParticleEntity.class, ApostleTrackedData.STRING_LIST);
 
     public static final TrackedData<Integer> AMOUNT_TO_DEAL = DataTracker.registerData(ParticleEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static final TrackedData<Float> SIZE = DataTracker.registerData(ParticleEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    public static final TrackedData<Integer> AMOUNT_OF_PARTICLES = DataTracker.registerData(ParticleEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public ParticleEntity(EntityType<? extends ThrownEntity> entityType, World world) {
         super(entityType, world);
@@ -48,7 +52,10 @@ public class ParticleEntity extends ThrownEntity {
         builder.add(DAMAGE_TYPE, DamageTypes.ARROW);
         builder.add(SPAWNED_EFFECT, ParticleTypes.ENCHANT);
         builder.add(AMOUNT_TO_DEAL, 0);
+
         builder.add(FLAGS, new ArrayList<>());
+        builder.add(SIZE, 0.5F);
+        builder.add(AMOUNT_OF_PARTICLES, 5);
     }
 
     public void tick() {
@@ -56,12 +63,14 @@ public class ParticleEntity extends ThrownEntity {
 
         Random rand = new Random();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < this.getAmountToSpawn(); i++) {
+            float bound = this.getSize();
+
             this.getEntityWorld().addImportantParticleClient(
                     this.getParticleEffect(),
-                    this.getX() + rand.nextFloat(-0.5F, 0.5F),
-                    this.getY() + rand.nextFloat(-0.5F, 0.5F),
-                    this.getZ() + rand.nextFloat(-0.5F, 0.5F),
+                    this.getX() + rand.nextFloat(-bound, bound),
+                    this.getY() + rand.nextFloat(-bound, bound),
+                    this.getZ() + rand.nextFloat(-bound, bound),
                     0,
                     0,
                     0
@@ -75,6 +84,12 @@ public class ParticleEntity extends ThrownEntity {
 
     public boolean hasNoGravity() {
         return true;
+    }
+
+    protected void onBlockCollision(BlockState state) {
+        if (!state.isIn(BlockTags.AIR)) {
+            this.discard();
+        }
     }
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
@@ -136,6 +151,22 @@ public class ParticleEntity extends ThrownEntity {
         List<String> setFlags = new ArrayList<>(getFlags());
         setFlags.add(flag);
         this.dataTracker.set(FLAGS, setFlags);
+    }
+
+    public int getAmountToSpawn() {
+        return this.dataTracker.get(AMOUNT_OF_PARTICLES);
+    }
+
+    public void setAmountOfSpawn(int integer) {
+        this.dataTracker.set(AMOUNT_OF_PARTICLES, integer);
+    }
+
+    public float getSize() {
+        return this.dataTracker.get(SIZE);
+    }
+
+    public void setSize(float fag) {
+        this.dataTracker.set(SIZE, fag);
     }
 
     public interface Flags {

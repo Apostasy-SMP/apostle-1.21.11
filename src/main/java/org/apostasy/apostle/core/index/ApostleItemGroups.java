@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
@@ -14,6 +15,7 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.item.ArtifactItem;
 import org.apostasy.apostle.core.item.TomeItem;
 
 /**
@@ -34,6 +36,7 @@ public interface ApostleItemGroups {
 
     private static void addEntries(FabricItemGroupEntries entries) {
         entries.add(ApostleItems.MAGIC_STAFF);
+        entries.add(ApostleItems.MAGIC_STAFF);
 
         for (Item item : ApostleItems.plugin.toRegister) {
             if (item instanceof TomeItem) {
@@ -53,6 +56,12 @@ public interface ApostleItemGroups {
             staffStack.set(ApostleComponentTypes.SCHOOL, school);
 
             entries.add(staffStack);
+        }
+
+        for (Item item : Registries.ITEM) {
+            if (item instanceof ArtifactItem) {
+                entries.add(item);
+            }
         }
     }
 }

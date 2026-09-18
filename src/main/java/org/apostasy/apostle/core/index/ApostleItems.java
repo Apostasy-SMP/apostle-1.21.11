@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core.index;
 
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -23,24 +24,16 @@ public interface ApostleItems {
 
     /// WEAVE
     Item WASTE_TOME = createTome("waste", Schools.WASTE);
-
     Item WAVE_TOME = createTome("wave", Schools.WAVE);
-
     Item WICK_TOME = createTome("wick", Schools.WICK);
-
     Item WILD_TOME = createTome("wild", Schools.WILD);
-
     Item WIND_TOME = createTome("wind", Schools.WIND);
-
     Item WORSHIP_TOME = createTome("worship", Schools.WORSHIP);
 
     /// ELDRITCH
     Item ABYSSAL_TOME = createTome("abyssal", Schools.ABYSSAL);
-
     Item CALLER_TOME = createTome("caller", Schools.CALLER);
-
     Item GORE_TOME = createTome("gore", Schools.GORE);
-
     Item VEX_TOME = createTome("vex", Schools.VEX);
 
     /// Other
@@ -62,6 +55,7 @@ public interface ApostleItems {
 
     Item MAGIC_DUST = plugin.register("magic_dust", MagicDustItem::new, new Item.Settings()
             .registryKey(rk("magic_dust"))
+            .food(new FoodComponent.Builder().alwaysEdible().nutrition(0).build())
             .fireproof()
     );
 

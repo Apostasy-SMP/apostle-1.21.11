@@ -4,6 +4,7 @@ import net.acoyt.acornlib.api.builder.specified.ModelLayerLocationBuilder;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.client.entity.model.CrowEntityModel;
+import org.apostasy.apostle.core.client.entity.model.HolyNetEntityModel;
 import org.apostasy.apostle.core.client.entity.model.RitualEntityModel;
 
 /**
@@ -14,6 +15,7 @@ public interface ApostleEntityModelLayers {
 
     EntityModelLayer RITUAL = plugin.register("ritual", RitualEntityModel::getTexturedModelData);
     EntityModelLayer CROW = plugin.register("crow", CrowEntityModel::getTexturedModelData);
+    EntityModelLayer HOLY_NET = plugin.register("holy_net", HolyNetEntityModel::getTexturedModelData);
 
     static void clinit() {
         plugin.build();
