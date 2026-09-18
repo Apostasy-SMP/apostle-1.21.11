@@ -27,12 +27,8 @@ import org.apostasy.apostle.api.magic.Ritual;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
-import org.apostasy.apostle.core.index.ApostleComponentTypes;
-import org.apostasy.apostle.core.index.ApostleEntityTypes;
-import org.apostasy.apostle.core.index.ApostleItems;
-import org.apostasy.apostle.core.index.ApostleRegistries;
+import org.apostasy.apostle.core.index.*;
 import org.apostasy.apostle.core.item.TomeItem;
-import org.apostasy.apostle.core.index.ApostleTrackedData;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -139,6 +135,10 @@ public class RitualEntity extends Entity implements DataTracked {
                 if (!spell.isUnobtainable()) {
                     List<Item> spellIngredients = new ArrayList<>(spell.getIngredients());
 
+                    do {
+                        spellIngredients.add(ApostleItems.MAGIC_DUST);
+                    } while (spellIngredients.size() != 9);
+
                     if (new HashSet<>(items).containsAll(spellIngredients)) {
                         ItemStack spellScroll = new ItemStack(ApostleItems.SPELL_SCROLL);
                         spellScroll.set(ApostleComponentTypes.STORED_SPELL, new StoredSpellComponent(spell));
@@ -155,7 +155,13 @@ public class RitualEntity extends Entity implements DataTracked {
 
         for (Ritual ritual : ApostleRegistries.RITUAL) {
             if (ritual.getMagicSchool() == this.getSchool()) {
-                if (new HashSet<>(items).containsAll(ritual.getIngredients())) {
+                List<Item> ritualIngredients = new ArrayList<>(ritual.getIngredients());
+
+                do {
+                    ritualIngredients.add(ApostleItems.MAGIC_DUST);
+                } while (ritualIngredients.size() < 9);
+
+                if (new HashSet<>(items).containsAll(ritualIngredients)) {
                     ritual.cast(world, this);
                     break;
                 }
@@ -164,7 +170,13 @@ public class RitualEntity extends Entity implements DataTracked {
 
         for (RitualRecipe craft : ApostleRegistries.RITUAL_RECIPE) {
             if (craft.getSchool() == this.getSchool()) {
-                if (new HashSet<>(items).containsAll(craft.getIngredients())) {
+                List<Item> craftIngredients = new ArrayList<>(craft.getIngredients());
+
+                do {
+                    craftIngredients.add(ApostleItems.MAGIC_DUST);
+                } while (craftIngredients.size() < 9);
+
+                if (new HashSet<>(items).containsAll(craftIngredients)) {
                     ItemEntity spawnedItem = new ItemEntity(EntityType.ITEM, world);
                     spawnedItem.setStack(craft.getOutput());
                     spawnedItem.setPos(this.getX(), this.getY() + 3, this.getZ());

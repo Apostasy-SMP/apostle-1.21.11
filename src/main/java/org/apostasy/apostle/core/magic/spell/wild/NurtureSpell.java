@@ -1,5 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.wild;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ import java.util.List;
  * @author Chemthunder
  */
 public class NurtureSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         ItemStack bonemealStack = new ItemStack(Items.BONE_MEAL);
         bonemealStack.setCount(64);
 

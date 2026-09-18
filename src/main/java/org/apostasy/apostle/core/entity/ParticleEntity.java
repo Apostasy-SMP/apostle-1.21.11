@@ -18,23 +18,26 @@ import net.minecraft.world.World;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 import org.apostasy.apostle.core.index.ApostleTrackedData;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * @author Chemthunder
  */
-public class ParticleDamageEntity extends ThrownEntity {
-    public static final TrackedData<RegistryKey<DamageType>> DAMAGE_TYPE = DataTracker.registerData(ParticleDamageEntity.class, ApostleTrackedData.DAMAGE_TYPE_KEY);
-    public static final TrackedData<ParticleEffect> SPAWNED_EFFECT = DataTracker.registerData(ParticleDamageEntity.class, ApostleTrackedData.PARTICLE_EFFECT);
+public class ParticleEntity extends ThrownEntity {
+    public static final TrackedData<RegistryKey<DamageType>> DAMAGE_TYPE = DataTracker.registerData(ParticleEntity.class, ApostleTrackedData.DAMAGE_TYPE_KEY);
+    public static final TrackedData<ParticleEffect> SPAWNED_EFFECT = DataTracker.registerData(ParticleEntity.class, ApostleTrackedData.PARTICLE_EFFECT);
+    public static final TrackedData<List<String>> FLAGS = DataTracker.registerData(ParticleEntity.class, ApostleTrackedData.STRING_LIST);
 
-    public static final TrackedData<Integer> AMOUNT_TO_DEAL = DataTracker.registerData(ParticleDamageEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static final TrackedData<Integer> AMOUNT_TO_DEAL = DataTracker.registerData(ParticleEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-    public ParticleDamageEntity(EntityType<? extends ThrownEntity> entityType, World world) {
+    public ParticleEntity(EntityType<? extends ThrownEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public static ParticleDamageEntity create(World world, RegistryKey<DamageType> damageType, ParticleEffect effect, int amountToDeal) {
-        final ParticleDamageEntity entity = new ParticleDamageEntity(ApostleEntityTypes.PARTICLE_DAMAGE, world);
+    public static ParticleEntity create(World world, RegistryKey<DamageType> damageType, ParticleEffect effect, int amountToDeal) {
+        final ParticleEntity entity = new ParticleEntity(ApostleEntityTypes.PARTICLE_DAMAGE, world);
         entity.setDamageType(damageType);
         entity.setSpawnedEffect(effect);
         entity.setAmountToDeal(amountToDeal);
@@ -45,6 +48,7 @@ public class ParticleDamageEntity extends ThrownEntity {
         builder.add(DAMAGE_TYPE, DamageTypes.ARROW);
         builder.add(SPAWNED_EFFECT, ParticleTypes.ENCHANT);
         builder.add(AMOUNT_TO_DEAL, 0);
+        builder.add(FLAGS, new ArrayList<>());
     }
 
     public void tick() {
@@ -52,7 +56,7 @@ public class ParticleDamageEntity extends ThrownEntity {
 
         Random rand = new Random();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             this.getEntityWorld().addImportantParticleClient(
                     this.getParticleEffect(),
                     this.getX() + rand.nextFloat(-0.5F, 0.5F),
@@ -62,6 +66,10 @@ public class ParticleDamageEntity extends ThrownEntity {
                     0,
                     0
             );
+        }
+
+        if (this.age >= (20 * 10)) {
+            this.discard();
         }
     }
 
@@ -79,6 +87,16 @@ public class ParticleDamageEntity extends ThrownEntity {
                         living.damage(serverWorld, living.getDamageSources().create(this.getDamageType(), this.getOwner()), this.getAmountToDeal());
                     } else {
                         living.damage(serverWorld, living.getDamageSources().create(this.getDamageType()), this.getAmountToDeal());
+                    }
+
+                    if (this.getFlags().contains(Flags.FIRE)) {
+                        living.setOnFireForTicks(4 * 20);
+                    }
+
+                    if (this.getFlags().contains(Flags.LIFESTEAL)) {
+                        if (this.getOwner() != null && this.getOwner() instanceof LivingEntity owner) {
+                            owner.heal(living.getHealth() / 2F);
+                        }
                     }
                     this.discard();
                 }
@@ -108,5 +126,20 @@ public class ParticleDamageEntity extends ThrownEntity {
 
     public void setAmountToDeal(int i) {
         this.dataTracker.set(AMOUNT_TO_DEAL, i);
+    }
+
+    public List<String> getFlags() {
+        return this.dataTracker.get(FLAGS);
+    }
+
+    public void withFlag(String flag) {
+        List<String> setFlags = new ArrayList<>(getFlags());
+        setFlags.add(flag);
+        this.dataTracker.set(FLAGS, setFlags);
+    }
+
+    public interface Flags {
+        String LIFESTEAL = "lifesteal";
+        String FIRE = "fire";
     }
 }

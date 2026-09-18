@@ -1,6 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.wind;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -18,7 +18,7 @@ import java.util.List;
  * @author Chemthunder
  */
 public class DashSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         caster.setVelocity(caster.getRotationVec(0).multiply(2));
 
         world.playSound(

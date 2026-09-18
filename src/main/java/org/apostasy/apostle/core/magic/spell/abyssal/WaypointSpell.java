@@ -1,7 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.abyssal;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
@@ -23,7 +22,7 @@ import java.util.Random;
  * @author Chemthunder
  */
 public class WaypointSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         WaypointComponent waypoint = WaypointComponent.KEY.get(caster);
         Waypoint point = waypoint.getValue();
 

@@ -16,6 +16,7 @@ import org.apostasy.apostle.core.client.item.SpellScrollProperty;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.client.ApostleModels;
 import org.apostasy.apostle.core.index.magic.Schools;
+import org.apostasy.apostle.core.item.ArtifactItem;
 import org.apostasy.apostle.core.item.TomeItem;
 
 import java.util.Arrays;
@@ -32,10 +33,12 @@ public class ApostleModelProvider extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         for (Item item : ApostleItems.plugin.toRegister) {
-            if (item instanceof TomeItem) {
+            if (item instanceof TomeItem || item instanceof ArtifactItem) {
                 itemModelGenerator.register(item, Models.GENERATED);
             }
         }
+
+        itemModelGenerator.register(ApostleItems.MAGIC_DUST, Models.GENERATED);
 
         createSpellScroll(itemModelGenerator);
         createStaff(itemModelGenerator);

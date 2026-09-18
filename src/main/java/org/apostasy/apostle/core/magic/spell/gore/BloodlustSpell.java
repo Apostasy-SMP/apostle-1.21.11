@@ -1,6 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.gore;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author Chemthunder
  */
 public class BloodlustSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         BloodlustComponent lust = BloodlustComponent.KEY.get(caster);
 
         lust.setDuration(getCooldown());

@@ -1,5 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.abyssal;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.Item;
@@ -18,24 +19,26 @@ import java.util.List;
  * @author Chemthunder
  */
 public class OpenEnderChestSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
-        EnderChestInventory enderChestInventory = caster.getEnderChestInventory();
+    public void cast(World world, LivingEntity caster) {
+        if (caster instanceof PlayerEntity player) {
+            EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 
-        caster.openHandledScreen(
-                new SimpleNamedScreenHandlerFactory(
-                        (
-                                syncId,
-                                playerInventory,
-                                playerx
-                        ) ->
-                                GenericContainerScreenHandler.createGeneric9x3(
-                                        syncId,
-                                        playerInventory,
-                                        enderChestInventory
-                                ),
-                        Text.translatable("container.enderchest")
-                )
-        );
+            player.openHandledScreen(
+                    new SimpleNamedScreenHandlerFactory(
+                            (
+                                    syncId,
+                                    playerInventory,
+                                    playerx
+                            ) ->
+                                    GenericContainerScreenHandler.createGeneric9x3(
+                                            syncId,
+                                            playerInventory,
+                                            enderChestInventory
+                                    ),
+                            Text.translatable("container.enderchest")
+                    )
+            );
+        }
     }
 
     public List<Item> getIngredients() {

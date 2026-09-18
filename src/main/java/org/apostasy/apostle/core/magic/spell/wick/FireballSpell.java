@@ -1,7 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.wick;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -22,7 +21,7 @@ import java.util.Random;
  * @author Chemthunder
  */
 public class FireballSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         Vec3d particlePos = caster.raycast(1.3, 0, false).getPos();
 
         FireballEntity entity = new FireballEntity(world, caster, caster.getRotationVec(0).multiply(1), 0);
@@ -65,10 +64,10 @@ public class FireballSpell implements Spell {
         );
     }
 
-    public void createChargeParticles(World world, LivingEntity user) {
+    public void createChargeParticles(World world, LivingEntity user, int progress) {
         Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 8; i++) {
             float bound = 2.6F;
             Random random = new Random();
 

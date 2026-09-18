@@ -2,5 +2,22 @@
   "advancements.apostle.cast_ritual.desc": "Cast & create a Ritual for your benefit.",
   "advancements.apostle.cast_ritual.title": "Abracadabra",
   "advancements.apostle.cast_spell.desc": "Cast a Spell!",
-  "advancements.apostle.cast_spell.title": "You're a Wizard Harry!"
+  "advancements.apostle.cast_spell.title": "You're a Wizard Harry!",
+  "entity.apostle.crow": "Crow",
+  "item.apostle.abyssal_tome": "Abyssal Tome",
+  "item.apostle.arcane_staff": "Arcane Staff",
+  "item.apostle.bezoar": "Bezoar",
+  "item.apostle.caller_tome": "Caller Tome",
+  "item.apostle.gore_tome": "Gore Tome",
+  "item.apostle.magic_dust": "Magic Dust",
+  "item.apostle.magic_staff": "Magic Staff",
+  "item.apostle.quenching_ash": "Quenching Ash",
+  "item.apostle.spell_scroll": "Spell Scroll",
+  "item.apostle.vex_tome": "Vex Tome",
+  "item.apostle.waste_tome": "Waste Tome",
+  "item.apostle.wave_tome": "Wave Tome",
+  "item.apostle.wick_tome": "Wick Tome",
+  "item.apostle.wild_tome": "Wild Tome",
+  "item.apostle.wind_tome": "Wind Tome",
+  "item.apostle.worship_tome": "Worship Tome"
 }

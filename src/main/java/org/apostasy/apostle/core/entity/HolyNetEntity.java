@@ -42,7 +42,7 @@ public class HolyNetEntity extends Entity {
 
         for (Entity entity : this.getEntityWorld().getEntitiesByClass(Entity.class, detector, entity -> true)) {
             if (entity instanceof ProjectileEntity projectile) {
-                projectile.setVelocity(0, projectile.getVelocity().y, 0);
+                projectile.setVelocity(projectile.getVelocity().x / 2, projectile.getVelocity().y, projectile.getVelocity().z / 2);
             }
         }
     }

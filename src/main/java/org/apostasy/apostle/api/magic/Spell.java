@@ -1,7 +1,6 @@
 package org.apostasy.apostle.api.magic;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
@@ -16,9 +15,9 @@ import java.util.Random;
  * @author Chemthunder
  */
 public interface Spell {
-    void cast(World world, PlayerEntity caster);
+    void cast(World world, LivingEntity caster);
 
-    default boolean canCast(World world, PlayerEntity caster, ItemStack staffStack) {
+    default boolean canCast(World world, LivingEntity caster, ItemStack staffStack) {
         return true;
     }
 

@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core.magic.spell.caller;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ import java.util.List;
  * @author Chemthunder
  */
 public class ConjureAquaticVehicleSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         Vec3d spawnPos = caster.raycast(120, 0, true).getPos();
 
         BoatEntity boat = new BoatEntity(EntityType.OAK_BOAT, world, () -> Items.OAK_BOAT);

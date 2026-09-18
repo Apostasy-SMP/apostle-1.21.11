@@ -1,6 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.wick;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -16,7 +16,7 @@ import java.util.Random;
  * @author Chemthunder
  */
 public class RocketSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         caster.addVelocity(0, 1, 0);
 
         for (int i = 0; i < 30; i++) {

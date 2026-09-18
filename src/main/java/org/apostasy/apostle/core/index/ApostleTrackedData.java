@@ -2,8 +2,10 @@ package org.apostasy.apostle.core.index;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricTrackedDataRegistry;
 import net.minecraft.entity.damage.DamageType;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandler;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -21,11 +23,13 @@ public interface ApostleTrackedData {
     TrackedDataHandler<RegistryKey<DamageType>> DAMAGE_TYPE_KEY = TrackedDataHandler.create(ExtraCodecs.DAMAGE_TYPE_REGISTRY_KEY_PACKET_CODEC);
     TrackedDataHandler<ParticleEffect> PARTICLE_EFFECT = TrackedDataHandler.create(ParticleTypes.PACKET_CODEC);
     TrackedDataHandler<byte[]> BYTE_LIST = TrackedDataHandler.create(PacketCodecs.BYTE_ARRAY);
+    TrackedDataHandler<List<String>> STRING_LIST = TrackedDataHandler.create(ExtraCodecs.STRING_LIST);
 
     static void init() {
         FabricTrackedDataRegistry.register(Apostle.id("item_stack_list"), ITEM_STACK_LIST);
         FabricTrackedDataRegistry.register(Apostle.id("damage_type_registry_key"), DAMAGE_TYPE_KEY);
         FabricTrackedDataRegistry.register(Apostle.id("particle_effect"), PARTICLE_EFFECT);
         FabricTrackedDataRegistry.register(Apostle.id("byte_list"), BYTE_LIST);
+        FabricTrackedDataRegistry.register(Apostle.id("string_list"), STRING_LIST);
     }
 }

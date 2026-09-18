@@ -61,8 +61,6 @@ public class BloodlustComponent implements AutoSyncedComponent, CommonTickingCom
                 }
             }
         }
-
-        player.sendMessage(Text.of(modifier + " : " + duration), true);
     }
 
     public void sync() {

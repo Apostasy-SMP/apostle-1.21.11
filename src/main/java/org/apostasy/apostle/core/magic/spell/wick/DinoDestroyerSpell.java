@@ -19,7 +19,7 @@ import java.util.Random;
  * @author Chemthunder
  */
 public class DinoDestroyerSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         Vec3d particlePos = caster.raycast(1.3, 0, false).getPos();
 
         FireballEntity entity = new FireballEntity(world, caster, caster.getRotationVec(0).multiply(1), 200);
@@ -55,7 +55,7 @@ public class DinoDestroyerSpell implements Spell {
         );
     }
 
-    public void createChargeParticles(World world, LivingEntity user) {
+    public void createChargeParticles(World world, LivingEntity user, int progress) {
         Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
 
         for (int i = 0; i < 15; i++) {

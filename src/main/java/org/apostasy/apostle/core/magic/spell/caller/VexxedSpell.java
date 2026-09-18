@@ -1,6 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.caller;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,7 +23,7 @@ import java.util.Random;
  * @author Chemthunder
  */
 public class VexxedSpell implements Spell {
-    public void cast(World world, PlayerEntity caster) {
+    public void cast(World world, LivingEntity caster) {
         for (int i = 0; i < 3; i++) {
             CallerVexEntity entity = new CallerVexEntity(ApostleEntityTypes.CALLER_VEX, world);
             entity.setPosition(

@@ -37,7 +37,7 @@ import java.util.EnumSet;
 public class CallerVexEntity extends HostileEntity implements Ownable {
     public static final int field_28645 = MathHelper.ceil(3.9269907F);
     protected static final TrackedData<Byte> VEX_FLAGS;
-    private @Nullable LazyEntityReference<PlayerEntity> owner;
+    private @Nullable LazyEntityReference<LivingEntity> owner;
     private @Nullable BlockPos bounds;
     private boolean alive;
     private int lifeTicks;
@@ -116,8 +116,8 @@ public class CallerVexEntity extends HostileEntity implements Ownable {
         LazyEntityReference.writeData(this.owner, view, "owner");
     }
 
-    public @Nullable PlayerEntity getOwner() {
-        return LazyEntityReference.resolve(this.owner, this.getEntityWorld(), PlayerEntity.class);
+    public @Nullable LivingEntity getOwner() {
+        return LazyEntityReference.resolve(this.owner, this.getEntityWorld(), LivingEntity.class);
     }
 
     public @Nullable BlockPos getBounds() {
@@ -148,7 +148,7 @@ public class CallerVexEntity extends HostileEntity implements Ownable {
         this.setVexFlag(charging);
     }
 
-    public void setOwner(PlayerEntity owner) {
+    public void setOwner(LivingEntity owner) {
         this.owner = LazyEntityReference.of(owner);
     }
 

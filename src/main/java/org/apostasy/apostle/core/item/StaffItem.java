@@ -129,12 +129,14 @@ public class StaffItem extends Item {
                 Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
 
                 if (!player.isCreative()) {
-                    user.getOffHandStack().set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
                     manager.set(stack, (8 * 20));
                 }
-
-                spell.cast(world, player);
             }
+
+            if (!user.isInCreativeMode()) {
+                user.getOffHandStack().set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
+            }
+            spell.cast(world, user);
         }
         return super.finishUsing(stack, world, user);
     }

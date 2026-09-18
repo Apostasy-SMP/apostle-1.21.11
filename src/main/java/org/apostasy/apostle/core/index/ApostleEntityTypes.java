@@ -13,7 +13,7 @@ import org.apostasy.apostle.core.client.entity.render.CrowEntityRenderer;
 import org.apostasy.apostle.core.client.entity.render.RitualEntityRenderer;
 import org.apostasy.apostle.core.entity.CallerVexEntity;
 import org.apostasy.apostle.core.entity.HolyNetEntity;
-import org.apostasy.apostle.core.entity.ParticleDamageEntity;
+import org.apostasy.apostle.core.entity.ParticleEntity;
 import org.apostasy.apostle.core.entity.CrowEntity;
 import org.apostasy.apostle.core.entity.RitualEntity;
 
@@ -39,8 +39,8 @@ public interface ApostleEntityTypes {
             SpawnGroup.CREATURE
     ).dimensions(0.6F, 0.6F).eyeHeight(0.37F));
 
-    EntityType<ParticleDamageEntity> PARTICLE_DAMAGE = plugin.register("particle_damage", EntityType.Builder.create(
-            ParticleDamageEntity::new,
+    EntityType<ParticleEntity> PARTICLE_DAMAGE = plugin.register("particle_damage", EntityType.Builder.create(
+            ParticleEntity::new,
             SpawnGroup.MISC
     ).dimensions(1.0F, 1.0F).disableSummon());
 

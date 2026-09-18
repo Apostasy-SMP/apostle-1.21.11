@@ -1,0 +1,15 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:iron_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_estoc",
+      "required": false
+    },
+    "minecraft:iron_sword",
+    "minecraft:iron_axe",
+    "minecraft:golden_pickaxe"
+  ]
+}

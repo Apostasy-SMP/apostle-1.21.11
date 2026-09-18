@@ -15,6 +15,7 @@ import org.apostasy.apostle.core.magic.spell.wick.FireballSpell;
 import org.apostasy.apostle.core.magic.spell.wick.RocketSpell;
 import org.apostasy.apostle.core.magic.spell.wick.SoulStealerSpell;
 import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
+import org.apostasy.apostle.core.magic.spell.wild.RootsSpell;
 import org.apostasy.apostle.core.magic.spell.wind.DashSpell;
 import org.apostasy.apostle.core.magic.spell.wind.ThunderstrikeSpell;
 
@@ -35,6 +36,7 @@ public interface Spells {
 
     /// WILD
     Spell NURTURE = register("nuture", new NurtureSpell());
+    Spell ROOTS = register("roots", new RootsSpell());
 
     /// WIND
     Spell DASH = register("dash", new DashSpell());
