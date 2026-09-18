@@ -3,11 +3,13 @@ package org.apostasy.apostle.core.index.magic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
+import org.apostasy.apostle.core.item.ArtifactItem;
 
 import java.util.List;
 
@@ -86,5 +88,23 @@ public interface RitualRecipes {
         return Registry.register(ApostleRegistries.RITUAL_RECIPE, Apostle.id(name), craft);
     }
 
-    static void init() {}
+    static void init() {
+        for (Item item : Registries.ITEM) {
+            if (item instanceof ArtifactItem artifact) {
+                register(artifact.getName().getString(), new RitualRecipe() {
+                    public List<Item> getIngredients() {
+                        return artifact.getIngredients();
+                    }
+
+                    public ItemStack getOutput() {
+                        return artifact.getDefaultStack();
+                    }
+
+                    public MagicSchool getSchool() {
+                        return artifact.getSchool();
+                    }
+                });
+            }
+        }
+    }
 }

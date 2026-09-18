@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
@@ -26,6 +28,22 @@ public class SoulStealerSpell implements Spell {
         entity.withFlag(ParticleEntity.Flags.FIRE);
         entity.withFlag(ParticleEntity.Flags.LIFESTEAL);
         world.spawnEntity(entity);
+
+        Vec3d particlePos = caster.raycast(1.3, 0, false).getPos();
+
+        if (world instanceof ServerWorld serverWorld) {
+            serverWorld.spawnParticles(
+                    ParticleTypes.SOUL_FIRE_FLAME,
+                    particlePos.x,
+                    particlePos.y,
+                    particlePos.z,
+                    10,
+                    0,
+                    0,
+                    0,
+                    0.1F
+            );
+        }
     }
 
     public void createChargeParticles(World world, LivingEntity user, int progress) {
