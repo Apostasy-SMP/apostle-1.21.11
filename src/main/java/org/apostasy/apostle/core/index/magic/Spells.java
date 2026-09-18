@@ -10,10 +10,7 @@ import org.apostasy.apostle.core.magic.spell.caller.ConjureAquaticVehicleSpell;
 import org.apostasy.apostle.core.magic.spell.caller.VexxedSpell;
 import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
 import org.apostasy.apostle.core.magic.spell.wave.SurgeSpell;
-import org.apostasy.apostle.core.magic.spell.wick.DinoDestroyerSpell;
-import org.apostasy.apostle.core.magic.spell.wick.FireballSpell;
-import org.apostasy.apostle.core.magic.spell.wick.RocketSpell;
-import org.apostasy.apostle.core.magic.spell.wick.SoulStealerSpell;
+import org.apostasy.apostle.core.magic.spell.wick.*;
 import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wild.RootsSpell;
 import org.apostasy.apostle.core.magic.spell.wind.DashSpell;
@@ -33,6 +30,7 @@ public interface Spells {
     Spell FIREBALL = register("fireball", new FireballSpell());
     Spell ROCKET = register("rocket", new RocketSpell());
     Spell SOUL_STEALER = register("soul_stealer", new SoulStealerSpell());
+    Spell DETECT_SOULS = register("detect_souls", new DetectSoulsSpell());
 
     /// WILD
     Spell NURTURE = register("nuture", new NurtureSpell());
