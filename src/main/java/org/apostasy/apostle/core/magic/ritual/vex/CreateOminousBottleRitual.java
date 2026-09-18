@@ -2,6 +2,7 @@ package org.apostasy.apostle.core.magic.ritual.vex;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.OminousBottleAmplifierComponent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
@@ -13,6 +14,7 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Ritual;
 import org.apostasy.apostle.core.entity.RitualEntity;
 import org.apostasy.apostle.core.index.magic.Schools;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ import java.util.List;
  * @author Chemthunder
  */
 public class CreateOminousBottleRitual implements Ritual {
-    public void cast(World world, RitualEntity ritual) {
+    public void cast(World world, RitualEntity ritual, @Nullable Entity owner) {
         ItemStack bottleStack = new ItemStack(Items.OMINOUS_BOTTLE);
         bottleStack.set(DataComponentTypes.OMINOUS_BOTTLE_AMPLIFIER, new OminousBottleAmplifierComponent(world.random.nextBetween(1, 4)));
 

@@ -165,7 +165,7 @@ public class RitualEntity extends Entity implements DataTracked, Ownable {
                 } while (ritualIngredients.size() < 9);
 
                 if (new HashSet<>(items).containsAll(ritualIngredients)) {
-                    ritual.cast(world, this);
+                    ritual.cast(world, this, this.getOwner() != null ? this.getOwner() : null);
                     break;
                 }
             }
