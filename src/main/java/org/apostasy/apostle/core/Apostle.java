@@ -35,7 +35,7 @@ public class Apostle implements ModInitializer {
 		ApostleRegistries.init();
 		ApostleItemGroups.init();
 		ApostleComponentTypes.init();
-		ApostleCriteria.init();
+		ApostleCriterions.init();
 		ApostleAttachmentTypes.init();
 		ApostleTrackedData.init();
 		ApostleParticleTypes.init();

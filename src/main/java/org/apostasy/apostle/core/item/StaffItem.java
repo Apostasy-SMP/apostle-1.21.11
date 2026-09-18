@@ -20,7 +20,7 @@ import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
-import org.apostasy.apostle.core.index.ApostleCriteria;
+import org.apostasy.apostle.core.index.ApostleCriterions;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.jspecify.annotations.Nullable;
 
@@ -64,7 +64,7 @@ public class StaffItem extends Item {
                                         manager.set(new ItemStack(ApostleItems.ARCANE_STAFF), (8 * 20));
                                     }
 
-                                    Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
+                                    Apostle.grantAchievement(ApostleCriterions.CAST_SPELL, user);
 
                                     user.swingHand(hand);
                                 } else {
@@ -126,7 +126,7 @@ public class StaffItem extends Item {
             if (user instanceof PlayerEntity player) {
                 ItemCooldownManager manager = player.getItemCooldownManager();
 
-                Apostle.grantAchievement(ApostleCriteria.CAST_SPELL, user);
+                Apostle.grantAchievement(ApostleCriterions.CAST_SPELL, user);
 
                 if (!player.isCreative()) {
                     manager.set(stack, (8 * 20));

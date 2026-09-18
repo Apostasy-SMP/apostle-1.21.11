@@ -1,7 +1,6 @@
 package org.apostasy.apostle.core.magic.spell.wick;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;

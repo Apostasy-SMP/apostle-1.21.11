@@ -7,7 +7,7 @@ import org.apostasy.apostle.core.Apostle;
 /**
  * @author Chemthunder
  */
-public interface ApostleCriteria {
+public interface ApostleCriterions {
     CriterionTriggerRegistrant plugin = new CriterionTriggerRegistrant(Apostle.MOD_ID);
 
     TickCriterion CAST_SPELL = plugin.register("cast_spell", new TickCriterion());

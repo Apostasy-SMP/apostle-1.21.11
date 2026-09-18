@@ -1,8 +1,6 @@
 package org.apostasy.apostle.core.entity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracked;
 import net.minecraft.entity.data.DataTracker;
@@ -26,6 +24,7 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Ritual;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.api.magic.Spell;
+import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.*;
 import org.apostasy.apostle.core.item.TomeItem;
@@ -39,7 +38,7 @@ import java.util.List;
  * @author Chemthunder
  */
 @SuppressWarnings("unused")
-public class RitualEntity extends Entity implements DataTracked {
+public class RitualEntity extends Entity implements DataTracked, Ownable {
     public static final TrackedData<ItemStack> HELD_TOME = DataTracker.registerData(RitualEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
     public static final TrackedData<List<ItemStack>> HELD_STACKS = DataTracker.registerData(RitualEntity.class, ApostleTrackedData.ITEM_STACK_LIST);
 
@@ -118,6 +117,10 @@ public class RitualEntity extends Entity implements DataTracked {
     }
 
     private void onCast() {
+        if (this.getOwner() instanceof LivingEntity living) {
+            Apostle.grantAchievement(ApostleCriterions.CAST_RITUAL, living);
+        }
+
         World world = this.getEntityWorld();
         List<ItemStack> stacks = new ArrayList<>(this.getHeldStacks());
         ItemStack first = stacks.getFirst();
@@ -273,5 +276,10 @@ public class RitualEntity extends Entity implements DataTracked {
             return this.getHeldTome().getSchool();
         }
         return null;
+    }
+
+    @Nullable
+    public Entity getOwner() {
+        return LazyEntityReference.getLivingEntity(this.getAttached(ApostleAttachmentTypes.OWNER), this.getEntityWorld());
     }
 }

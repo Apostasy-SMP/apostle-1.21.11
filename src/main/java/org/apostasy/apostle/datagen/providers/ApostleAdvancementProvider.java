@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
-import org.apostasy.apostle.core.index.ApostleCriteria;
+import org.apostasy.apostle.core.index.ApostleCriterions;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.magic.Spells;
 
@@ -24,6 +24,7 @@ import static org.apostasy.apostle.core.Apostle.createStackWithComponent;
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public class ApostleAdvancementProvider extends FabricAdvancementProvider {
     public ApostleAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(output, registryLookup);
@@ -53,7 +54,7 @@ public class ApostleAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         ApostleItems.WIND_TOME.getDefaultStack(),
                         "cast_ritual",
-                        ApostleCriteria.CAST_RITUAL.create(new TickCriterion.Conditions(Optional.empty()))
+                        ApostleCriterions.CAST_RITUAL.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 
@@ -67,7 +68,7 @@ public class ApostleAdvancementProvider extends FabricAdvancementProvider {
                                 new StoredSpellComponent(Spells.DASH)
                         ),
                         "cast_spell",
-                        ApostleCriteria.CAST_SPELL.create(new TickCriterion.Conditions(Optional.empty()))
+                        ApostleCriterions.CAST_SPELL.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
     }

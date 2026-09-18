@@ -8,14 +8,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.client.entity.render.CallerVexEntityRenderer;
-import org.apostasy.apostle.core.client.entity.render.HolyNetEntityRenderer;
 import org.apostasy.apostle.core.client.entity.render.CrowEntityRenderer;
+import org.apostasy.apostle.core.client.entity.render.HolyNetEntityRenderer;
 import org.apostasy.apostle.core.client.entity.render.RitualEntityRenderer;
-import org.apostasy.apostle.core.entity.CallerVexEntity;
-import org.apostasy.apostle.core.entity.HolyNetEntity;
-import org.apostasy.apostle.core.entity.ParticleEntity;
-import org.apostasy.apostle.core.entity.CrowEntity;
-import org.apostasy.apostle.core.entity.RitualEntity;
+import org.apostasy.apostle.core.entity.*;
 
 /**
  * @author Chemthunder

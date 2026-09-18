@@ -6,7 +6,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apostasy.apostle.core.Apostle;
 import org.ladysnake.cca.api.v3.component.ComponentKey;

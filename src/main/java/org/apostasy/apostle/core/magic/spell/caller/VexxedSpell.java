@@ -2,9 +2,7 @@ package org.apostasy.apostle.core.magic.spell.caller;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -13,11 +11,8 @@ import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.entity.CallerVexEntity;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 import org.apostasy.apostle.core.index.magic.Schools;
-import org.apostasy.apostle.core.index.tag.ApostleItemTags;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author Chemthunder
@@ -37,18 +32,6 @@ public class VexxedSpell implements Spell {
             entity.setStackInHand(Hand.MAIN_HAND, Items.IRON_SWORD.getDefaultStack());
             world.spawnEntity(entity);
         }
-    }
-
-    private ItemStack getAcceptableItemStack() {
-        List<Item> compiler = new ArrayList<>();
-
-        for (Item item : Registries.ITEM) {
-            if (item.getDefaultStack().isIn(ApostleItemTags.CALLER_VEX_ITEMS)) {
-                compiler.add(item);
-            }
-        }
-
-        return compiler.get(new Random().nextInt(compiler.size())).getDefaultStack();
     }
 
     public List<Item> getIngredients() {

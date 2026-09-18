@@ -5,10 +5,6 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.network.codec.PacketCodecs;
-import net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl;
-import net.minecraft.entity.LazyEntityReference;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
 import org.apostasy.apostle.core.Apostle;
 
 import java.util.function.Consumer;

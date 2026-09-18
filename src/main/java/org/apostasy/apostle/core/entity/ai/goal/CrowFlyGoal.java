@@ -1,6 +1,9 @@
 package org.apostasy.apostle.core.entity.ai.goal;
 
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.FuzzyPositions;
+import net.minecraft.entity.ai.FuzzyTargeting;
+import net.minecraft.entity.ai.NavigationConditions;
+import net.minecraft.entity.ai.NoPenaltySolidTargeting;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.PathAwareEntity;
