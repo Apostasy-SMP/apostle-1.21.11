@@ -26,5 +26,9 @@ public class ApostleItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.IRON_SWORD)
                 .add(Items.IRON_AXE)
                 .add(Items.GOLDEN_PICKAXE);
+
+        this.valueLookupBuilder(ApostleItemTags.CROW_FOOD)
+                .add(Items.GOLD_NUGGET)
+                .add(Items.IRON_NUGGET);
     }
 }

@@ -26,12 +26,6 @@ public interface ApostleAttachmentTypes {
                     .initializer(() -> false)
     );
 
-    AttachmentType<LazyEntityReference<LivingEntity>> OWNER = register("owner",
-            builder -> builder
-                    .persistent(LazyEntityReference.createCodec())
-                    .syncWith(LazyEntityReference.createPacketCodec(), AttachmentSyncPredicate.all())
-    );
-
     static void init() {}
 
     static <T> AttachmentType<T> register(String name, Consumer<AttachmentRegistry.Builder<T>> consumer) {

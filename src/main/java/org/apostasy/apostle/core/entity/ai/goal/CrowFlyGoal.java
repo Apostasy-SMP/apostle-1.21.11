@@ -1,7 +1,6 @@
-package org.apostasy.apostle.core.entity.ai;
+package org.apostasy.apostle.core.entity.ai.goal;
 
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.PathAwareEntity;
