@@ -1,0 +1,25 @@
+{
+  "parent": "apostle:cast_ritual",
+  "criteria": {
+    "e": {
+      "trigger": "apostle:pop_wooden_totem"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostle.pop_wooden_totem.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostle:wooden_totem"
+    },
+    "title": {
+      "translate": "advancements.apostle.pop_wooden_totem.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

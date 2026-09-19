@@ -35,7 +35,7 @@ public class ApostleAdvancementProvider extends FabricAdvancementProvider {
                 .display(
                         ApostleItems.WILD_TOME,
                         Text.literal("Apostle"),
-                        Text.literal("Magic shit"),
+                        Text.literal("Wield magic from beyond the very cosmos themselves!"),
                         Apostle.id("gui/advancements/backgrounds/apostle"),
                         AdvancementFrame.TASK,
                         false,
@@ -69,6 +69,16 @@ public class ApostleAdvancementProvider extends FabricAdvancementProvider {
                         ),
                         "cast_spell",
                         ApostleCriterions.CAST_SPELL.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
+
+        AdvancementEntry popWoodenTotem = generateBasicAdvancement(
+                consumer,
+                castRitual,
+                new AdvancementContext(
+                        ApostleItems.WOODEN_TOTEM.getDefaultStack(),
+                        "pop_wooden_totem",
+                        ApostleCriterions.POP_WOODEN_TOTEM.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
     }

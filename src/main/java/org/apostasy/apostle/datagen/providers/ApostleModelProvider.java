@@ -17,6 +17,7 @@ import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.client.ApostleModels;
 import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.item.ArtifactItem;
+import org.apostasy.apostle.core.item.BloodItem;
 import org.apostasy.apostle.core.item.TomeItem;
 
 import java.util.Arrays;
@@ -33,12 +34,16 @@ public class ApostleModelProvider extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         for (Item item : ApostleItems.plugin.toRegister) {
-            if (item instanceof TomeItem || item instanceof ArtifactItem) {
+            if (item instanceof TomeItem || item instanceof ArtifactItem || item instanceof BloodItem) {
                 itemModelGenerator.register(item, Models.GENERATED);
             }
         }
 
         itemModelGenerator.register(ApostleItems.MAGIC_DUST, Models.GENERATED);
+        itemModelGenerator.register(ApostleItems.SACRIFICIAL_KNIFE, Models.HANDHELD);
+
+        itemModelGenerator.register(ApostleItems.WOODEN_TOTEM, Models.GENERATED);
+        itemModelGenerator.register(ApostleItems.TRANS_IDOL, Models.GENERATED);
 
         createSpellScroll(itemModelGenerator);
         createStaff(itemModelGenerator);

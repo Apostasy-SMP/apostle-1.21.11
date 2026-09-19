@@ -38,6 +38,7 @@
 	"custom": {
 		"cardinal-components": [
 			"apostle:bloodlust",
+			"apostle:trans",
 
 			"apostle:waypoint",
 			"apostle:thunderbolt"

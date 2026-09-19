@@ -4,7 +4,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.tag.ApostleItemTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -30,5 +32,8 @@ public class ApostleItemTagProvider extends FabricTagProvider.ItemTagProvider {
         this.valueLookupBuilder(ApostleItemTags.CROW_FOOD)
                 .add(Items.GOLD_NUGGET)
                 .add(Items.IRON_NUGGET);
+
+        this.valueLookupBuilder(ItemTags.FIRE_ASPECT_ENCHANTABLE)
+                .add(ApostleItems.SACRIFICIAL_KNIFE);
     }
 }

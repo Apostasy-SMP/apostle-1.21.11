@@ -22,9 +22,10 @@ public class ApostleLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("advancements.apostle.cast_ritual.title", "Abracadabra");
         translationBuilder.add("advancements.apostle.cast_ritual.desc", "Cast & create a Ritual for your benefit.");
 
-        translationBuilder.add("advancements.apostle.cast_spell.title", "You're a Wizard Harry!");
+        translationBuilder.add("advancements.apostle.cast_spell.title", "FUCK JK ROWLING!!");
         translationBuilder.add("advancements.apostle.cast_spell.desc", "Cast a Spell!");
 
         translationBuilder.add(ApostleEntityTypes.CROW, "Crow");
+        translationBuilder.add(ApostleEntityTypes.RITUAL, "Ritual");
     }
 }

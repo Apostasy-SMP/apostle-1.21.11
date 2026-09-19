@@ -4,6 +4,8 @@ import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.minecraft.entity.LazyEntityReference;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.codec.PacketCodecs;
 import org.apostasy.apostle.core.Apostle;
 
@@ -20,6 +22,13 @@ public interface ApostleAttachmentTypes {
                     .syncWith(PacketCodecs.BOOLEAN, AttachmentSyncPredicate.all())
                     .persistent(Codec.BOOL)
                     .initializer(() -> false)
+    );
+
+    AttachmentType<LazyEntityReference<LivingEntity>> OWNER = register(
+            "owner",
+            builder -> builder
+                    .syncWith(LazyEntityReference.createPacketCodec(), AttachmentSyncPredicate.all())
+                    .persistent(LazyEntityReference.createCodec())
     );
 
     static void init() {}

@@ -90,6 +90,14 @@ public class SpellScrollItem extends Item {
     }
 
     public boolean allowComponentsUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
+        if (oldStack.isOf(this) && newStack.isOf(this)) {
+            Spell oldSpell = getSpellStack(oldStack);
+            Spell newSpell = getSpellStack(newStack);
+
+            if (oldSpell != null && newSpell != null) {
+                return oldSpell != newSpell;
+            }
+        }
         return oldStack.getItem() != newStack.getItem();
     }
 

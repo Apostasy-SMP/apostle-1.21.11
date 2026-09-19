@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import org.apostasy.apostle.core.cca.entity.BloodlustComponent;
+import org.apostasy.apostle.core.cca.entity.TransComponent;
 import org.apostasy.apostle.core.cca.entity.data.ThunderBoltComponent;
 import org.apostasy.apostle.core.cca.entity.data.WaypointComponent;
 import org.ladysnake.cca.api.v3.component.Component;
@@ -21,6 +22,7 @@ public class ApostleCCA implements EntityComponentInitializer {
         ApostleCCA.registerData(module);
 
         module.registerForPlayers(BloodlustComponent.KEY, BloodlustComponent::new, RespawnCopyStrategy.NEVER_COPY);
+        module.registerForPlayers(TransComponent.KEY, TransComponent::new, RespawnCopyStrategy.NEVER_COPY);
     }
 
     public static void registerData(EntityComponentFactoryRegistry module) {

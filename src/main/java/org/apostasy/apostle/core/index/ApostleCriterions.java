@@ -13,5 +13,7 @@ public interface ApostleCriterions {
     TickCriterion CAST_SPELL = plugin.register("cast_spell", new TickCriterion());
     TickCriterion CAST_RITUAL = plugin.register("cast_ritual", new TickCriterion());
 
+    TickCriterion POP_WOODEN_TOTEM = plugin.register("pop_wooden_totem", new TickCriterion());
+
     static void init() {}
 }

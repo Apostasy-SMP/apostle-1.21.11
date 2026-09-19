@@ -16,9 +16,7 @@ import org.apostasy.apostle.core.index.magic.RitualRecipes;
 import org.apostasy.apostle.core.index.magic.Rituals;
 import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.index.magic.Spells;
-import org.apostasy.apostle.core.item.SpellScrollItem;
-import org.apostasy.apostle.core.item.StaffItem;
-import org.apostasy.apostle.core.item.TomeItem;
+import org.apostasy.apostle.core.item.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,6 +47,8 @@ public class Apostle implements ModInitializer {
 		BetterItemTooltipEvent.EVENT.register(new TomeItem.Tooltip());
 		BetterItemTooltipEvent.EVENT.register(new SpellScrollItem.Tooltip());
 		BetterItemTooltipEvent.EVENT.register(new StaffItem.Tooltip());
+		BetterItemTooltipEvent.EVENT.register(new BloodItem.Tooltip());
+		BetterItemTooltipEvent.EVENT.register(new TransIdolItem.Tooltip());
 
 		CommandRegistrationCallback.EVENT.register(new ArchmageAurafarmCommand());
 

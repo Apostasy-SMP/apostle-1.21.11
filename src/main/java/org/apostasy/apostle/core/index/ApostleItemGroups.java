@@ -16,7 +16,10 @@ import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.item.ArtifactItem;
+import org.apostasy.apostle.core.item.BloodItem;
 import org.apostasy.apostle.core.item.TomeItem;
+
+import java.util.function.Predicate;
 
 /**
  * @author Chemthunder
@@ -36,13 +39,9 @@ public interface ApostleItemGroups {
 
     private static void addEntries(FabricItemGroupEntries entries) {
         entries.add(ApostleItems.MAGIC_STAFF);
-        entries.add(ApostleItems.MAGIC_STAFF);
+        entries.add(ApostleItems.MAGIC_DUST);
 
-        for (Item item : ApostleItems.plugin.toRegister) {
-            if (item instanceof TomeItem) {
-                entries.add(item);
-            }
-        }
+        applyEntries(entries, (item -> item instanceof TomeItem));
 
         for (Spell spell : ApostleRegistries.SPELL) {
             ItemStack scrollStack = new ItemStack(ApostleItems.SPELL_SCROLL);
@@ -58,8 +57,16 @@ public interface ApostleItemGroups {
             entries.add(staffStack);
         }
 
+        applyEntries(entries, (item -> item instanceof ArtifactItem));
+
+        entries.add(ApostleItems.SACRIFICIAL_KNIFE);
+
+        applyEntries(entries, (item -> item instanceof BloodItem));
+    }
+
+    private static void applyEntries(FabricItemGroupEntries entries, Predicate<? super Item> predicate) {
         for (Item item : Registries.ITEM) {
-            if (item instanceof ArtifactItem) {
+            if (predicate.test(item)) {
                 entries.add(item);
             }
         }
