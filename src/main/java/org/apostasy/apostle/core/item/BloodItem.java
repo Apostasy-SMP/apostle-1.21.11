@@ -6,6 +6,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
@@ -34,6 +35,7 @@ public class BloodItem extends Item {
             user.addStatusEffect(instance);
         }
         stack.split(1);
+        user.giveItemStack(new ItemStack(Items.GLASS_BOTTLE));
         return super.use(world, user, hand);
     }
 

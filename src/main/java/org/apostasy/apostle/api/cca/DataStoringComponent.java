@@ -13,7 +13,7 @@ import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
  * @author Chemthunder
  */
 @SuppressWarnings("unused")
-public class DataStoringComponent<ValueType, ComponentTarget extends Entity, ComponentClass extends Component> implements AutoSyncedComponent {
+public abstract class DataStoringComponent<ValueType, ComponentTarget extends Entity, ComponentClass extends Component> implements AutoSyncedComponent {
     protected final Codec<ValueType> codec;
     protected final ComponentKey<ComponentClass> key;
     protected final ComponentTarget obj;

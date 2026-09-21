@@ -50,4 +50,8 @@ public class QuenchingAshItem extends ArtifactItem {
     public MagicSchool getSchool() {
         return Schools.WICK;
     }
+
+    public int getCooldownTime() {
+        return (2 * 20);
+    }
 }

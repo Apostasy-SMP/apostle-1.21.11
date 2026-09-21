@@ -3,6 +3,7 @@ package org.apostasy.apostle.core.index;
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -12,7 +13,6 @@ import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.item.*;
 import org.apostasy.apostle.core.item.artifact.BezoarItem;
 import org.apostasy.apostle.core.item.artifact.QuenchingAshItem;
-import org.apostasy.apostle.core.item.WoodenTotemItem;
 
 /**
  * @author Chemthunder
@@ -67,8 +67,24 @@ public interface ApostleItems {
             .attributeModifiers(SacrificialKnifeItem.createAttributes())
     );
 
-    Item VILE_BLOOD = createBlood("vile");
-    Item PURE_BLOOD = createBlood("pure");
+    Item VILE_BLOOD = createBlood("vile",
+            new StatusEffectInstance(
+                    StatusEffects.SPEED,
+                    (3 * 20)
+            ),
+            new StatusEffectInstance(
+                    StatusEffects.STRENGTH,
+                    (3 * 20)
+            )
+    );
+
+    Item PURE_BLOOD = createBlood("pure",
+            new StatusEffectInstance(
+                    StatusEffects.INSTANT_HEALTH,
+                    5,
+                    2
+            )
+    );
 
     Item WOODEN_TOTEM = plugin.register("wooden_totem", WoodenTotemItem::new, new Item.Settings()
             .maxCount(1)

@@ -17,6 +17,7 @@ import org.apostasy.apostle.core.index.magic.Rituals;
 import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.index.magic.Spells;
 import org.apostasy.apostle.core.item.*;
+import org.apostasy.apostle.core.networking.ApostleNetworking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,11 +39,14 @@ public class Apostle implements ModInitializer {
 		ApostleTrackedData.init();
 		ApostleParticleTypes.init();
 		ApostleStatusEffects.init();
+		ApostleNetworking.init();
 
 		Schools.init();
 		Spells.init();
 		Rituals.init();
 		RitualRecipes.init();
+
+		ApostleNetworking.c2s();
 
 		BetterItemTooltipEvent.EVENT.register(new TomeItem.Tooltip());
 		BetterItemTooltipEvent.EVENT.register(new SpellScrollItem.Tooltip());

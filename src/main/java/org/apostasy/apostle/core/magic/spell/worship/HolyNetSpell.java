@@ -46,6 +46,40 @@ public class HolyNetSpell implements Spell {
         }
     }
 
+    public void createChargeParticles(World world, LivingEntity user, int progress) {
+        for (int i = 0; i < 15; i++) {
+            Random random = new Random();
+
+            float horizontalBound = 1.3F;
+            float verticalBound = 0.4F;
+
+            float yVelOrigin = 0.4F;
+            float yVelBound = 0.9F;
+
+            world.addParticleClient(
+                    new MagicParticleEffect(Schools.WORSHIP),
+                    user.getX() + random.nextFloat(
+                            -horizontalBound,
+                            horizontalBound
+                    ),
+                    user.getY() + random.nextFloat(
+                            -verticalBound,
+                            verticalBound
+                    ),
+                    user.getZ() + random.nextFloat(
+                            -horizontalBound,
+                            horizontalBound
+                    ),
+                    0,
+                    random.nextFloat(
+                            yVelOrigin,
+                            yVelBound
+                    ),
+                    0
+            );
+        }
+    }
+
     public List<Item> getIngredients() {
         return List.of(
                 Items.LIGHTNING_ROD,

@@ -7,6 +7,7 @@ import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.entity.LivingEntity;
+import org.apostasy.apostle.api.event.client.UpdateRenderStateCallback;
 import org.apostasy.apostle.core.ApostleClient;
 import org.apostasy.apostle.core.index.ApostleAttachmentTypes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,6 +31,8 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
             )
     )
     private void apostle$updateDataKeys(T livingEntity, S livingEntityRenderState, float f, CallbackInfo ci) {
+        UpdateRenderStateCallback.EVENT.invoker().updateRenderState(livingEntity, livingEntityRenderState);
+
         if (Boolean.TRUE.equals(livingEntity.getAttached(ApostleAttachmentTypes.IS_ARCHMAGE))) {
             livingEntityRenderState.setData(ApostleClient.IS_ARCHMAGE, true);
         }

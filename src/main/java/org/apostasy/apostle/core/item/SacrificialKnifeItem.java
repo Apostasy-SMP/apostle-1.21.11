@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
-import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleItems;
 
 /**

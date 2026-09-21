@@ -9,6 +9,7 @@ import org.apostasy.apostle.core.client.item.SpellScrollProperty;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
 import org.apostasy.apostle.core.index.ApostleParticleTypes;
 import org.apostasy.apostle.core.index.client.ApostleEntityModelLayers;
+import org.apostasy.apostle.core.networking.ApostleNetworking;
 
 /**
  * @author Chemthunder
@@ -20,6 +21,8 @@ public class ApostleClient implements ClientModInitializer {
         ApostleEntityTypes.clinit();
         ApostleEntityModelLayers.clinit();
         ApostleParticleTypes.clinit();
+
+        ApostleNetworking.s2c();
 
         SelectProperties.ID_MAPPER.put(SpellScrollProperty.ID, SpellScrollProperty.TYPE);
         SelectProperties.ID_MAPPER.put(MagicSchoolProperty.ID, MagicSchoolProperty.TYPE);

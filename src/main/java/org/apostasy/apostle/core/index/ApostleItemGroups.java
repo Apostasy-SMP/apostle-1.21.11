@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core.index;
 
 import net.acoyt.acornlib.api.registrants.CreativeModeTabRegistrant;
+import net.acoyt.acornlib.api.util.MiscUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -30,7 +31,7 @@ public interface ApostleItemGroups {
     RegistryKey<ItemGroup> GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Apostle.id(Apostle.MOD_ID));
     ItemGroup ITEM_GROUP = plugin.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()
             .icon(() -> new ItemStack(ApostleItems.WILD_TOME))
-            .displayName(Text.translatable("itemGroup." + Apostle.MOD_ID).withColor(0xFF9740aa))
+            .displayName(Text.literal(MiscUtils.formatString(Apostle.MOD_ID)).withColor(0xFF9740aa))
             .build());
 
     static void init() {

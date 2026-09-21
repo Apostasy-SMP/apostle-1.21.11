@@ -47,4 +47,8 @@ public class BezoarItem extends ArtifactItem {
     public MagicSchool getSchool() {
         return Schools.WILD;
     }
+
+    public int getCooldownTime() {
+        return (10 * 20);
+    }
 }

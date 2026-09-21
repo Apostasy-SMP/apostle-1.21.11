@@ -250,7 +250,14 @@ public class RitualEntity extends Entity implements DataTracked, Ownable {
 
     public void pushStack(ItemStack stack) {
         List<ItemStack> stacks = new ArrayList<>(this.getHeldStacks());
-        stacks.add(stack);
+        if (stack.getCount() > 1) {
+            do {
+                ItemStack splitStack = stack.split(1);
+                stacks.add(splitStack);
+            } while (stack.getCount() > 1);
+        } else {
+            stacks.add(stack);
+        }
         this.setHeldStacks(stacks);
     }
 

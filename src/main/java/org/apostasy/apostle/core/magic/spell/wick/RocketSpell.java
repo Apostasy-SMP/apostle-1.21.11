@@ -7,6 +7,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
+import org.apostasy.apostle.core.cca.entity.tick.RocketComponent;
 import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
@@ -17,30 +18,37 @@ import java.util.Random;
  */
 public class RocketSpell implements Spell {
     public void cast(World world, LivingEntity caster) {
-        caster.addVelocity(0, 1, 0);
+        caster.addVelocity(0, 1.4, 0);
+
+        RocketComponent rocketComponent = RocketComponent.KEY.get(caster);
+
+        rocketComponent.trigger();
 
         for (int i = 0; i < 30; i++) {
             Random random = new Random();
-            float bound = 2.6F;
+            float xBound = 0.5F;
+            float yBound = 0.4F;
+            float velBound = 1.5F;
+            float velOrigin = 0.5F;
 
             world.addParticleClient(
                     ParticleTypes.FLAME,
-                    caster.getX() + random.nextFloat(-bound, bound),
-                    caster.getY(),
-                    caster.getZ() + random.nextFloat(-bound, bound),
+                    caster.getX() + random.nextFloat(-xBound, xBound),
+                    caster.getY() + random.nextFloat(-yBound, yBound),
+                    caster.getZ() + random.nextFloat(-xBound, xBound),
                     0,
-                    1,
+                    random.nextFloat(velOrigin, velBound),
                     0
             );
 
             world.addParticleClient(
                     ParticleTypes.FLAME,
-                    caster.getX() + random.nextFloat(-bound, bound),
+                    caster.getX(),
                     caster.getY(),
-                    caster.getZ() + random.nextFloat(-bound, bound),
-                    0,
-                    0.8F,
-                    0
+                    caster.getZ(),
+                    random.nextFloat(-velBound, velBound),
+                    random.nextFloat(-velBound, velBound),
+                    random.nextFloat(-velBound, velBound)
             );
         }
     }

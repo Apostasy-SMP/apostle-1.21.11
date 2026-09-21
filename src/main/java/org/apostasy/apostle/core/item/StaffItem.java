@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.UseAction;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -22,6 +24,7 @@ import org.apostasy.apostle.core.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleCriterions;
 import org.apostasy.apostle.core.index.ApostleItems;
+import org.apostasy.apostle.core.networking.s2c.UseSpellPayload;
 import org.jspecify.annotations.Nullable;
 
 import java.util.function.Consumer;
@@ -55,6 +58,10 @@ public class StaffItem extends Item {
                             if (!cooldown.isCoolingDown(offStack)) {
                                 if (spell.getCastTime() <= 0) {
                                     spell.cast(world, user);
+
+                                    if (user instanceof ServerPlayerEntity serverPlayer) {
+                                        ServerPlayNetworking.send(serverPlayer, new UseSpellPayload());
+                                    }
 
                                     if (!user.isCreative()) {
                                         ItemCooldownManager manager = user.getItemCooldownManager();
@@ -136,7 +143,12 @@ public class StaffItem extends Item {
             if (!user.isInCreativeMode()) {
                 user.getOffHandStack().set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
             }
+
             spell.cast(world, user);
+
+            if (user instanceof ServerPlayerEntity serverPlayer) {
+                ServerPlayNetworking.send(serverPlayer, new UseSpellPayload());
+            }
         }
         return super.finishUsing(stack, world, user);
     }

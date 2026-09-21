@@ -7,6 +7,7 @@ import org.apostasy.apostle.core.cca.entity.BloodlustComponent;
 import org.apostasy.apostle.core.cca.entity.TransComponent;
 import org.apostasy.apostle.core.cca.entity.data.ThunderBoltComponent;
 import org.apostasy.apostle.core.cca.entity.data.WaypointComponent;
+import org.apostasy.apostle.core.cca.entity.tick.RocketComponent;
 import org.ladysnake.cca.api.v3.component.Component;
 import org.ladysnake.cca.api.v3.component.ComponentFactory;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -23,6 +24,11 @@ public class ApostleCCA implements EntityComponentInitializer {
 
         module.registerForPlayers(BloodlustComponent.KEY, BloodlustComponent::new, RespawnCopyStrategy.NEVER_COPY);
         module.registerForPlayers(TransComponent.KEY, TransComponent::new, RespawnCopyStrategy.NEVER_COPY);
+
+        module.beginRegistration(
+                LivingEntity.class,
+                RocketComponent.KEY
+        ).respawnStrategy(RespawnCopyStrategy.CHARACTER).end(RocketComponent::new);
     }
 
     public static void registerData(EntityComponentFactoryRegistry module) {
