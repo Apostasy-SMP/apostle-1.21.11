@@ -33,6 +33,7 @@ public interface Spells {
     Spell ROCKET = register("rocket", new RocketSpell());
     Spell SOUL_STEALER = register("soul_stealer", new SoulStealerSpell());
     Spell DETECT_SOULS = register("detect_souls", new DetectSoulsSpell());
+    Spell PYROMANIAC = register("pyromaniac", new PyromaniacSpell());
 
     /// WILD
     Spell NURTURE = register("nuture", new NurtureSpell());

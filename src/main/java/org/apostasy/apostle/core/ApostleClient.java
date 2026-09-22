@@ -4,6 +4,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.minecraft.client.render.item.property.select.SelectProperties;
 import org.apostasy.apostle.core.client.event.SpellHudEvents;
+import org.apostasy.apostle.core.client.index.ApostleRenderLayers;
+import org.apostasy.apostle.core.client.index.ApostleRenderPipelines;
 import org.apostasy.apostle.core.client.item.MagicSchoolProperty;
 import org.apostasy.apostle.core.client.item.SpellScrollProperty;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
@@ -21,6 +23,8 @@ public class ApostleClient implements ClientModInitializer {
         ApostleEntityTypes.clinit();
         ApostleEntityModelLayers.clinit();
         ApostleParticleTypes.clinit();
+        ApostleRenderPipelines.init();
+        ApostleRenderLayers.init();
 
         ApostleNetworking.s2c();
 

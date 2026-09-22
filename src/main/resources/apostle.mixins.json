@@ -5,7 +5,8 @@
   "mixins": [
     "ConsumableComponentMixin",
     "EntityMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "magic.pyromaniac.LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -17,6 +18,7 @@
     "client.AbstractClientPlayerEntityMixin",
     "client.InGameHudMixin",
     "client.LivingEntityRendererMixin",
-    "client.PlayerEntityRendererMixin"
+    "client.PlayerEntityRendererMixin",
+    "magic.pyromaniac.LivingEntityRendererMixin"
   ]
 }
