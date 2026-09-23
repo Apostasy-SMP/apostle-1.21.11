@@ -72,7 +72,7 @@ public class SoulStealerSpell implements Spell {
     }
 
     public int getCastTime() {
-        return (2 * 20);
+        return 0;
     }
 
     public int getCooldown() {

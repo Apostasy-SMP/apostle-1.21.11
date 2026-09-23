@@ -69,6 +69,6 @@ public class DashSpell implements Spell {
     }
 
     public int getCooldown() {
-        return (4 * 20);
+        return (8 * 20);
     }
 }

@@ -34,7 +34,6 @@ public interface Spells {
     Spell FIREBALL = register("fireball", new FireballSpell());
     Spell ROCKET = register("rocket", new RocketSpell());
     Spell SOUL_STEALER = register("soul_stealer", new SoulStealerSpell());
-    Spell DETECT_SOULS = register("detect_souls", new DetectSoulsSpell());
     Spell PYROMANIAC = register("pyromaniac", new PyromaniacSpell());
 
     /// WILD
