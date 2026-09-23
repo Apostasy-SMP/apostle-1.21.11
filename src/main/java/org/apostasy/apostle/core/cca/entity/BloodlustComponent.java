@@ -1,12 +1,8 @@
 package org.apostasy.apostle.core.cca.entity;
 
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
-import net.minecraft.util.Identifier;
 import org.apostasy.apostle.core.Apostle;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
@@ -21,43 +17,21 @@ public class BloodlustComponent implements AutoSyncedComponent, CommonTickingCom
             Apostle.id("bloodlust"),
             BloodlustComponent.class
     );
-    private final PlayerEntity player;
-
-    public static final Identifier STRENGTH_ID = Apostle.id("bloodlust_strength");
+    private final LivingEntity player;
 
     private int duration = 0;
     private int modifier = 0;
 
-    public BloodlustComponent(PlayerEntity player) {
+    public BloodlustComponent(LivingEntity player) {
         this.player = player;
     }
 
     public void tick() {
-        EntityAttributeInstance ATTACK_DAMAGE = player.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE);
-
-        if (ATTACK_DAMAGE != null) {
-            if (duration > 0) {
-                duration--;
-                if (ATTACK_DAMAGE.hasModifier(STRENGTH_ID)) {
-                    ATTACK_DAMAGE.removeModifier(STRENGTH_ID);
-
-                    EntityAttributeModifier multiplier = new EntityAttributeModifier(
-                            Apostle.id("bloodlust_strength"),
-                            modifier,
-                            EntityAttributeModifier.Operation.ADD_VALUE
-                    );
-
-                    ATTACK_DAMAGE.addTemporaryModifier(multiplier);
-                }
-
-                if (duration == 0) {
-                    if (ATTACK_DAMAGE.hasModifier(STRENGTH_ID)) {
-                        ATTACK_DAMAGE.removeModifier(STRENGTH_ID);
-                    }
-
-                    modifier = 0;
-                    sync();
-                }
+        if (duration > 0) {
+            duration--;
+            if (duration == 0) {
+                modifier = 0;
+                sync();
             }
         }
     }

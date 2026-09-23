@@ -7,7 +7,7 @@ import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.entity.LivingEntity;
-import org.apostasy.apostle.api.event.client.UpdateRenderStateCallback;
+import org.apostasy.apostle.api.client.event.UpdateRenderStateCallback;
 import org.apostasy.apostle.core.ApostleClient;
 import org.apostasy.apostle.core.index.ApostleAttachmentTypes;
 import org.spongepowered.asm.mixin.Mixin;

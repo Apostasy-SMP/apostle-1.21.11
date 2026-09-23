@@ -2,10 +2,13 @@ package org.apostasy.apostle.core;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.render.item.property.select.SelectProperties;
+import org.apostasy.apostle.api.client.event.CreateOverlayCallback;
+import org.apostasy.apostle.core.client.event.BloodlustHudEvent;
 import org.apostasy.apostle.core.client.event.SpellHudEvents;
-import org.apostasy.apostle.core.client.index.ApostleRenderLayers;
-import org.apostasy.apostle.core.client.index.ApostleRenderPipelines;
+import org.apostasy.apostle.core.index.client.ApostleRenderLayers;
+import org.apostasy.apostle.core.index.client.ApostleRenderPipelines;
 import org.apostasy.apostle.core.client.item.MagicSchoolProperty;
 import org.apostasy.apostle.core.client.item.SpellScrollProperty;
 import org.apostasy.apostle.core.index.ApostleEntityTypes;
@@ -23,8 +26,8 @@ public class ApostleClient implements ClientModInitializer {
         ApostleEntityTypes.clinit();
         ApostleEntityModelLayers.clinit();
         ApostleParticleTypes.clinit();
-        ApostleRenderPipelines.init();
-        ApostleRenderLayers.init();
+        ApostleRenderPipelines.clinit();
+        ApostleRenderLayers.clinit();
 
         ApostleNetworking.s2c();
 
@@ -32,5 +35,7 @@ public class ApostleClient implements ClientModInitializer {
         SelectProperties.ID_MAPPER.put(MagicSchoolProperty.ID, MagicSchoolProperty.TYPE);
 
         SpellHudEvents.init();
+
+        HudElementRegistry.addFirst(Apostle.id("bloodlust_overlay"), new BloodlustHudEvent());
     }
 }

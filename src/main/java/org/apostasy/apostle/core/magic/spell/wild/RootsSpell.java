@@ -36,7 +36,7 @@ public class RootsSpell implements Spell {
 
     public boolean canCast(World world, LivingEntity caster, ItemStack staffStack) {
         Vec3d pos = caster.raycast(100, 0, false).getPos();
-        return world.getClosestPlayer(pos.x, pos.y, pos.z, 3, false) != null;
+        return !ModUtil.getNearbyEntities(world, pos, 1, LivingEntity.class).isEmpty();
     }
 
     public List<Item> getIngredients() {

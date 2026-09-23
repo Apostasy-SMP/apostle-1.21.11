@@ -14,8 +14,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.waypoint.ServerWaypoint;
-import org.apostasy.apostle.core.cca.entity.BloodlustComponent;
 import org.apostasy.apostle.core.client.particle.MagicParticleEffect;
+import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.ApostleStatusEffects;
 import org.apostasy.apostle.core.item.StaffItem;
@@ -42,6 +42,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Se
     @Inject(method = "damage", at = @At(value = "HEAD"))
     private void apostle$haltStaffUsageWhenTakingDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
+        Entity entity = source.getAttacker();
 
         if (StaffItem.isActive(self)) {
             if (self instanceof PlayerEntity player) {
@@ -53,17 +54,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Se
                 self.stopUsingItem();
             }
         }
-    }
 
-    @Inject(method = "onKilledBy", at = @At(value = "HEAD"))
-    private void apostle$increaseBloodlustPower(LivingEntity adversary, CallbackInfo ci) {
-        if (adversary instanceof PlayerEntity player) {
-            BloodlustComponent lust = BloodlustComponent.KEY.get(player);
-
-            if (lust.getDuration() > 0) {
-                if (lust.getModifier() < 6) {
-                    lust.setModifier(lust.getModifier() + 1);
-                }
+        if (entity instanceof LivingEntity living) {
+            if (living.getMainHandStack().getOrDefault(ApostleComponentTypes.MODIFIER_LIFESTEAL, false)) {
+                living.heal(self.getHealth() / 4F);
             }
         }
     }

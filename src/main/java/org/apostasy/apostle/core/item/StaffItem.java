@@ -2,6 +2,8 @@ package org.apostasy.apostle.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.UseCooldownComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.UseAction;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -20,19 +23,24 @@ import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
-import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.client.particle.MagicParticleEffect;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleCriterions;
 import org.apostasy.apostle.core.index.ApostleItems;
+import org.apostasy.apostle.core.index.magic.Schools;
+import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 import org.apostasy.apostle.core.networking.s2c.UseSpellPayload;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 /**
  * @author Chemthunder
  */
 public class StaffItem extends Item {
+    private static final float GUI_EXPAND_SIZE = 0.6F;
+
     public StaffItem(Settings settings) {
         super(settings);
     }
@@ -60,22 +68,25 @@ public class StaffItem extends Item {
                                     spell.cast(world, user);
 
                                     if (user instanceof ServerPlayerEntity serverPlayer) {
-                                        ServerPlayNetworking.send(serverPlayer, new UseSpellPayload());
+                                        ServerPlayNetworking.send(serverPlayer, new UseSpellPayload(GUI_EXPAND_SIZE));
                                     }
 
                                     if (!user.isCreative()) {
                                         ItemCooldownManager manager = user.getItemCooldownManager();
 
                                         offStack.set(ApostleComponentTypes.SCROLL_COOLDOWN, spell.getCooldown());
-                                        manager.set(new ItemStack(ApostleItems.MAGIC_STAFF), (8 * 20));
-                                        manager.set(new ItemStack(ApostleItems.ARCANE_STAFF), (8 * 20));
+                                        manager.set(stack, spell.getStaffCooldown());
                                     }
 
                                     Apostle.grantAchievement(ApostleCriterions.CAST_SPELL, user);
 
                                     user.swingHand(hand);
                                 } else {
-                                    user.setCurrentHand(hand);
+                                    if (spell.canCast(world, user, stack)) {
+                                        user.setCurrentHand(hand);
+                                        return ActionResult.CONSUME;
+                                    }
+                                    return ActionResult.FAIL;
                                 }
                                 return ActionResult.CONSUME;
                             }
@@ -83,7 +94,10 @@ public class StaffItem extends Item {
                     }
                 }
             }
-            user.setCurrentHand(hand);
+
+            if (!user.getOffHandStack().isOf(ApostleItems.SPELL_SCROLL)) {
+                user.setCurrentHand(hand);
+            }
         }
         return super.use(world, user, hand);
     }
@@ -94,49 +108,68 @@ public class StaffItem extends Item {
 
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         Spell spell = getOffhandSpell(user);
-        if (spell != null) {
+        if (spell != null && spell.canCast(user.getEntityWorld(), user, stack)) {
             return spell.getCastTime();
         }
         return 720000;
     }
 
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        ItemStack offStack = user.getOffHandStack();
         int time = this.getMaxUseTime(stack, user) - remainingUseTicks;
+        Spell spell = getOffhandSpell(user);
 
-        if (offStack.isOf(ApostleItems.SPELL_SCROLL)) {
-            Spell spell = getOffhandSpell(user);
-
-            if (spell != null) {
-                spell.createChargeParticles(world, user, time);
-                spell.tickCharge(world, user);
+        if (spell != null) {
+            if (user.getOffHandStack().isOf(ApostleItems.SPELL_SCROLL) && !spell.canCast(world, user, stack)) {
+                user.stopUsingItem();
             }
+        }
+
+        if (spell != null && spell.canCast(world, user, stack) && spell.getMagicSchool() != Schools.NONE) {
+            spell.createChargeParticles(world, user, time);
+            spell.tickCharge(world, user);
         } else {
             Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
+            ParticleEffect effect = null;
 
-            world.addParticleClient(
-                    ParticleTypes.END_ROD,
-                    particlePos.x,
-                    particlePos.y,
-                    particlePos.z,
-                    0,
-                    0,
-                    0
-            );
+            if (stack.contains(ApostleComponentTypes.SCHOOL) && stack.get(ApostleComponentTypes.SCHOOL) != null && stack.get(ApostleComponentTypes.SCHOOL) != Schools.NONE) {
+                MagicSchool school = stack.get(ApostleComponentTypes.SCHOOL);
+
+                if (school != null) {
+                    if (school == Schools.NONE) {
+                        effect = ParticleTypes.END_ROD;
+                    } else {
+                        effect = new MagicParticleEffect(school);
+                    }
+                }
+            } else {
+                effect = ParticleTypes.END_ROD;
+            }
+
+            if (effect != null) {
+                world.addParticleClient(
+                        effect,
+                        particlePos.x,
+                        particlePos.y,
+                        particlePos.z,
+                        0,
+                        0,
+                        0
+                );
+            }
         }
     }
 
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         Spell spell = getOffhandSpell(user);
 
-        if (spell != null) {
+        if (spell != null && spell.canCast(world, user, stack)) {
             if (user instanceof PlayerEntity player) {
                 ItemCooldownManager manager = player.getItemCooldownManager();
 
                 Apostle.grantAchievement(ApostleCriterions.CAST_SPELL, user);
 
                 if (!player.isCreative()) {
-                    manager.set(stack, (8 * 20));
+                    manager.set(stack, spell.getStaffCooldown());
                 }
             }
 
@@ -147,7 +180,7 @@ public class StaffItem extends Item {
             spell.cast(world, user);
 
             if (user instanceof ServerPlayerEntity serverPlayer) {
-                ServerPlayNetworking.send(serverPlayer, new UseSpellPayload());
+                ServerPlayNetworking.send(serverPlayer, new UseSpellPayload(GUI_EXPAND_SIZE));
             }
         }
         return super.finishUsing(stack, world, user);
@@ -170,18 +203,23 @@ public class StaffItem extends Item {
     }
 
     public static boolean isActive(LivingEntity user) {
-        return (user.getMainHandStack().isOf(ApostleItems.MAGIC_STAFF)
-                || user.getMainHandStack().isOf(ApostleItems.ARCANE_STAFF)
-        && user.getOffHandStack().isOf(ApostleItems.SPELL_SCROLL) && user.isUsingItem());
+        return (user.getMainHandStack().isOf(ApostleItems.STAFF)
+                && user.getOffHandStack().isOf(ApostleItems.SPELL_SCROLL) && user.isUsingItem());
+    }
+
+    public ItemStack getDefaultStack() {
+        ItemStack s = super.getDefaultStack();
+        s.set(ApostleComponentTypes.SCHOOL, Schools.NONE);
+        return s;
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipFlag, Consumer<Text> lines) {
-            if (stack.isOf(ApostleItems.ARCANE_STAFF)) {
+            if (stack.isOf(ApostleItems.STAFF)) {
                 if (stack.contains(ApostleComponentTypes.SCHOOL)) {
                     MagicSchool school = stack.get(ApostleComponentTypes.SCHOOL);
 
-                    if (school != null) {
+                    if (school != null && school != Schools.NONE) {
                         lines.accept(Text.empty()
                                 .append(Text.literal("- ").formatted(Formatting.DARK_GRAY))
                                 .append(school.name().copy().withColor(school.color()))

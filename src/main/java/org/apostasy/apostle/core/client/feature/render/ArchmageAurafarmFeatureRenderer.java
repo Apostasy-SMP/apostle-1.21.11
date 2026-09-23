@@ -41,12 +41,10 @@ public class ArchmageAurafarmFeatureRenderer<S extends BipedEntityRenderState, M
             staves.add(new ItemStack(Items.AIR));
 
             for (MagicSchool school : ApostleRegistries.MAGIC_SCHOOL) {
-                ItemStack staff = new ItemStack(ApostleItems.ARCANE_STAFF);
+                ItemStack staff = new ItemStack(ApostleItems.STAFF);
                 staff.set(ApostleComponentTypes.SCHOOL, school);
                 staves.add(staff);
             }
-
-            staves.add(new ItemStack(ApostleItems.MAGIC_STAFF));
 
             for (ItemStack stack : staves) {
                 int index = staves.indexOf(stack);

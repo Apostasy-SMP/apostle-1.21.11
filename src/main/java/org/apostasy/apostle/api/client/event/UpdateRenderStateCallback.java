@@ -1,4 +1,4 @@
-package org.apostasy.apostle.api.event.client;
+package org.apostasy.apostle.api.client.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;

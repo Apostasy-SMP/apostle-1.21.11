@@ -13,6 +13,7 @@ import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.item.*;
 import org.apostasy.apostle.core.item.artifact.BezoarItem;
 import org.apostasy.apostle.core.item.artifact.QuenchingAshItem;
+import org.apostasy.apostle.core.item.conjured.VeinpiercerItem;
 
 /**
  * @author Chemthunder
@@ -41,11 +42,7 @@ public interface ApostleItems {
             .component(ApostleComponentTypes.SCROLL_COOLDOWN, 0)
     );
 
-    Item MAGIC_STAFF = plugin.register("magic_staff", StaffItem::new, new Item.Settings()
-            .maxCount(1)
-    );
-
-    Item ARCANE_STAFF = plugin.register("arcane_staff", StaffItem::new, new Item.Settings()
+    Item STAFF = plugin.register("arcane_staff", StaffItem::new, new Item.Settings()
             .maxCount(1)
     );
 
@@ -92,6 +89,12 @@ public interface ApostleItems {
 
     Item TRANS_IDOL = plugin.register("transmogrification_idol", TransIdolItem::new, new Item.Settings()
             .maxCount(1)
+    );
+
+    Item VEINPIERCER = plugin.register("veinpiercer", VeinpiercerItem::new, new Item.Settings()
+            .maxCount(1)
+            .attributeModifiers(VeinpiercerItem.createAttributes())
+            .component(ApostleComponentTypes.MODIFIER_LIFESTEAL, true)
     );
 
     private static Item createTome(MagicSchool school) {

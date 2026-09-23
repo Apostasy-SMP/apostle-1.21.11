@@ -25,7 +25,7 @@ import org.apostasy.apostle.api.magic.Ritual;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
-import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.*;
 import org.apostasy.apostle.core.item.TomeItem;
 import org.jspecify.annotations.Nullable;

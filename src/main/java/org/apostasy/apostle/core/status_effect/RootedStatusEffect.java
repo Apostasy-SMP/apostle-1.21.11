@@ -9,7 +9,9 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import org.apostasy.apostle.core.client.particle.MagicParticleEffect;
 import org.apostasy.apostle.core.index.ApostleParticleTypes;
+import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.Random;
 
@@ -22,11 +24,23 @@ public class RootedStatusEffect extends StatusEffect {
     }
 
     public ParticleEffect createParticle(StatusEffectInstance effect) {
-        return new BlockStateParticleEffect(ParticleTypes.BLOCK_MARKER, Blocks.AIR.getDefaultState());
+        return new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.AIR.getDefaultState());
     }
 
     public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         Random random = new Random();
+
+        world.spawnParticles(
+                new MagicParticleEffect(Schools.WILD),
+                entity.getX() + 0.5F + random.nextFloat(-0.5F, 0.5F),
+                entity.getY() + 1.0F + random.nextFloat(-0.5F, 0.5F),
+                entity.getZ() + 0.5F + random.nextFloat(-0.5F, 0.5F),
+                2,
+                0,
+                0,
+                0,
+                0
+        );
 
         world.spawnParticles(
                 ApostleParticleTypes.ROOT,

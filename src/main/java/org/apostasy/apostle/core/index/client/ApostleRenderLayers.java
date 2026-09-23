@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.client.index;
+package org.apostasy.apostle.core.index.client;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderSetup;
@@ -15,7 +15,7 @@ public interface ApostleRenderLayers {
                     .build())
     );
 
-    static void init() {}
+    static void clinit() {}
 
     static RenderLayer entityPyromaniac(Identifier texture) {
         return ENTITY_PYROMANIAC.apply(texture);

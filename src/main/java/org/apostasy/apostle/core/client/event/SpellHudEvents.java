@@ -13,7 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.Easing;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleItems;
@@ -49,7 +48,7 @@ public class SpellHudEvents {
                 expansion -= 0.15F;
             }
 
-            if (main.isOf(ApostleItems.ARCANE_STAFF) || main.isOf(ApostleItems.MAGIC_STAFF)) {
+            if (main.isOf(ApostleItems.STAFF)) {
                 Spell spell = SpellScrollItem.getSpellStack(off);
 
                 if (spell != null) {
@@ -94,10 +93,10 @@ public class SpellHudEvents {
                         context.getScaledWindowWidth() / 2F,
                         context.getScaledWindowHeight() - 50F
                 );
-
-                matrices.scale(
-                        1.35F + Easing.outExpo(expansion)
-                );
+//
+//                matrices.scale(
+//                        1.35F + Easing.outExpo(expansion)
+//                );
 
                 context.drawCenteredTextWithShadow(
                         client.textRenderer,

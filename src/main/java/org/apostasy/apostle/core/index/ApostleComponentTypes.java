@@ -6,7 +6,7 @@ import net.minecraft.component.ComponentType;
 import net.minecraft.network.codec.PacketCodecs;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
-import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 
 /**
  * @author Chemthunder
@@ -27,6 +27,16 @@ public interface ApostleComponentTypes {
     ComponentType<Integer> SCROLL_COOLDOWN = plugin.register("spell_cooldown",
             Codec.INT,
             PacketCodecs.INTEGER
+    );
+
+    ComponentType<Integer> ITEM_DURATION = plugin.register("item_duration",
+            Codec.INT,
+            PacketCodecs.INTEGER
+    );
+
+    ComponentType<Boolean> MODIFIER_LIFESTEAL = plugin.register("modifier_lifesteal",
+            Codec.BOOL,
+            PacketCodecs.BOOLEAN
     );
 
     static void init() {}

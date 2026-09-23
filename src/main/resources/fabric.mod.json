@@ -3,10 +3,22 @@
 	"id": "apostle",
 	"version": "${version}",
 	"name": "Apostle",
-	"description": "",
+	"description": "Adds ten schools of magic, all for you to discover!",
 	"authors": [
-		"Chemthunder",
-		"PhantomPickle_"
+		"PhantomPickle_",
+		"Chemthunder"
+	],
+	"contributors": [
+		"Eyalego - Concepts + Assets",
+		"SmallNickel3301 - Concepts",
+		"Powercyphe - Developer",
+		"Not_Asher - Concepts + Assets",
+		"just_jaydenn - Concepts",
+		"BushyBot5 - Concepts + Assets",
+		"Hat_Trader - Concepts",
+		"canedeplastique - Concepts",
+		"not_chachi - Concepts",
+		"reindeerantler - Concepts"
 	],
 	"license": "ARR",
 	"icon": "assets/apostle/icon.png",
@@ -41,9 +53,9 @@
 			"apostle:trans",
 			"apostle:rocket",
 			"apostle:pyromaniac",
+			"apostle:foresight",
 
-			"apostle:waypoint",
-			"apostle:thunderbolt"
+			"apostle:waypoint"
 		]
 	}
 }

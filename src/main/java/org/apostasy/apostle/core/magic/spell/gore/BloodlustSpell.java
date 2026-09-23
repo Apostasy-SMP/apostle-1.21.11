@@ -18,6 +18,7 @@ public class BloodlustSpell implements Spell {
     public void cast(World world, LivingEntity caster) {
         BloodlustComponent lust = BloodlustComponent.KEY.get(caster);
         lust.setDuration(getCooldown());
+        lust.setModifier(0);
     }
 
     public List<Item> getIngredients() {

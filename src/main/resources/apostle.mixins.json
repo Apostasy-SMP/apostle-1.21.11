@@ -6,6 +6,7 @@
     "ConsumableComponentMixin",
     "EntityMixin",
     "LivingEntityMixin",
+    "magic.bloodlust.LivingEntityMixin",
     "magic.pyromaniac.LivingEntityMixin"
   ],
   "injectors": {

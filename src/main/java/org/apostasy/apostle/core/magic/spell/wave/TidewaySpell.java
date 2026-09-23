@@ -19,7 +19,7 @@ import java.util.Random;
 /**
  * @author Chemthunder
  */
-public class SurgeSpell implements Spell {
+public class TidewaySpell implements Spell {
     public void cast(World world, LivingEntity caster) {
         if (caster instanceof PlayerEntity player) {
             player.useRiptide(20, 0, new ItemStack(Items.TRIDENT));
@@ -66,7 +66,7 @@ public class SurgeSpell implements Spell {
     }
 
     public String getName() {
-        return "Surge";
+        return "Tideway";
     }
 
     public int getCastTime() {

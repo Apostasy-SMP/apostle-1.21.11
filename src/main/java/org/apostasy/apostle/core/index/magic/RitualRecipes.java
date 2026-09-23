@@ -9,13 +9,14 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
-import org.apostasy.apostle.core.item.ArtifactItem;
+import org.apostasy.apostle.core.item.abs.ArtifactItem;
 
 import java.util.List;
 
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public interface RitualRecipes {
     RitualRecipe ECHO_SHARD = register("echo_shard", new RitualRecipe() {
         public List<Item> getIngredients() {

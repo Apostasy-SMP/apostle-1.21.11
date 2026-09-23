@@ -1,10 +1,10 @@
 package org.apostasy.apostle.mixin.magic.pyromaniac;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.minecraft.client.model.Model;
+import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.command.ModelCommandRenderer;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
@@ -14,14 +14,12 @@ import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import org.apostasy.apostle.core.cca.entity.tick.PyromaniacComponent;
-import org.apostasy.apostle.core.client.index.ApostleRenderLayers;
-import org.jspecify.annotations.Nullable;
+import org.apostasy.apostle.core.index.client.ApostleRenderLayers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -53,9 +51,8 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
         if (state.getDataOrDefault(IS_PYROMANIAC, false)) {
             stack.push();
             stack.scale(1.1F, 1.1F, 1.1F);
-            original.call(instance, model, o, stack, ApostleRenderLayers.entityPyromaniac(this.getTexture(state)), light, overlay, tintedColor, sprite, i, crumblingOverlayCommand);
+            original.call(instance, model, o, stack, ApostleRenderLayers.entityPyromaniac(this.getTexture(state)), LightmapTextureManager.MAX_LIGHT_COORDINATE, overlay, tintedColor, sprite, i, crumblingOverlayCommand);
             stack.pop();
         }
-
     }
 }

@@ -283,6 +283,34 @@
             "color": -132959,
             "name": "Worship"
           }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": 0,
+            "name": "None"
+          }
         }
       ],
       "property": "apostle:magic_school"
@@ -568,6 +596,34 @@
           "when": {
             "color": -132959,
             "name": "Worship"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": 0,
+            "name": "None"
           }
         }
       ],

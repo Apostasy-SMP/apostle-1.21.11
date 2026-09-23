@@ -10,6 +10,7 @@ import org.apostasy.apostle.core.magic.ritual.vex.CreateOminousBottleRitual;
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public interface Rituals {
     Ritual CREATE_OMINOUS_BOTTLE = register("create_ominous_bottle", new CreateOminousBottleRitual());
     Ritual SKINWALKER = register("skinwalker", new SkinwalkerAhhRitual());

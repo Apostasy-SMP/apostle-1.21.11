@@ -12,7 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.jspecify.annotations.Nullable;

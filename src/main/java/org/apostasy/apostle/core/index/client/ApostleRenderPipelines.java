@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.client.index;
+package org.apostasy.apostle.core.index.client;
 
 import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
@@ -18,5 +18,5 @@ public interface ApostleRenderPipelines {
             .withDepthWrite(false)
             .build();
 
-    static void init() {}
+    static void clinit() {}
 }

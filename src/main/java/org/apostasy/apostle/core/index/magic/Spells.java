@@ -9,7 +9,9 @@ import org.apostasy.apostle.core.magic.spell.abyssal.WaypointSpell;
 import org.apostasy.apostle.core.magic.spell.caller.ConjureAquaticVehicleSpell;
 import org.apostasy.apostle.core.magic.spell.caller.VexxedSpell;
 import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
-import org.apostasy.apostle.core.magic.spell.wave.SurgeSpell;
+import org.apostasy.apostle.core.magic.spell.gore.VeinpiercerSpell;
+import org.apostasy.apostle.core.magic.spell.vex.EvokeSpell;
+import org.apostasy.apostle.core.magic.spell.wave.TidewaySpell;
 import org.apostasy.apostle.core.magic.spell.wick.*;
 import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wild.RootsSpell;
@@ -25,7 +27,7 @@ public interface Spells {
     /// WASTE
 
     /// WAVE
-    Spell SURGE = register("surge", new SurgeSpell());
+    Spell TIDEWAY = register("surge", new TidewaySpell());
 
     /// WICK
     Spell DINO_DESTROYER = register("dino_destroyer", new DinoDestroyerSpell());
@@ -56,8 +58,10 @@ public interface Spells {
 
     /// GORE
     Spell BLOODLUST = register("bloodlust", new BloodlustSpell());
+    Spell VEINPIERCER = register("veinpiercer", new VeinpiercerSpell());
 
     /// VEX
+    Spell EVOKE = register("evoke", new EvokeSpell());
 
     private static Spell register(String name, Spell spell) {
         return Registry.register(ApostleRegistries.SPELL, Apostle.id(name), spell);

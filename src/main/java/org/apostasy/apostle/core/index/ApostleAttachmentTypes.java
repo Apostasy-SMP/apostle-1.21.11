@@ -24,6 +24,14 @@ public interface ApostleAttachmentTypes {
                     .initializer(() -> false)
     );
 
+    AttachmentType<Boolean> IS_THUNDERSTRIKE = register(
+            "is_thunderstrike",
+            builder -> builder
+                    .syncWith(PacketCodecs.BOOLEAN, AttachmentSyncPredicate.all())
+                    .persistent(Codec.BOOL)
+                    .initializer(() -> false)
+    );
+
     AttachmentType<LazyEntityReference<LivingEntity>> OWNER = register(
             "owner",
             builder -> builder

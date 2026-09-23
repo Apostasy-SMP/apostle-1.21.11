@@ -4,12 +4,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.index.magic.Schools;
-import org.apostasy.apostle.core.item.ArtifactItem;
+import org.apostasy.apostle.core.item.abs.ArtifactItem;
 
 import java.util.List;
 
@@ -53,5 +55,9 @@ public class QuenchingAshItem extends ArtifactItem {
 
     public int getCooldownTime() {
         return (2 * 20);
+    }
+
+    public SoundEvent getConsumeEvent() {
+        return SoundEvents.BLOCK_FIRE_EXTINGUISH;
     }
 }

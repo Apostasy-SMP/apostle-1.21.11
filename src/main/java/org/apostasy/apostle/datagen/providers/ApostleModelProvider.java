@@ -1,5 +1,6 @@
 package org.apostasy.apostle.datagen.providers;
 
+import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
@@ -16,15 +17,16 @@ import org.apostasy.apostle.core.client.item.SpellScrollProperty;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.client.ApostleModels;
 import org.apostasy.apostle.core.index.magic.Schools;
-import org.apostasy.apostle.core.item.ArtifactItem;
 import org.apostasy.apostle.core.item.BloodItem;
 import org.apostasy.apostle.core.item.TomeItem;
+import org.apostasy.apostle.core.item.abs.ArtifactItem;
 
 import java.util.Arrays;
 
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("SameParameterValue")
 public class ApostleModelProvider extends FabricModelProvider {
     public ApostleModelProvider(FabricDataOutput output) {
         super(output);
@@ -47,7 +49,9 @@ public class ApostleModelProvider extends FabricModelProvider {
 
         createSpellScroll(itemModelGenerator);
         createStaff(itemModelGenerator);
-        createBaseStaff(itemModelGenerator);
+//        createBaseStaff(itemModelGenerator);
+
+        DataUtils.createSimpleGuiVarying(itemModelGenerator, ApostleItems.VEINPIERCER);
     }
 
     private void createSpellScroll(ItemModelGenerator generator) {
@@ -68,40 +72,8 @@ public class ApostleModelProvider extends FabricModelProvider {
         );
     }
 
-    private void createBaseStaff(ItemModelGenerator generator) {
-        Item item = ApostleItems.MAGIC_STAFF;
-        Identifier id = ModelIds.getItemModelId(item);
-
-        Identifier gui = Models.GENERATED.upload(
-                item,
-                TextureMap.layer0(item),
-                generator.modelCollector
-        );
-
-        generator.output.accept(item,
-                ItemModels.condition(
-                        new UsingItemProperty(),
-                        ItemModels.select(
-                                new DisplayContextProperty(),
-                                ItemModels.basic(id.withSuffixedPath("_in_hand_using")),
-                                ItemModels.switchCase(
-                                        Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED, ItemDisplayContext.ON_SHELF),
-                                        ItemModels.basic(gui)
-                                )
-                        ),
-                        ItemModels.select(
-                                new DisplayContextProperty(),
-                                ItemModels.basic(id.withSuffixedPath("_in_hand")),
-                                ItemModels.switchCase(
-                                        Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED, ItemDisplayContext.ON_SHELF),
-                                        ItemModels.basic(gui)
-                                )
-                        )
-                ));
-    }
-
     private void createStaff(ItemModelGenerator generator) {
-        Item item = ApostleItems.ARCANE_STAFF;
+        Item item = ApostleItems.STAFF;
         generator.output.accept(item,
                 ItemModels.condition(
                         new UsingItemProperty(),
@@ -116,7 +88,28 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 createStaffModel(Schools.WICK, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
                                 createStaffModel(Schools.WILD, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
                                 createStaffModel(Schools.WIND, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
-                                createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND_USING, true)
+                                createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
+
+                                ItemModels.switchCase(Schools.NONE, ItemModels.select(
+                                        new DisplayContextProperty(),
+                                        ItemModels.basic(
+                                                ApostleModels.STAFF_IN_HAND_USING.upload(
+                                                        ModelIds.getItemModelId(item).withSuffixedPath("_in_hand_using"),
+                                                        TextureMap.layer0(Apostle.id("item/magic_staff_in_hand")),
+                                                        generator.modelCollector
+                                                )
+                                        ),
+                                        ItemModels.switchCase(
+                                                Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED, ItemDisplayContext.ON_SHELF),
+                                                ItemModels.basic(
+                                                        Models.GENERATED.upload(
+                                                                ModelIds.getItemModelId(item).withSuffixedPath("_using"),
+                                                                TextureMap.layer0(Apostle.id("item/magic_staff")),
+                                                                generator.modelCollector
+                                                        )
+                                                )
+                                        )
+                                ))
                         ),
                         ItemModels.select(
                                 new MagicSchoolProperty(),
@@ -129,7 +122,28 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 createStaffModel(Schools.WICK, generator, item, ApostleModels.STAFF_IN_HAND, false),
                                 createStaffModel(Schools.WILD, generator, item, ApostleModels.STAFF_IN_HAND, false),
                                 createStaffModel(Schools.WIND, generator, item, ApostleModels.STAFF_IN_HAND, false),
-                                createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND, false)
+                                createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND, false),
+
+                                ItemModels.switchCase(Schools.NONE, ItemModels.select(
+                                        new DisplayContextProperty(),
+                                        ItemModels.basic(
+                                                ApostleModels.STAFF_IN_HAND.upload(
+                                                        ModelIds.getItemModelId(item).withSuffixedPath("_in_hand"),
+                                                        TextureMap.layer0(Apostle.id("item/magic_staff_in_hand")),
+                                                        generator.modelCollector
+                                                )
+                                        ),
+                                        ItemModels.switchCase(
+                                                Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED, ItemDisplayContext.ON_SHELF),
+                                                ItemModels.basic(
+                                                        Models.GENERATED.upload(
+                                                                ModelIds.getItemModelId(item),
+                                                                TextureMap.layer0(Apostle.id("item/magic_staff")),
+                                                                generator.modelCollector
+                                                        )
+                                                )
+                                        )
+                                ))
                         )
                 )
         );

@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
-import org.apostasy.apostle.core.component.StoredSpellComponent;
+import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.item.SpellScrollItem;
 import org.jspecify.annotations.Nullable;

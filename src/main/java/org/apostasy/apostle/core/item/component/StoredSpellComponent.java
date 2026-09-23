@@ -1,4 +1,4 @@
-package org.apostasy.apostle.core.component;
+package org.apostasy.apostle.core.item.component;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

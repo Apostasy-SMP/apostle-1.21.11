@@ -11,6 +11,8 @@ import org.apostasy.apostle.core.index.ApostleRegistries;
  * @author Chemthunder
  */
 public interface Schools {
+    MagicSchool NONE = register("none", 0xFFffffff);
+
     MagicSchool WASTE = register("waste", 0xFF8b6965);
     MagicSchool WAVE = register("wave", 0xFF63d4df);
     MagicSchool WICK = register("wick", 0xFFee8632);

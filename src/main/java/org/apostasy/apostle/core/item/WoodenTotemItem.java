@@ -69,7 +69,7 @@ public class WoodenTotemItem extends Item {
         return new DeathProtectionComponent(
                 Collections.singletonList(
                         new ApplyEffectsConsumeEffect(
-                                new StatusEffectInstance(StatusEffects.REGENERATION, 30)
+                                new StatusEffectInstance(StatusEffects.REGENERATION, (15 * 20))
                         )
                 )
         );

@@ -31,6 +31,10 @@ public interface Spell {
 
     int getCooldown();
 
+    default int getStaffCooldown() {
+        return (8 * 20);
+    }
+
     default void tickCharge(World world, LivingEntity user) {}
 
     default int getHealthSacrifice() {

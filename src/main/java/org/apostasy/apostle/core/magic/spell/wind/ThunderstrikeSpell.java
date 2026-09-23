@@ -9,8 +9,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
-import org.apostasy.apostle.core.cca.entity.data.ThunderBoltComponent;
 import org.apostasy.apostle.core.client.particle.MagicParticleEffect;
+import org.apostasy.apostle.core.index.ApostleAttachmentTypes;
 import org.apostasy.apostle.core.index.magic.Schools;
 import org.joml.Quaternionf;
 
@@ -23,14 +23,9 @@ import java.util.Random;
 public class ThunderstrikeSpell implements Spell {
     public void cast(World world, LivingEntity caster) {
         Vec3d spawnPos = caster.raycast(120, 0, true).getPos();
-
         LightningEntity entity = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-
-        ThunderBoltComponent.KEY.get(entity).setValue(true);
-        ThunderBoltComponent.KEY.get(entity).sync();
-
+        entity.setAttached(ApostleAttachmentTypes.IS_THUNDERSTRIKE, true);
         entity.setPosition(spawnPos);
-
         world.spawnEntity(entity);
     }
 
