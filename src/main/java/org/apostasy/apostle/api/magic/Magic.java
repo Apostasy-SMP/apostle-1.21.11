@@ -12,4 +12,7 @@ import org.apostasy.apostle.core.index.ApostleRegistries;
 public class Magic {
     public static final Codec<Spell> SPELL_CODEC = ApostleRegistries.SPELL.getCodec();
     public static final PacketCodec<ByteBuf, Spell> SPELL_PACKET_CODEC = PacketCodecs.codec(SPELL_CODEC);
+
+    public static final Codec<Ritual> RITUAL_CODEC = ApostleRegistries.RITUAL.getCodec();
+    public static final PacketCodec<ByteBuf, Ritual> RITUAL_PACKET_CODEC = PacketCodecs.codec(RITUAL_CODEC);
 }

@@ -2,7 +2,10 @@ package org.apostasy.apostle.core.entity;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.MoveControl;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -11,7 +14,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -26,6 +28,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import org.apostasy.apostle.core.entity.ai.goal.CallerVexTrackTargetGoal;
 import org.jspecify.annotations.Nullable;
 
 import java.util.EnumSet;
@@ -79,7 +82,7 @@ public class CallerVexEntity extends HostileEntity implements Ownable {
         this.goalSelector.add(9, new LookAtEntityGoal(this, LivingEntity.class, 3.0F, 1.0F));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
         this.targetSelector.add(1, (new RevengeGoal(this, RaiderEntity.class)).setGroupRevenge());
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, LivingEntity.class, true));
+        this.targetSelector.add(3, new CallerVexTrackTargetGoal(this, true));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -225,7 +228,7 @@ public class CallerVexEntity extends HostileEntity implements Ownable {
 
         public boolean canStart() {
             LivingEntity livingEntity = CallerVexEntity.this.getTarget();
-            if (livingEntity != null && livingEntity.isAlive() && !CallerVexEntity.this.getMoveControl().isMoving() && CallerVexEntity.this.random.nextInt(toGoalTicks(7)) == 0) {
+            if (livingEntity != null && !(livingEntity instanceof CallerVexEntity) && livingEntity.isAlive() && !CallerVexEntity.this.getMoveControl().isMoving() && CallerVexEntity.this.random.nextInt(toGoalTicks(7)) == 0) {
                 return CallerVexEntity.this.squaredDistanceTo(livingEntity) > (double)4.0F;
             } else {
                 return false;
@@ -257,8 +260,8 @@ public class CallerVexEntity extends HostileEntity implements Ownable {
 
         public void tick() {
             LivingEntity livingEntity = CallerVexEntity.this.getTarget();
-            if (livingEntity != CallerVexEntity.this.getOwner()) {
-                if (!(livingEntity instanceof CallerVexEntity)) {
+            if (!(livingEntity instanceof CallerVexEntity)) {
+                if (livingEntity != CallerVexEntity.this.getOwner()) {
                     if (livingEntity != null) {
                         if (CallerVexEntity.this.getBoundingBox().intersects(livingEntity.getBoundingBox())) {
                             CallerVexEntity.this.tryAttack(castToServerWorld(CallerVexEntity.this.getEntityWorld()), livingEntity);

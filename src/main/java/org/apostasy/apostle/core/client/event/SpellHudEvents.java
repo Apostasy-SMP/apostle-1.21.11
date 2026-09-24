@@ -74,11 +74,38 @@ public class SpellHudEvents {
             if (lastSpell != null && opacity > 0.001F) {
                 Matrix3x2fStack matrices = context.getMatrices();
 
+
+                if (player.isUsingItem()) {
+                    matrices.pushMatrix();
+
+                    matrices.translate(
+                            context.getScaledWindowWidth() / 2F,
+                            context.getScaledWindowHeight() / 2F + 10F
+                    );
+
+                    matrices.scale(0.94F);
+
+                    context.drawCenteredTextWithShadow(
+                            client.textRenderer,
+                            Text.literal(player.getItemUseTimeLeft() / 20 + " : " + lastSpell.getCastTime() / 20),
+                            0, 0,
+                            ColorHelper.withAlpha(0.60F, 0xFFffffff)
+                    );
+
+                    matrices.popMatrix();
+                }
+
+                matrices.pushMatrix();
+
+                matrices.translate(
+                        (context.getScaledWindowWidth() / 2F) - (48 / 2F),
+                        context.getScaledWindowHeight() - 70
+                );
+
                 context.drawTexture(
                         RenderPipelines.GUI_TEXTURED,
                         Apostle.id("textures/entity/ritual_" + lastSpell.getMagicSchool().name().getString().toLowerCase() + ".png"),
-                        context.getScaledWindowWidth() / 2 - 24,
-                        context.getScaledWindowHeight() - 70,
+                        0, 0,
                         0, 0,
                         48,
                         48,
@@ -86,6 +113,8 @@ public class SpellHudEvents {
                         48,
                         ColorHelper.withAlpha(opacity / 2F, lastSpell.getMagicSchool().color())
                 );
+
+                matrices.popMatrix();
 
                 matrices.pushMatrix();
 

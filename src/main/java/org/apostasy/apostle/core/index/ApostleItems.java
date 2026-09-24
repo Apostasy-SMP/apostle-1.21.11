@@ -13,6 +13,7 @@ import org.apostasy.apostle.core.index.magic.Schools;
 import org.apostasy.apostle.core.item.*;
 import org.apostasy.apostle.core.item.artifact.BezoarItem;
 import org.apostasy.apostle.core.item.artifact.QuenchingAshItem;
+import org.apostasy.apostle.core.item.artifact.SturdyStoneItem;
 import org.apostasy.apostle.core.item.conjured.VeinpiercerItem;
 
 /**
@@ -95,6 +96,10 @@ public interface ApostleItems {
             .maxCount(1)
             .attributeModifiers(VeinpiercerItem.createAttributes())
             .component(ApostleComponentTypes.MODIFIER_LIFESTEAL, true)
+    );
+
+    Item STURDY_STONE = plugin.register("sturdy_stone", SturdyStoneItem::new, new Item.Settings()
+            .maxCount(1)
     );
 
     private static Item createTome(MagicSchool school) {

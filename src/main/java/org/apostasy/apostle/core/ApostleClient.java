@@ -3,9 +3,11 @@ package org.apostasy.apostle.core;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.render.item.property.select.SelectProperties;
 import org.apostasy.apostle.api.client.event.CreateOverlayCallback;
 import org.apostasy.apostle.core.client.event.BloodlustHudEvent;
+import org.apostasy.apostle.core.client.event.ItemGroupCyclingEvents;
 import org.apostasy.apostle.core.client.event.SpellHudEvents;
 import org.apostasy.apostle.core.index.client.ApostleRenderLayers;
 import org.apostasy.apostle.core.index.client.ApostleRenderPipelines;
@@ -35,6 +37,7 @@ public class ApostleClient implements ClientModInitializer {
         SelectProperties.ID_MAPPER.put(MagicSchoolProperty.ID, MagicSchoolProperty.TYPE);
 
         SpellHudEvents.init();
+        ItemGroupCyclingEvents.init();
 
         HudElementRegistry.addFirst(Apostle.id("bloodlust_overlay"), new BloodlustHudEvent());
     }

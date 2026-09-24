@@ -19,6 +19,7 @@ import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.ApostleStatusEffects;
 import org.apostasy.apostle.core.item.StaffItem;
+import org.apostasy.apostle.core.utilities.ModUtil;
 import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -47,8 +48,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Se
         if (StaffItem.isActive(self)) {
             if (self instanceof PlayerEntity player) {
                 if (!player.getItemCooldownManager().isCoolingDown(player.getMainHandStack())) {
-                    player.stopUsingItem();
-                    player.getItemCooldownManager().set(player.getMainHandStack(), (2 * 20));
+                    if (!ModUtil.getHotbarItems(self).contains(ApostleItems.STURDY_STONE)) {
+                        player.stopUsingItem();
+                        player.getItemCooldownManager().set(player.getMainHandStack(), (2 * 20));
+                    }
                 }
             } else {
                 self.stopUsingItem();

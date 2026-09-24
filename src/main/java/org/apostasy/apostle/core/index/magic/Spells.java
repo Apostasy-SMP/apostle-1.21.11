@@ -12,6 +12,7 @@ import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
 import org.apostasy.apostle.core.magic.spell.gore.VeinpiercerSpell;
 import org.apostasy.apostle.core.magic.spell.vex.EvokeSpell;
 import org.apostasy.apostle.core.magic.spell.wave.TidewaySpell;
+import org.apostasy.apostle.core.magic.spell.wave.WaterBoltSpell;
 import org.apostasy.apostle.core.magic.spell.wick.*;
 import org.apostasy.apostle.core.magic.spell.wild.NurtureSpell;
 import org.apostasy.apostle.core.magic.spell.wild.RootsSpell;
@@ -27,7 +28,8 @@ public interface Spells {
     /// WASTE
 
     /// WAVE
-    Spell TIDEWAY = register("surge", new TidewaySpell());
+    Spell TIDEWAY = register("tideway", new TidewaySpell());
+    Spell WATER_BOLT = register("water_bolt", new WaterBoltSpell());
 
     /// WICK
     Spell DINO_DESTROYER = register("dino_destroyer", new DinoDestroyerSpell());

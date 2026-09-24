@@ -87,7 +87,7 @@ public class ParticleEntity extends ThrownEntity {
     }
 
     protected void onBlockCollision(BlockState state) {
-        if (!state.isIn(BlockTags.AIR)) {
+        if (!state.isIn(BlockTags.AIR) && !state.isTransparent()) {
             this.discard();
         }
     }

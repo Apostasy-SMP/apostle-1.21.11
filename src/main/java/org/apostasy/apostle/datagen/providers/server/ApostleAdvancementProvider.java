@@ -1,4 +1,4 @@
-package org.apostasy.apostle.datagen.providers;
+package org.apostasy.apostle.datagen.providers.server;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import org.apostasy.apostle.core.Apostle;
-import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
 import org.apostasy.apostle.core.index.ApostleCriterions;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.magic.Spells;
+import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 
 import java.util.List;
 import java.util.Optional;

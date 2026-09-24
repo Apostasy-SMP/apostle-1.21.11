@@ -48,16 +48,13 @@ public class TidewaySpell implements Spell {
         }
     }
 
-    public boolean canCast(World world, LivingEntity caster, ItemStack staffStack) {
-        return caster.isTouchingWaterOrRain();
-    }
-
     public List<Item> getIngredients() {
         return List.of(
                 Items.TRIDENT,
                 Items.PRISMARINE,
                 Items.SEA_LANTERN,
-                Items.NAUTILUS_SHELL
+                Items.NAUTILUS_SHELL,
+                Items.WATER_BUCKET
         );
     }
 

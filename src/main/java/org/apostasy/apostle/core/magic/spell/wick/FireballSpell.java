@@ -12,6 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
+import org.apostasy.apostle.core.index.ApostleAttachmentTypes;
 import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class FireballSpell implements Spell {
 
         FireballEntity entity = new FireballEntity(world, caster, caster.getRotationVec(0).multiply(1), 0);
         entity.setPosition(new Vec3d(particlePos.x, particlePos.y, particlePos.z));
+        entity.setAttached(ApostleAttachmentTypes.IS_SPECIAL_FIREBALL, true);
         world.spawnEntity(entity);
 
         world.playSound(entity, particlePos.x, particlePos.y, particlePos.z, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 1, 1);

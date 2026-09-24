@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.entity.LazyEntityReference;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.codec.PacketCodecs;
+import org.apostasy.apostle.api.magic.data.Waypoint;
 import org.apostasy.apostle.core.Apostle;
 
 import java.util.function.Consumer;
@@ -30,6 +31,21 @@ public interface ApostleAttachmentTypes {
                     .syncWith(PacketCodecs.BOOLEAN, AttachmentSyncPredicate.all())
                     .persistent(Codec.BOOL)
                     .initializer(() -> false)
+    );
+
+    AttachmentType<Boolean> IS_SPECIAL_FIREBALL = register(
+            "is_special_fireball",
+            builder -> builder
+                    .syncWith(PacketCodecs.BOOLEAN, AttachmentSyncPredicate.all())
+                    .persistent(Codec.BOOL)
+                    .initializer(() -> false)
+    );
+
+    AttachmentType<Waypoint> WAYPOINT = register(
+            "waypoint",
+            builder -> builder
+                    .syncWith(Waypoint.PACKET_CODEC, AttachmentSyncPredicate.all())
+                    .persistent(Waypoint.CODEC)
     );
 
     AttachmentType<LazyEntityReference<LivingEntity>> OWNER = register(

@@ -42,6 +42,6 @@ public class VeinpiercerItem extends ConjuredItem implements ShieldBreaker {
     }
 
     public float getShieldCooldown(ItemStack stack) {
-        return (10 * 20);
+        return 10;
     }
 }

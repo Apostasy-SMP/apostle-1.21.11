@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.api.magic.data.Waypoint;
-import org.apostasy.apostle.core.cca.entity.data.WaypointComponent;
+import org.apostasy.apostle.core.index.ApostleAttachmentTypes;
 import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
@@ -23,26 +23,27 @@ import java.util.Random;
  */
 public class WaypointSpell implements Spell {
     public void cast(World world, LivingEntity caster) {
-        WaypointComponent waypoint = WaypointComponent.KEY.get(caster);
-        Waypoint point = waypoint.getValue();
-
         if (world instanceof ServerWorld serverWorld) {
-            if (point != null) {
-                if (serverWorld.getRegistryKey() == point.dimension()) {
-                    caster.teleportTo(
-                            new TeleportTarget(
-                                    serverWorld,
-                                    point.position().toCenterPos(),
-                                    caster.getVelocity(),
-                                    caster.getYaw(),
-                                    caster.getPitch(),
-                                    TeleportTarget.NO_OP
-                            )
-                    );
-                    waypoint.setValue(null);
+            if (caster.hasAttached(ApostleAttachmentTypes.WAYPOINT)) {
+                Waypoint poi = caster.getAttached(ApostleAttachmentTypes.WAYPOINT);
+
+                if (poi != null) {
+                    if (serverWorld.getRegistryKey() == poi.dimension()) {
+                        caster.teleportTo(
+                                new TeleportTarget(
+                                        serverWorld,
+                                        poi.position().toCenterPos(),
+                                        caster.getVelocity(),
+                                        caster.getYaw(),
+                                        caster.getPitch(),
+                                        TeleportTarget.NO_OP
+                                )
+                        );
+                        caster.removeAttached(ApostleAttachmentTypes.WAYPOINT);
+                    }
                 }
             } else {
-                waypoint.setValue(new Waypoint(serverWorld.getRegistryKey(), caster.getBlockPos()));
+                caster.setAttached(ApostleAttachmentTypes.WAYPOINT, new Waypoint(serverWorld.getRegistryKey(), caster.getBlockPos()));
             }
         }
     }

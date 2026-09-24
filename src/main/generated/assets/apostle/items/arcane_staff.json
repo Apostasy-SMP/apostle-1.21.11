@@ -308,7 +308,7 @@
             "property": "minecraft:display_context"
           },
           "when": {
-            "color": 0,
+            "color": -1,
             "name": "None"
           }
         }
@@ -622,7 +622,7 @@
             "property": "minecraft:display_context"
           },
           "when": {
-            "color": 0,
+            "color": -1,
             "name": "None"
           }
         }

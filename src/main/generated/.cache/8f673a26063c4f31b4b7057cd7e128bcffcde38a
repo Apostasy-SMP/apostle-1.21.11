@@ -1,6 +1,6 @@
 // 1.21.11	-999999999-01-01T00:00:00	Apostle/Model Definitions
 53e11e26d3384d004a4f03f1fa0db5f7917e6f15 assets/apostle/items/abyssal_tome.json
-fee9b639eb60d2db0228e91cbe69ba29f6f8e8c3 assets/apostle/items/arcane_staff.json
+e17657649fedbe797a9b74fbaf4543310371039a assets/apostle/items/arcane_staff.json
 4c40017423076b8965ce0056f43cdeb5ae4db9b5 assets/apostle/items/bezoar.json
 bdf0aa3977892c35f4476f19db60a3af434e915d assets/apostle/items/caller_tome.json
 1bd74dcba7df5b55aaabb0a266b1d80861c3061f assets/apostle/items/gore_tome.json
@@ -9,6 +9,7 @@ bb8bb1171f8b517355d5b16dea07a6074f26df73 assets/apostle/items/magic_dust.json
 5166f496e04bf9eb2edbb1853b9ee286a9849781 assets/apostle/items/quenching_ash.json
 4fb73b27eedb1434769653012803f1f263c57618 assets/apostle/items/sacrificial_knife.json
 203d276bf891fb580d98b7af559b9165b2b010c6 assets/apostle/items/spell_scroll.json
+5e3c9d287917d6d64b5cf4471d1d3777ec6187a9 assets/apostle/items/sturdy_stone.json
 c9884a6ec3f0751b2c2991acc7e4dd10484b720e assets/apostle/items/transmogrification_idol.json
 2508e07dbe8b08c69bf3bcf93d50f42d52050049 assets/apostle/items/veinpiercer.json
 03cafe1405279a9441fa7a46ad8f3a9893f33a58 assets/apostle/items/vex_tome.json
@@ -82,6 +83,7 @@ af56c862581e08442135160af0637410fbee803e assets/apostle/models/item/spell_scroll
 f9e24ee9a85b060b9a2f2da3856ca4934d8b0430 assets/apostle/models/item/spell_scroll_wild_scroll.json
 74736a64c1e22a06e88968dbfdddb5289a2e01e1 assets/apostle/models/item/spell_scroll_wind_scroll.json
 9935c84240dc6cd45d776c9cc170e6a2a41c8a6d assets/apostle/models/item/spell_scroll_worship_scroll.json
+0e9a5ac0b3d1e864afc9876518d408914d27da1a assets/apostle/models/item/sturdy_stone.json
 cb27f17f53531846fd42448df2ba961c9ba7e249 assets/apostle/models/item/transmogrification_idol.json
 562aa6461b8cf25cf675556fc89699a6530827af assets/apostle/models/item/veinpiercer.json
 88668974e852372b6b374a7039e2bce84408334e assets/apostle/models/item/vex_tome.json

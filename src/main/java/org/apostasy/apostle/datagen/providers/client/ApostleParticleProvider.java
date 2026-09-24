@@ -1,4 +1,4 @@
-package org.apostasy.apostle.datagen.providers;
+package org.apostasy.apostle.datagen.providers.client;
 
 import net.acoyt.acornlib.data.provider.resources.AcornParticleGen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -15,6 +15,8 @@ public class ApostleParticleProvider extends AcornParticleGen {
 
     public void generate(ParticleDataConsumer consumer) {
         consumer.accept(ApostleParticleTypes.MAGIC_EFFECT, Apostle.id("magic"));
+
         consumer.accept(ApostleParticleTypes.ROOT, Apostle.id("wild_particle_1"));
+        consumer.accept(ApostleParticleTypes.WAVE, rangeBetween(Apostle.id("wave"), 0, 2));
     }
 }

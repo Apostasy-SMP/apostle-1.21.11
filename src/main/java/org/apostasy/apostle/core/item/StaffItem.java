@@ -1,6 +1,7 @@
 package org.apostasy.apostle.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
+import net.acoyt.acornlib.api.item.SprintUsableItem;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.UseCooldownComponent;
@@ -38,7 +39,7 @@ import java.util.function.Consumer;
 /**
  * @author Chemthunder
  */
-public class StaffItem extends Item {
+public class StaffItem extends Item implements SprintUsableItem {
     private static final float GUI_EXPAND_SIZE = 0.6F;
 
     public StaffItem(Settings settings) {
@@ -220,10 +221,12 @@ public class StaffItem extends Item {
                     MagicSchool school = stack.get(ApostleComponentTypes.SCHOOL);
 
                     if (school != null && school != Schools.NONE) {
-                        lines.accept(Text.empty()
-                                .append(Text.literal("- ").formatted(Formatting.DARK_GRAY))
-                                .append(school.name().copy().withColor(school.color()))
-                        );
+                        if (school.name() != Schools.NONE.name()) {
+                            lines.accept(Text.empty()
+                                    .append(Text.literal("- ").formatted(Formatting.DARK_GRAY))
+                                    .append(school.name().copy().withColor(school.color()))
+                            );
+                        }
                     }
                 }
             }

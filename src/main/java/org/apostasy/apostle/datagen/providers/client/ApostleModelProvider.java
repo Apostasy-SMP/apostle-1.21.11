@@ -1,4 +1,4 @@
-package org.apostasy.apostle.datagen.providers;
+package org.apostasy.apostle.datagen.providers.client;
 
 import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;

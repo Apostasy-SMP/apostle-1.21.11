@@ -19,11 +19,13 @@ public interface ApostleParticleTypes {
     ParticleType<MagicParticleEffect> MAGIC_EFFECT = plugin.register("magic", FabricParticleTypes.complex(true, MagicParticleEffect.CODEC, MagicParticleEffect.PACKET_CODEC));
 
     SimpleParticleType ROOT = plugin.register("root", FabricParticleTypes.simple(true));
+    SimpleParticleType WAVE = plugin.register("wave", FabricParticleTypes.simple(true));
 
     static void init() {}
 
     static void clinit() {
         ParticleFactoryRegistry.getInstance().register(MAGIC_EFFECT, MagicParticleType.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ROOT, EndRodParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(WAVE, EndRodParticle.Factory::new);
     }
 }

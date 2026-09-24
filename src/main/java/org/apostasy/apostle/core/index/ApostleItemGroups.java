@@ -5,6 +5,7 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -31,13 +32,12 @@ public interface ApostleItemGroups {
     CreativeModeTabRegistrant plugin = new CreativeModeTabRegistrant(Apostle.MOD_ID);
 
     RegistryKey<ItemGroup> GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Apostle.id(Apostle.MOD_ID));
+    ItemGroup GROUP = plugin.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()
+            .icon(() -> new ItemStack(ApostleItems.WILD_TOME))
+            .displayName(Text.literal(MiscUtils.formatString(Apostle.MOD_ID)).withColor(0xFF9740aa))
+            .build());
 
     static void init() {
-        plugin.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()
-                .icon(() -> new ItemStack(ApostleItems.WILD_TOME))
-                .displayName(Text.literal(MiscUtils.formatString(Apostle.MOD_ID)).withColor(0xFF9740aa))
-                .build());
-
         ItemGroupEvents.modifyEntriesEvent(GROUP_KEY).register(ApostleItemGroups::addEntries);
     }
 
@@ -56,10 +56,10 @@ public interface ApostleItemGroups {
 
         for (MagicSchool school : ApostleRegistries.MAGIC_SCHOOL) {
             if (school != Schools.NONE) {
-            ItemStack staffStack = new ItemStack(ApostleItems.STAFF);
-            staffStack.set(ApostleComponentTypes.SCHOOL, school);
+                ItemStack staffStack = new ItemStack(ApostleItems.STAFF);
+                staffStack.set(ApostleComponentTypes.SCHOOL, school);
 
-            entries.add(staffStack);
+                entries.add(staffStack);
             }
         }
 
