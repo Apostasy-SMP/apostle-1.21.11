@@ -45,7 +45,9 @@
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.21.11",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"acornlib": "*",
+		"bleedylib": "*"
 	},
 	"custom": {
 		"cardinal-components": [

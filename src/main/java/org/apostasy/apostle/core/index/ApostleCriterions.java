@@ -15,5 +15,7 @@ public interface ApostleCriterions {
 
     TickCriterion POP_WOODEN_TOTEM = plugin.register("pop_wooden_totem", new TickCriterion());
 
+    TickCriterion EAT_DUST = plugin.register("eat_dust", new TickCriterion());
+
     static void init() {}
 }

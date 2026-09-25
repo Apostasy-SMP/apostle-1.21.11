@@ -36,6 +36,7 @@ public interface ApostleItems {
     Item CALLER_TOME = createTome(Schools.CALLER);
     Item GORE_TOME = createTome(Schools.GORE);
     Item VEX_TOME = createTome(Schools.VEX);
+    Item APOCALYPTIC_TOME = createTome(Schools.APOCALYPTIC);
 
     /// Other
     Item SPELL_SCROLL = plugin.register("spell_scroll", SpellScrollItem::new, new Item.Settings()

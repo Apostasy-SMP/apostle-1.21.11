@@ -14,4 +14,5 @@ public interface ApostleItemTags {
 
     TagKey<Item> CALLER_VEX_ITEMS = tag.register("caller_vex_items");
     TagKey<Item> CROW_FOOD = tag.register("crow_food");
+    TagKey<Item> GOLD_SUBSTITUTES = tag.register("tag_substitutes");
 }

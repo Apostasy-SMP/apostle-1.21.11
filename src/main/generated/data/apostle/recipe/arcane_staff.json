@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "/": "minecraft:stick",
+    "A": "minecraft:amethyst_cluster",
+    "g": "#apostle:tag_substitutes"
+  },
+  "pattern": [
+    " /A",
+    " g/",
+    "/  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostle:arcane_staff"
+  }
+}

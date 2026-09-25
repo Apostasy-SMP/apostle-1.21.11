@@ -3,6 +3,7 @@ package org.apostasy.apostle.datagen.providers.client;
 import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.item.model.SelectItemModel;
 import net.minecraft.client.render.item.property.bool.UsingItemProperty;
@@ -14,6 +15,7 @@ import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.client.item.MagicSchoolProperty;
 import org.apostasy.apostle.core.client.item.SpellScrollProperty;
+import org.apostasy.apostle.core.index.ApostleBlocks;
 import org.apostasy.apostle.core.index.ApostleItems;
 import org.apostasy.apostle.core.index.client.ApostleModels;
 import org.apostasy.apostle.core.index.magic.Schools;
@@ -26,13 +28,18 @@ import java.util.Arrays;
 /**
  * @author Chemthunder
  */
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({"SameParameterValue", "unused"})
 public class ApostleModelProvider extends FabricModelProvider {
     public ApostleModelProvider(FabricDataOutput output) {
         super(output);
     }
 
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {}
+    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        for (Block block : ApostleBlocks.SCALES) {
+            blockStateModelGenerator.registerSimpleCubeAll(block);
+        }
+        blockStateModelGenerator.registerSimpleCubeAll(ApostleBlocks.AMETHYST_SCALE_BLOCK);
+    }
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         for (Item item : ApostleItems.plugin.toRegister) {
@@ -67,7 +74,8 @@ public class ApostleModelProvider extends FabricModelProvider {
                         getSpellCase(Schools.WICK, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
                         getSpellCase(Schools.WILD, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
                         getSpellCase(Schools.WIND, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
-                        getSpellCase(Schools.WORSHIP, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED)
+                        getSpellCase(Schools.WORSHIP, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
+                        getSpellCase(Schools.APOCALYPTIC, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED)
                 )
         );
     }
@@ -89,6 +97,7 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 createStaffModel(Schools.WILD, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
                                 createStaffModel(Schools.WIND, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
                                 createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
+                                createStaffModel(Schools.APOCALYPTIC, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
 
                                 ItemModels.switchCase(Schools.NONE, ItemModels.select(
                                         new DisplayContextProperty(),
@@ -123,6 +132,7 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 createStaffModel(Schools.WILD, generator, item, ApostleModels.STAFF_IN_HAND, false),
                                 createStaffModel(Schools.WIND, generator, item, ApostleModels.STAFF_IN_HAND, false),
                                 createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND, false),
+                                createStaffModel(Schools.APOCALYPTIC, generator, item, ApostleModels.STAFF_IN_HAND, false),
 
                                 ItemModels.switchCase(Schools.NONE, ItemModels.select(
                                         new DisplayContextProperty(),

@@ -5,6 +5,7 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -70,6 +71,10 @@ public interface ApostleItemGroups {
         applyEntries(entries, (item -> item instanceof BloodItem));
 
         applyEntries(entries, (item -> item instanceof ConjuredItem));
+
+        for (Block block : ApostleBlocks.SCALES) {
+            entries.add(block);
+        }
     }
 
     private static void applyEntries(FabricItemGroupEntries entries, Predicate<? super Item> predicate) {

@@ -28,6 +28,9 @@ public class ApostleLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("advancements.apostle.cast_spell.title", "FUCK JK ROWLING!!");
         translationBuilder.add("advancements.apostle.cast_spell.desc", "Cast a Spell!");
 
+        translationBuilder.add("advancements.apostle.eat_dust.title", "Do you Feel the Magic?");
+        translationBuilder.add("advancements.apostle.eat_dust.desc", "Inhale some Magic Dust, and feel the magic coursing through your veins... literally.");
+
         translationBuilder.add(ApostleEntityTypes.CROW, "Crow");
         translationBuilder.add(ApostleEntityTypes.RITUAL, "Ritual");
     }

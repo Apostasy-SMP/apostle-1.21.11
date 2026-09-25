@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleComponentTypes;
+import org.apostasy.apostle.core.index.magic.Schools;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -27,9 +28,13 @@ public class MagicSchoolProperty implements SelectProperty<MagicSchool> {
 
     public @Nullable MagicSchool getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
         if (stack.contains(ApostleComponentTypes.SCHOOL)) {
-            return stack.get(ApostleComponentTypes.SCHOOL);
+            if (stack.get(ApostleComponentTypes.SCHOOL) != null) {
+                return stack.get(ApostleComponentTypes.SCHOOL);
+            } else {
+                return Schools.NONE;
+            }
         }
-        return null;
+        return Schools.NONE;
     }
 
     public Codec<MagicSchool> valueCodec() {

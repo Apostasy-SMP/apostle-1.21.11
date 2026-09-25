@@ -1,5 +1,6 @@
 package org.apostasy.apostle.core.index.magic;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -8,6 +9,8 @@ import net.minecraft.registry.Registry;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.RitualRecipe;
 import org.apostasy.apostle.core.Apostle;
+import org.apostasy.apostle.core.block.AmethystScaleBlock;
+import org.apostasy.apostle.core.index.ApostleBlocks;
 import org.apostasy.apostle.core.index.ApostleRegistries;
 import org.apostasy.apostle.core.item.abs.ArtifactItem;
 
@@ -103,6 +106,36 @@ public interface RitualRecipes {
 
                     public MagicSchool getSchool() {
                         return artifact.getSchool();
+                    }
+                });
+            }
+        }
+
+        for (Block block : ApostleBlocks.SCALES) {
+            if (block instanceof AmethystScaleBlock scale) {
+                register("amethyst_scale_" + scale.getSchool().name().getString().toLowerCase(), new RitualRecipe() {
+                    public List<Item> getIngredients() {
+                        return List.of(
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem(),
+                                ApostleBlocks.AMETHYST_SCALE_BLOCK.asItem()
+                        );
+                    }
+
+                    public ItemStack getOutput() {
+                        ItemStack stack = new ItemStack(scale.asItem());
+                        stack.setCount(9);
+                        return stack;
+                    }
+
+                    public MagicSchool getSchool() {
+                        return scale.getSchool();
                     }
                 });
             }

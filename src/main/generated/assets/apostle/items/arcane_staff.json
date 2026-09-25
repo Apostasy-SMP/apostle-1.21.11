@@ -291,6 +291,34 @@
               {
                 "model": {
                   "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_apocalyptic"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_apocalyptic_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -9611878,
+            "name": "Apocalyptic"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
                   "model": "apostle:item/arcane_staff"
                 },
                 "when": [
@@ -596,6 +624,34 @@
           "when": {
             "color": -132959,
             "name": "Worship"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_apocalyptic_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_apocalyptic_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -9611878,
+            "name": "Apocalyptic"
           }
         },
         {

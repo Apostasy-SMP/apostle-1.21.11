@@ -24,13 +24,10 @@ public class QuenchingAshItem extends ArtifactItem {
     }
 
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        if (user.isSneaking()) {
-            LivingEntity target = selfOrAlly(user);
+        LivingEntity target = selfOrAlly(user);
 
-            if (target != null) {
-                target.extinguishWithSound();
-                user.getStackInHand(hand).split(1);
-            }
+        if (target != null) {
+            target.extinguishWithSound();
         }
         return super.use(world, user, hand);
     }

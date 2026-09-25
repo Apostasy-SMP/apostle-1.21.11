@@ -45,6 +45,11 @@ public interface ApostleEntityTypes {
             SpawnGroup.MISC
     ).dimensions(0.3F, 0.3F).makeFireImmune());
 
+    EntityType<EarthquakeEntity> EARTHQUAKE = plugin.register("earthquake", EntityType.Builder.create(
+            EarthquakeEntity::new,
+            SpawnGroup.MISC
+    ).dimensions(0.3F, 0.3F).makeFireImmune());
+
     static void init() {
         FabricDefaultAttributeRegistry.register(CALLER_VEX, CallerVexEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(CROW, CrowEntity.createAttributes());
@@ -53,8 +58,10 @@ public interface ApostleEntityTypes {
     static void clinit() {
         EntityRendererFactories.register(RITUAL, RitualEntityRenderer::new);
         EntityRendererFactories.register(CALLER_VEX, CallerVexEntityRenderer::new);
-        EntityRendererFactories.register(PARTICLE_DAMAGE, EmptyEntityRenderer::new);
         EntityRendererFactories.register(HOLY_NET, HolyNetEntityRenderer::new);
+
+        EntityRendererFactories.register(PARTICLE_DAMAGE, EmptyEntityRenderer::new);
+        EntityRendererFactories.register(EARTHQUAKE, EmptyEntityRenderer::new);
 
         EntityRendererFactories.register(CROW, CrowEntityRenderer::new);
     }

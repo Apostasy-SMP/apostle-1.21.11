@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:gold_ingot",
+    {
+      "id": "apostate:chthonic_gold_ingot",
+      "required": false
+    }
+  ]
+}

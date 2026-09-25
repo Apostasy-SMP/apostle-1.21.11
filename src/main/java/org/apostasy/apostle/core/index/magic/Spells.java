@@ -11,6 +11,7 @@ import org.apostasy.apostle.core.magic.spell.caller.VexxedSpell;
 import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
 import org.apostasy.apostle.core.magic.spell.gore.VeinpiercerSpell;
 import org.apostasy.apostle.core.magic.spell.vex.EvokeSpell;
+import org.apostasy.apostle.core.magic.spell.waste.EarthquakeSpell;
 import org.apostasy.apostle.core.magic.spell.wave.TidewaySpell;
 import org.apostasy.apostle.core.magic.spell.wave.WaterBoltSpell;
 import org.apostasy.apostle.core.magic.spell.wick.*;
@@ -26,6 +27,7 @@ import org.apostasy.apostle.core.magic.spell.worship.HolyNetSpell;
 @SuppressWarnings("unused")
 public interface Spells {
     /// WASTE
+    Spell EARTHQUAKE = register("earthquake", new EarthquakeSpell());
 
     /// WAVE
     Spell TIDEWAY = register("tideway", new TidewaySpell());

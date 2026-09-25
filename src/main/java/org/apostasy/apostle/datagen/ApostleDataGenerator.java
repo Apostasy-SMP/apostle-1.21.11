@@ -10,7 +10,10 @@ import org.apostasy.apostle.datagen.providers.client.ApostleModelProvider;
 import org.apostasy.apostle.datagen.providers.client.ApostleParticleProvider;
 import org.apostasy.apostle.datagen.providers.server.ApostleAdvancementProvider;
 import org.apostasy.apostle.datagen.providers.server.ApostleDynamicRegistryProvider;
-import org.apostasy.apostle.datagen.providers.server.ApostleItemTagProvider;
+import org.apostasy.apostle.datagen.providers.server.tag.ApostleBlockTagProvider;
+import org.apostasy.apostle.datagen.providers.server.tag.ApostleDamageTypeTagProvider;
+import org.apostasy.apostle.datagen.providers.server.tag.ApostleItemTagProvider;
+import org.apostasy.apostle.datagen.providers.server.ApostleRecipeProvider;
 
 /**
  * @author Chemthunder
@@ -26,8 +29,12 @@ public class ApostleDataGenerator implements DataGeneratorEntrypoint {
 
 		/// SERVER ===
 		pack.addProvider(ApostleAdvancementProvider::new);
-		pack.addProvider(ApostleItemTagProvider::new);
 		pack.addProvider(ApostleDynamicRegistryProvider::new);
+		pack.addProvider(ApostleRecipeProvider::new);
+
+		pack.addProvider(ApostleItemTagProvider::new);
+		pack.addProvider(ApostleDamageTypeTagProvider::new);
+		pack.addProvider(ApostleBlockTagProvider::new);
 	}
 
 	public void buildRegistry(RegistryBuilder registryBuilder) {

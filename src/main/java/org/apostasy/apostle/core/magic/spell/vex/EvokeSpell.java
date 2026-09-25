@@ -9,9 +9,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.api.magic.Spell;
+import org.apostasy.apostle.core.client.particle.MagicParticleEffect;
 import org.apostasy.apostle.core.index.magic.Schools;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Chemthunder
@@ -41,6 +43,32 @@ public class EvokeSpell implements Spell {
         }
     }
 
+    public void createChargeParticles(World world, LivingEntity user, int progress) {
+        for (int i = 1; i < 8; i++) {
+            Vec3d spawnPos = user.raycast(i * 2.5, 0, false).getPos();
+
+            double y = spawnPos.y;
+
+            do {
+                y--;
+            } while (world.getBlockState(new BlockPos((int) spawnPos.x, (int) y, (int) spawnPos.z)).isTransparent());
+
+            for (int j = 0; j < 3; j++) {
+                Random random = new Random();
+
+                world.addParticleClient(
+                        new MagicParticleEffect(Schools.VEX),
+                        spawnPos.x + random.nextFloat(-0.3F, 0.3F),
+                        y + 0.5,
+                        spawnPos.z + random.nextFloat(-0.3F, 0.3F),
+                        0,
+                        random.nextFloat(0.3F, 0.7F),
+                        0
+                );
+            }
+        }
+    }
+
     public List<Item> getIngredients() {
         return List.of(
                 Items.TOTEM_OF_UNDYING,
@@ -65,9 +93,5 @@ public class EvokeSpell implements Spell {
 
     public int getCooldown() {
         return (25 * 20);
-    }
-
-    public int getStaffCooldown() {
-        return (4 * 20);
     }
 }

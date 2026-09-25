@@ -15,8 +15,8 @@ import org.apostasy.apostle.core.Apostle;
 public interface ApostleDamageTypes {
     KeyedBuilder<DamageType> plugin = new KeyedBuilder<>(Apostle.MOD_ID, RegistryKeys.DAMAGE_TYPE);
 
-    RegistryKey<DamageType> ELECTRIFIED = plugin.register("elecrtrified", new DamageType("electrified", 3.0F));
-    RegistryKey<DamageType> WATERBOLT = plugin.register("waterbolt", new DamageType("waterbolt", 2.5F));
+    RegistryKey<DamageType> ELECTRIFIED = plugin.register("electrified", new DamageType("electrified", 3.0F));
+    RegistryKey<DamageType> WATER_BOLT = plugin.register("water_bolt", new DamageType("water_bolt", 2.5F));
 
     static void translate(RegistryWrapper.WrapperLookup wrapperLookup, FabricLanguageProvider.TranslationBuilder translationBuilder) {
         DataUtils.registerDamageType(
@@ -29,7 +29,7 @@ public interface ApostleDamageTypes {
 
         DataUtils.registerDamageType(
                 translationBuilder,
-                WATERBOLT,
+                WATER_BOLT,
                 "%1$s was drowned from afar",
                 "%1$s was drowned from afar by %2$s, wielding %3$s",
                 "%1$s was drowned from afar by %3$s"

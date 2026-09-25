@@ -18,6 +18,7 @@
   },
   "client": [
     "client.AbstractClientPlayerEntityMixin",
+    "client.CameraMixin",
     "client.CreativeInventoryScreenMixin",
     "client.InGameHudMixin",
     "client.LivingEntityRendererMixin",

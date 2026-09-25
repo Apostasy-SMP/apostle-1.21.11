@@ -29,7 +29,7 @@ public class WaterBoltSpell implements Spell {
             ParticleEntity entity = new ParticleEntity(ApostleEntityTypes.PARTICLE_DAMAGE, world);
             entity.setSpawnedEffect(ApostleParticleTypes.WAVE);
             entity.setAmountOfSpawn(6);
-            entity.setDamageType(ApostleDamageTypes.WATERBOLT);
+            entity.setDamageType(ApostleDamageTypes.WATER_BOLT);
             entity.setAmountToDeal(6);
             entity.setPosition(raycastPos);
             entity.setVelocity(caster, caster.getPitch(), caster.getYaw(), 0, 2, 6);

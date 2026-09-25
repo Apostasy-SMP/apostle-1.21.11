@@ -1,8 +1,9 @@
-package org.apostasy.apostle.datagen.providers.server;
+package org.apostasy.apostle.datagen.providers.server.tag;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
@@ -35,5 +36,9 @@ public class ApostleItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         this.valueLookupBuilder(ItemTags.FIRE_ASPECT_ENCHANTABLE)
                 .add(ApostleItems.SACRIFICIAL_KNIFE);
+
+        this.getTagBuilder(ApostleItemTags.GOLD_SUBSTITUTES)
+                .add(Registries.ITEM.getId(Items.GOLD_INGOT))
+                .addOptional(Identifier.of("apostate", "chthonic_gold_ingot"));
     }
 }

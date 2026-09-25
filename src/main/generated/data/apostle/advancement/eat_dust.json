@@ -1,0 +1,27 @@
+{
+  "parent": "apostle:root",
+  "criteria": {
+    "e": {
+      "trigger": "apostle:eat_dust"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostle.eat_dust.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "apostle:magic_dust"
+    },
+    "title": {
+      "translate": "advancements.apostle.eat_dust.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

@@ -3,8 +3,8 @@ package org.apostasy.apostle.core.item;
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.acoyt.acornlib.api.item.SprintUsableItem;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.UseCooldownComponent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,6 +15,7 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -33,7 +34,6 @@ import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 import org.apostasy.apostle.core.networking.s2c.UseSpellPayload;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 
 /**
@@ -132,15 +132,11 @@ public class StaffItem extends Item implements SprintUsableItem {
             Vec3d particlePos = user.raycast(1.3, 0, false).getPos();
             ParticleEffect effect = null;
 
-            if (stack.contains(ApostleComponentTypes.SCHOOL) && stack.get(ApostleComponentTypes.SCHOOL) != null && stack.get(ApostleComponentTypes.SCHOOL) != Schools.NONE) {
+            if (stack.contains(ApostleComponentTypes.SCHOOL) && stack.get(ApostleComponentTypes.SCHOOL) != null) {
                 MagicSchool school = stack.get(ApostleComponentTypes.SCHOOL);
 
                 if (school != null) {
-                    if (school == Schools.NONE) {
-                        effect = ParticleTypes.END_ROD;
-                    } else {
-                        effect = new MagicParticleEffect(school);
-                    }
+                    effect = new MagicParticleEffect(school);
                 }
             } else {
                 effect = ParticleTypes.END_ROD;
@@ -214,19 +210,25 @@ public class StaffItem extends Item implements SprintUsableItem {
         return s;
     }
 
+    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
+        MagicSchool school = stack.get(ApostleComponentTypes.SCHOOL);
+
+        if (school == null) {
+            stack.set(ApostleComponentTypes.SCHOOL, Schools.NONE);
+        }
+    }
+
     public static class Tooltip implements BetterItemTooltipEvent {
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipFlag, Consumer<Text> lines) {
             if (stack.isOf(ApostleItems.STAFF)) {
                 if (stack.contains(ApostleComponentTypes.SCHOOL)) {
                     MagicSchool school = stack.get(ApostleComponentTypes.SCHOOL);
 
-                    if (school != null && school != Schools.NONE) {
-                        if (school.name() != Schools.NONE.name()) {
-                            lines.accept(Text.empty()
-                                    .append(Text.literal("- ").formatted(Formatting.DARK_GRAY))
-                                    .append(school.name().copy().withColor(school.color()))
-                            );
-                        }
+                    if (school != null) {
+                        lines.accept(Text.empty()
+                                .append(Text.literal("- ").formatted(Formatting.DARK_GRAY))
+                                .append(school.name().copy().withColor(school == Schools.NONE ? 0xFF808080 : school.color()))
+                        );
                     }
                 }
             }

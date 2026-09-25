@@ -33,6 +33,7 @@ public abstract class ArtifactItem extends Item {
         ItemStack stack = user.getStackInHand(hand);
         user.getItemCooldownManager().set(stack, this.getCooldownTime());
         world.playSound(null, user.getX(), user.getY(), user.getZ(), this.getConsumeEvent(), SoundCategory.PLAYERS);
+        stack.split(1);
         return super.use(world, user, hand);
     }
 

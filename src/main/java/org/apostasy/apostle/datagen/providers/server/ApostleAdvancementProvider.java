@@ -81,6 +81,16 @@ public class ApostleAdvancementProvider extends FabricAdvancementProvider {
                         ApostleCriterions.POP_WOODEN_TOTEM.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
+
+        AdvancementEntry eatDust = generateHiddenAdvancement(
+                consumer,
+                root,
+                new AdvancementContext(
+                        ApostleItems.MAGIC_DUST.getDefaultStack(),
+                        "eat_dust",
+                        ApostleCriterions.EAT_DUST.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
     }
 
     private AdvancementEntry generateBasicAdvancement(Consumer<AdvancementEntry> consumer, AdvancementEntry root, AdvancementContext context) {
