@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": "minecraft:amethyst_cluster",
+    "S": "minecraft:amethyst_shard"
+  },
+  "pattern": [
+    "CS",
+    "SC"
+  ],
+  "result": {
+    "count": 8,
+    "id": "apostle:amethyst_scale_block"
+  }
+}

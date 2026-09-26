@@ -25,6 +25,7 @@ public interface Schools {
     MagicSchool GORE = register("gore", 0xFFde4b57);
     MagicSchool VEX = register("vex", 0xFFcd9840);
     MagicSchool APOCALYPTIC = register("apocalyptic", 0xFF6d559a);
+    MagicSchool NECROTIC = register("necrotic", 0xFF47522d);
 
     private static MagicSchool register(String name, int color) {
         return Registry.register(ApostleRegistries.MAGIC_SCHOOL, Apostle.id(name), new MagicSchool(Text.literal(MiscUtils.formatString(name)), color));

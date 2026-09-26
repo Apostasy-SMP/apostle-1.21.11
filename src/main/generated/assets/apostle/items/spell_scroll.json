@@ -111,6 +111,16 @@
           "color": -9611878,
           "name": "Apocalyptic"
         }
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostle:item/spell_scroll_necrotic_scroll"
+        },
+        "when": {
+          "color": -12103123,
+          "name": "Necrotic"
+        }
       }
     ],
     "property": "apostle:spell_scroll"

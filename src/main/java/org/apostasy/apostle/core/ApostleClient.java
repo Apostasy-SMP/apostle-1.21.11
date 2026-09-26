@@ -6,9 +6,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.render.item.property.select.SelectProperties;
 import org.apostasy.apostle.api.client.event.CreateOverlayCallback;
+import org.apostasy.apostle.api.client.event.UpdateRenderStateCallback;
 import org.apostasy.apostle.core.client.event.BloodlustHudEvent;
 import org.apostasy.apostle.core.client.event.ItemGroupCyclingEvents;
 import org.apostasy.apostle.core.client.event.SpellHudEvents;
+import org.apostasy.apostle.core.client.event.UndeadOutlineColorEvent;
 import org.apostasy.apostle.core.index.client.ApostleRenderLayers;
 import org.apostasy.apostle.core.index.client.ApostleRenderPipelines;
 import org.apostasy.apostle.core.client.item.MagicSchoolProperty;
@@ -38,6 +40,8 @@ public class ApostleClient implements ClientModInitializer {
 
         SpellHudEvents.init();
         ItemGroupCyclingEvents.init();
+
+        UpdateRenderStateCallback.EVENT.register(new UndeadOutlineColorEvent());
 
         HudElementRegistry.addFirst(Apostle.id("bloodlust_overlay"), new BloodlustHudEvent());
     }

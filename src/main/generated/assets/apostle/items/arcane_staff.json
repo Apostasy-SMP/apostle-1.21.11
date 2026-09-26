@@ -319,6 +319,34 @@
               {
                 "model": {
                   "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_necrotic"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_necrotic_staff_in_hand"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -12103123,
+            "name": "Necrotic"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
                   "model": "apostle:item/arcane_staff"
                 },
                 "when": [
@@ -652,6 +680,34 @@
           "when": {
             "color": -9611878,
             "name": "Apocalyptic"
+          }
+        },
+        {
+          "model": {
+            "type": "minecraft:select",
+            "cases": [
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "apostle:item/arcane_staff_necrotic_using"
+                },
+                "when": [
+                  "gui",
+                  "ground",
+                  "fixed",
+                  "on_shelf"
+                ]
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "apostle:item/arcane_staff_necrotic_staff_in_hand_using"
+            },
+            "property": "minecraft:display_context"
+          },
+          "when": {
+            "color": -12103123,
+            "name": "Necrotic"
           }
         },
         {

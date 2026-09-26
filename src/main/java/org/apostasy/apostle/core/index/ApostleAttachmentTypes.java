@@ -55,6 +55,14 @@ public interface ApostleAttachmentTypes {
                     .persistent(LazyEntityReference.createCodec())
     );
 
+    AttachmentType<Boolean> CONJURED = register(
+            "conjured",
+            builder -> builder
+                    .syncWith(PacketCodecs.BOOLEAN, AttachmentSyncPredicate.all())
+                    .persistent(Codec.BOOL)
+                    .initializer(() -> false)
+    );
+
     static void init() {}
 
     static <T> AttachmentType<T> register(String name, Consumer<AttachmentRegistry.Builder<T>> consumer) {

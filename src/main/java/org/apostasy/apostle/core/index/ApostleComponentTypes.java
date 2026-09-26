@@ -6,6 +6,7 @@ import net.minecraft.component.ComponentType;
 import net.minecraft.network.codec.PacketCodecs;
 import org.apostasy.apostle.api.magic.MagicSchool;
 import org.apostasy.apostle.core.Apostle;
+import org.apostasy.apostle.core.item.component.GrimoireComponent;
 import org.apostasy.apostle.core.item.component.StoredSpellComponent;
 
 /**
@@ -37,6 +38,11 @@ public interface ApostleComponentTypes {
     ComponentType<Boolean> MODIFIER_LIFESTEAL = plugin.register("modifier_lifesteal",
             Codec.BOOL,
             PacketCodecs.BOOLEAN
+    );
+
+    ComponentType<GrimoireComponent> GRIMOIRE = plugin.register("grimoire",
+            GrimoireComponent.CODEC,
+            GrimoireComponent.PACKET_CODEC
     );
 
     static void init() {}

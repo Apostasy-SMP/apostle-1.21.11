@@ -6,10 +6,12 @@ import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
 import org.apostasy.apostle.core.magic.spell.abyssal.OpenEnderChestSpell;
 import org.apostasy.apostle.core.magic.spell.abyssal.WaypointSpell;
+import org.apostasy.apostle.core.magic.spell.apocalyptic.RailcannonSpell;
 import org.apostasy.apostle.core.magic.spell.caller.ConjureAquaticVehicleSpell;
 import org.apostasy.apostle.core.magic.spell.caller.VexxedSpell;
 import org.apostasy.apostle.core.magic.spell.gore.BloodlustSpell;
 import org.apostasy.apostle.core.magic.spell.gore.VeinpiercerSpell;
+import org.apostasy.apostle.core.magic.spell.necrotic.CommandDeadSpell;
 import org.apostasy.apostle.core.magic.spell.vex.EvokeSpell;
 import org.apostasy.apostle.core.magic.spell.waste.EarthquakeSpell;
 import org.apostasy.apostle.core.magic.spell.wave.TidewaySpell;
@@ -65,6 +67,12 @@ public interface Spells {
 
     /// VEX
     Spell EVOKE = register("evoke", new EvokeSpell());
+
+    /// APOCALYPTIC
+    Spell RAILCANNON = register("railcannon", new RailcannonSpell());
+
+    /// NECROTIC
+    Spell COMMAND_DEAD = register("command_dead", new CommandDeadSpell());
 
     private static Spell register(String name, Spell spell) {
         return Registry.register(ApostleRegistries.SPELL, Apostle.id(name), spell);

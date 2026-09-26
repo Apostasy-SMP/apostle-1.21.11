@@ -35,7 +35,11 @@ public interface ApostleBlocks {
     Block APOCALYPTIC_SCALE = createScales(Schools.APOCALYPTIC);
 
     private static Block createScales(MagicSchool school) {
-        Block block = plugin.registerWithItem(school.name().getString().toLowerCase() + "_scale_block", (settings -> new AmethystScaleBlock(settings, school)), AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK));
+        Block block = plugin.registerWithItem(school.name().getString().toLowerCase() + "_scale_block", (settings -> new AmethystScaleBlock(settings, school)), AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK)
+                .emissiveLighting(((state, world, pos) -> true))
+                .luminance((value -> 4))
+        );
+
         SCALES.add(block);
         return block;
     }

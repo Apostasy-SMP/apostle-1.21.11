@@ -14,6 +14,7 @@ import org.apostasy.apostle.core.item.*;
 import org.apostasy.apostle.core.item.artifact.BezoarItem;
 import org.apostasy.apostle.core.item.artifact.QuenchingAshItem;
 import org.apostasy.apostle.core.item.artifact.SturdyStoneItem;
+import org.apostasy.apostle.core.item.component.GrimoireComponent;
 import org.apostasy.apostle.core.item.conjured.VeinpiercerItem;
 
 /**
@@ -37,6 +38,7 @@ public interface ApostleItems {
     Item GORE_TOME = createTome(Schools.GORE);
     Item VEX_TOME = createTome(Schools.VEX);
     Item APOCALYPTIC_TOME = createTome(Schools.APOCALYPTIC);
+    Item NECROTIC_TOME = createTome(Schools.NECROTIC);
 
     /// Other
     Item SPELL_SCROLL = plugin.register("spell_scroll", SpellScrollItem::new, new Item.Settings()
@@ -101,6 +103,11 @@ public interface ApostleItems {
 
     Item STURDY_STONE = plugin.register("sturdy_stone", SturdyStoneItem::new, new Item.Settings()
             .maxCount(1)
+    );
+
+    Item GRIMOIRE = plugin.register("grimoire", GrimoireItem::new, new Item.Settings()
+            .maxCount(1)
+            .component(ApostleComponentTypes.GRIMOIRE, GrimoireComponent.DEFAULT)
     );
 
     private static Item createTome(MagicSchool school) {

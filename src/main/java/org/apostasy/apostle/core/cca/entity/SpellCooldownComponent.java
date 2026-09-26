@@ -8,6 +8,7 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
+import org.apostasy.apostle.api.magic.Magic;
 import org.apostasy.apostle.api.magic.Spell;
 import org.apostasy.apostle.core.Apostle;
 import org.apostasy.apostle.core.index.ApostleRegistries;
@@ -77,7 +78,7 @@ public class SpellCooldownComponent implements AutoSyncedComponent, CommonTickin
 
     public record CooldownEntry(Spell spell, Integer cooldown) {
         public static final Codec<CooldownEntry> CODEC = RecordCodecBuilder.create(codec -> codec.group(
-                ApostleRegistries.SPELL.getCodec().fieldOf("spell").forGetter(CooldownEntry::spell),
+                Magic.SPELL_CODEC.fieldOf("spell").forGetter(CooldownEntry::spell),
                 Codec.INT.optionalFieldOf("cooldown", 0).forGetter(CooldownEntry::cooldown)
         ).apply(codec, CooldownEntry::new));
 

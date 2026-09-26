@@ -75,7 +75,8 @@ public class ApostleModelProvider extends FabricModelProvider {
                         getSpellCase(Schools.WILD, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
                         getSpellCase(Schools.WIND, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
                         getSpellCase(Schools.WORSHIP, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
-                        getSpellCase(Schools.APOCALYPTIC, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED)
+                        getSpellCase(Schools.APOCALYPTIC, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED),
+                        getSpellCase(Schools.NECROTIC, generator, ApostleItems.SPELL_SCROLL, Models.GENERATED)
                 )
         );
     }
@@ -98,6 +99,7 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 createStaffModel(Schools.WIND, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
                                 createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
                                 createStaffModel(Schools.APOCALYPTIC, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
+                                createStaffModel(Schools.NECROTIC, generator, item, ApostleModels.STAFF_IN_HAND_USING, true),
 
                                 ItemModels.switchCase(Schools.NONE, ItemModels.select(
                                         new DisplayContextProperty(),
@@ -133,6 +135,7 @@ public class ApostleModelProvider extends FabricModelProvider {
                                 createStaffModel(Schools.WIND, generator, item, ApostleModels.STAFF_IN_HAND, false),
                                 createStaffModel(Schools.WORSHIP, generator, item, ApostleModels.STAFF_IN_HAND, false),
                                 createStaffModel(Schools.APOCALYPTIC, generator, item, ApostleModels.STAFF_IN_HAND, false),
+                                createStaffModel(Schools.NECROTIC, generator, item, ApostleModels.STAFF_IN_HAND, false),
 
                                 ItemModels.switchCase(Schools.NONE, ItemModels.select(
                                         new DisplayContextProperty(),

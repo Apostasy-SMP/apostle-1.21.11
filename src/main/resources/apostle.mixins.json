@@ -8,6 +8,7 @@
     "LivingEntityMixin",
     "magic.bloodlust.LivingEntityMixin",
     "magic.fireball.FireballEntityMixin",
+    "magic.necrotic.MobEntityMixin",
     "magic.pyromaniac.LivingEntityMixin"
   ],
   "injectors": {
@@ -22,6 +23,7 @@
     "client.CreativeInventoryScreenMixin",
     "client.InGameHudMixin",
     "client.LivingEntityRendererMixin",
+    "client.MinecraftClientMixin",
     "client.PlayerEntityRendererMixin",
     "magic.pyromaniac.LivingEntityRendererMixin"
   ]
